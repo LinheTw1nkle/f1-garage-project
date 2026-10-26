@@ -12,8 +12,9 @@
       const name=full.textContent.trim(),driver=seasonData[selectedSeason]?.drivers.find(d=>d.name===name)||seasonData[selectedSeason]?.reserveDrivers?.find(d=>d.name===name);
       const item=document.createElement('button');item.type='button';item.className='results-mobile-identity';item.setAttribute('aria-label',name);
       item.style.setProperty('--team-color',racePositionTeams[driver?.team]?.color||'#75dafa');
-      const logo=row.cells[3]?.querySelector('img');if(logo){const image=logo.cloneNode(true);image.alt='';item.append(image);}
-      const text=document.createElement('span');text.textContent=codes[driver?.id]||name.split(/\s+/).at(-1).slice(0,3).toUpperCase();item.append(text);
+      const group=document.createElement('span');group.className='results-mobile-identity-content';
+      const logo=row.cells[3]?.querySelector('img');if(logo){const image=document.createElement('img');image.src=logo.src;image.alt='';image.width=18;image.height=18;group.append(image);}
+      const text=document.createElement('span');text.textContent=codes[driver?.id]||name.split(/\s+/).at(-1).slice(0,3).toUpperCase();group.append(text);item.append(group);
       item.addEventListener('click',()=>full.click());rail.append(item);
     }
     schedule();
