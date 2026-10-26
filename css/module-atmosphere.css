@@ -1,0 +1,47 @@
+/* Shared ambient lighting, beneath content and outside navigation transitions. */
+#panel.database-fullscreen:is(.cockpit-view,.circuit-view,.tire-view),#driverDialog{
+  isolation:isolate;--module-light:#4c94cb;
+}
+#panel.database-fullscreen:is(.cockpit-view,.circuit-view,.tire-view){overflow:clip}
+#panel.database-fullscreen:is(.cockpit-view,.circuit-view,.tire-view)>.panel-body{position:relative;overscroll-behavior:contain}
+#panel.database-fullscreen.tire-view{--module-light:var(--tire-theme,#75dafa)}
+#panel.database-fullscreen:is(.cockpit-view,.circuit-view,.tire-view)::before,
+#driverDialog::before{
+  content:'';position:absolute;inset:-45%;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 30% 36%,color-mix(in srgb,var(--module-light) 36%,transparent),transparent 36%),
+    radial-gradient(ellipse at 73% 54%,#6841854d,transparent 33%),
+    radial-gradient(ellipse at 47% 74%,#167d9142,transparent 33%);
+  animation:module-light-drift 20s ease-in-out infinite alternate;will-change:transform;
+}
+#driverDialog::before{position:fixed}
+@keyframes module-light-drift{
+  from{transform:translate3d(-5%,-4%,0) rotate(-12deg)}
+  50%{transform:translate3d(6%,3%,0) rotate(10deg)}
+  to{transform:translate3d(-3%,9%,0) rotate(28deg)}
+}
+#panel.cockpit-view #cockpitBack{display:none!important}
+#panel #back[data-destination='archive-overview']>span{position:relative;display:block;width:18px;height:18px;font-size:0;transform:none}
+#panel #back[data-destination='archive-overview']>span::before,
+#panel #back[data-destination='archive-overview']>span::after{content:'';position:absolute;left:50%;top:50%;width:15px;height:1.5px;border:0;border-radius:2px;background:#f5f8fc;transform-origin:center}
+#panel #back[data-destination='archive-overview']>span::before{transform:translate(-50%,-50%) rotate(45deg)}
+#panel #back[data-destination='archive-overview']>span::after{transform:translate(-50%,-50%) rotate(-45deg)}
+#driverDialog,#driverDialog::backdrop{backdrop-filter:none}
+#panel.cockpit-view .team-logo-track{backdrop-filter:blur(5.6px)}
+#driverDialog.driver-dialog[open]{display:flex;flex-direction:column;overflow:hidden}
+#driverDialog.driver-dialog>.panel-header{
+  position:relative;top:auto;flex:0 0 60px;z-index:10;
+  display:flex;justify-content:flex-end;align-items:center;min-height:60px;
+  padding:0 0 16px;margin:0;background:transparent;border:0;
+  border-bottom:1px solid #7892ae40;box-shadow:none;
+}
+#driverDialog>.panel-header>div{display:none}
+#driverDialog>.panel-header::before,#driverDialog>.panel-header::after{display:none}
+#driverDialog #driverDialogProfile{
+  flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;
+  margin:0;padding-top:clamp(28px,3vw,48px);padding-bottom:24px;
+  scrollbar-width:none;outline:none;
+}
+#driverDialogProfile::-webkit-scrollbar{display:none}
+@media(prefers-reduced-motion:reduce){
+  #panel.database-fullscreen:is(.cockpit-view,.circuit-view,.tire-view)::before,#driverDialog::before{animation:none;will-change:auto}
+}

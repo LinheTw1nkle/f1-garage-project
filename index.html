@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formula 1 Garage · SF25</title>
+<link rel="preload" href="fonts/Formula1-Black.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Formula1-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Northwell-Clean-Alt.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Anton-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/RedHatDisplay-Variable.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preconnect" href="https://media.formula1.com">
+<link rel="preconnect" href="https://flagcdn.com">
+<link rel="preload" href="js/embedded-models.js?v=size-opt-125" as="script">
+<link rel="stylesheet" href="css/style.css?v=fullscreen-panel-150">
+<link rel="stylesheet" href="css/home.css?v=roof-labels-148">
+<link rel="stylesheet" href="css/tire-lab.css?v=size-opt-125">
+<link rel="stylesheet" href="css/circuit.css?v=circuit-theme-184">
+<link rel="stylesheet" href="css/data-design.css?v=team-detail-spacing-232">
+<link rel="stylesheet" href="css/circuit-pickers.css?v=size-opt-125">
+<link rel="stylesheet" href="css/globe-layout.css?v=cosmic-circuits-181">
+<link rel="stylesheet" href="css/globe-cosmos.css?v=cosmic-circuits-239">
+<link rel="stylesheet" href="css/panel-module-nav.css?v=panel-nav-220">
+<link rel="stylesheet" href="css/database-portal.css?v=codrops-rebuild-220">
+<link rel="stylesheet" href="css/driver-grid.css?v=driver-motion-260">
+<link rel="stylesheet" href="css/race-weekend.css?v=circuit-tower-268">
+
+<link rel="stylesheet" href="css/module-atmosphere.css?v=driver-fixed-toolbar-244">
+<link rel="stylesheet" href="css/season-overview.css?v=season-overview-241">
+<link rel="stylesheet" href="css/page-lighting.css?v=page-lighting-245">
+<link rel="stylesheet" href="css/driver-editorial.css?v=vertical-driver-profile-248">
+<link rel="stylesheet" href="css/grid01-driver.css?v=grid01-driver-249">
+<link rel="stylesheet" href="css/driver-helmet-reveal.css?v=helmet-reveal-261">
+<link rel="stylesheet" href="css/startup-loader.css?v=sf26-loader-267">
+</head>
+
+<body>
+
+<canvas id="app">
+</canvas>
+<div id="loading" class="loading">
+<div id="sf26StartupLoader" class="sf26-loader" role="progressbar" aria-label="Loading F1 Garage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+<div class="sf26-loader-percent"><span id="sf26LoadPercent">0</span><span class="sf26-loader-unit">%</span></div>
+<svg class="sf26-loader-art" viewBox="150 0 1250 164" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-source="img/team-cars/ferrari-2026-left.webp">
+<defs><clipPath id="sf26UpperHalf"><rect x="0" y="0" width="1400" height="154"/></clipPath></defs>
+<g clip-path="url(#sf26UpperHalf)"><path class="sf26-loader-guide" d="M182,151 L192,138 L202,129 L214,121 L240,111 L256,109 L284,110 L304,115 L320,122 L338,136 L360,124 L378,120 L402,120 L420,125 L426,124 L434,119 L440,123 L492,121 L542,82 L558,72 L566,69 L586,69 L710,92 L720,92 L726,88 L740,88 L742,35 L746,32 L750,32 L754,28 L756,24 L758,10 L766,6 L770,1 L772,1 L776,6 L788,8 L796,5 L800,12 L802,32 L806,33 L832,31 L858,34 L906,36 L964,45 L1042,61 L1076,65 L1110,66 L1112,68 L1128,118 L1134,118 L1146,113 L1164,109 L1166,75 L1168,66 L1174,60 L1190,58 L1194,46 L1218,45 L1230,39 L1252,37 L1376,33 L1380,34"/><path class="sf26-loader-progress" pathLength="100" d="M182,151 L192,138 L202,129 L214,121 L240,111 L256,109 L284,110 L304,115 L320,122 L338,136 L360,124 L378,120 L402,120 L420,125 L426,124 L434,119 L440,123 L492,121 L542,82 L558,72 L566,69 L586,69 L710,92 L720,92 L726,88 L740,88 L742,35 L746,32 L750,32 L754,28 L756,24 L758,10 L766,6 L770,1 L772,1 L776,6 L788,8 L796,5 L800,12 L802,32 L806,33 L832,31 L858,34 L906,36 L964,45 L1042,61 L1076,65 L1110,66 L1112,68 L1128,118 L1134,118 L1146,113 L1164,109 L1166,75 L1168,66 L1174,60 L1190,58 L1194,46 L1218,45 L1230,39 L1252,37 L1376,33 L1380,34"/></g></svg>
+</div>
+</div>
+<div id="sceneTransition" class="scene-transition" aria-hidden="true">
+  <div class="transition-display" role="status" aria-live="polite">
+    <span class="transition-eyebrow">FORMULA 1 GARAGE</span>
+    <strong id="transitionTitle">PREPARING GARAGE</strong>
+    <span id="transitionDetail" class="transition-detail"></span>
+    <span class="transition-track" aria-hidden="true"></span>
+  </div>
+</div>
+<div class="hud">
+<div class="home-screen">
+
+<div class="brand">FORMULA 1 GARAGE</div>
+<div class="season">INTERACTIVE DATABASE</div>
+<button id="resetView" class="reset-view" type="button" aria-label="Reset view" title="Reset view">
+  <svg class="reset-spin-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1.5 7M4 4v6h6"/></svg>
+  <svg class="reset-check-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M5 12.5 9.5 17 19 7"/></svg>
+</button>
+<nav class="module-navigation" aria-label="Garage modules">
+  <button id="carToggle" class="car-toggle module-toggle" type="button" aria-pressed="true">FORMULA 1 <span>ON</span></button>
+  <button id="airflowToggle" class="airflow-toggle module-toggle" type="button" aria-pressed="false">AERODYNAMICS <span>OFF</span></button>
+  <button id="partsToggle" class="parts-toggle module-toggle" type="button" aria-pressed="false">DATABASE <span>OFF</span></button>
+</nav>
+<div id="partLabels" class="part-labels" hidden><svg aria-hidden="true"></svg><div class="part-label-panels"></div></div>
+</div>
+<section id="databasePortal" class="database-portal" aria-label="Database categories" hidden>
+  <div class="database-portal-backdrop" aria-hidden="true"></div>
+  <div class="database-portal-stage"></div>
+</section>
+<div id="badge" class="badge">
+</div>
+<section id="panel" class="panel database-fullscreen" aria-label="数据页面">
+  <div class="panel-toolbar">
+    <div id="circuitToolbarNav" class="circuit-toolbar-nav" hidden>
+      <button id="globeDetailBack" class="globe-detail-back" type="button" hidden aria-hidden="true" tabindex="-1">WORLD CIRCUITS</button>
+      <nav id="circuitTabs" class="cockpit-tabs" aria-label="Circuit pages">
+        <button type="button" data-circuit-page="information" aria-pressed="true">CIRCUIT INFORMATION</button>
+        <button type="button" data-circuit-page="comparison" aria-pressed="false">CIRCUIT COMPARISON</button>
+      </nav>
+    </div>
+    <div class="panel-subtoolbar">
+      <button id="cockpitBack" class="cockpit-detail-back" type="button" hidden aria-label="Back to team selection">← BACK</button>
+      <nav id="tyreTabs" class="cockpit-tabs" aria-label="Tyre pages" hidden>
+        <button type="button" data-tyre-page="tyre" aria-pressed="true">TYRE</button>
+        <button type="button" data-tyre-page="strategy" aria-pressed="false">STRATEGY</button>
+      </nav>
+      <nav id="raceSessionTabs" class="cockpit-tabs" aria-label="Race session" hidden></nav>
+      <nav id="cockpitTabs" class="cockpit-tabs" aria-label="驾驶舱资料分类" hidden></nav>
+    </div>
+    <button id="back" class="database-return" type="button" aria-label="Return to Database" title="Return to Database"><span aria-hidden="true">←</span></button>
+  </div>
+
+  <div class="panel-body">
+    <section id="frontwingGlobe" class="frontwing-globe" hidden aria-label="Interactive Formula 1 circuit globe">
+      <div class="globe-explorer-layout">
+        <div class="globe-copy">
+          <div class="globe-heading"><span class="kicker">FORMULA 1 · GLOBAL CIRCUITS</span><h2>THE RACING<br>WORLD</h2></div>
+          <div id="globeIntro" class="globe-intro">
+            <span class="globe-intro-rule" aria-hidden="true"></span>
+            <p>From city streets to purpose-built tracks, every Formula 1 circuit has its own rhythm. Explore the globe to discover the venues across each region.</p>
+          </div>
+          <aside class="globe-circuits" aria-label="Circuits by region" hidden>
+            <div class="globe-region-heading"><button id="globeReset" class="globe-reset" type="button" aria-label="Back to world globe" title="Back to world globe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><h3 id="globeContinentTitle">Europe</h3></div>
+            <div id="globeCircuitList" class="globe-circuit-list" aria-live="polite"></div>
+          </aside>
+        </div>
+        <div class="globe-stage"><canvas id="particleEarth" tabindex="0" role="img" aria-label="Interactive Earth. Click a region to list its Formula 1 circuits; drag horizontally or use arrow keys to rotate."></canvas></div>
+        <svg id="globeCircuitLines" class="globe-circuit-lines" aria-hidden="true"></svg>
+      </div>
+    </section>
+    <div id="cockpitTop" class="cockpit-top">
+    <div class="cockpit-top-main">
+    <div class="panel-content-heading">
+      <div id="kicker" class="kicker" hidden></div>
+      <h2 id="title" class="title"></h2>
+      <p id="description" class="panel-description"></p>
+    </div>
+    <div id="cockpitControls" class="cockpit-controls" hidden>
+      <label id="cockpitSelectLabel" for="cockpitSelect">Select Driver</label>
+      <select id="cockpitSelect"></select>
+    </div>
+    <p id="cockpitNote" class="cockpit-note" hidden></p>
+      <div id="overviewFilters" class="overview-filters cockpit-controls" hidden>
+        <label for="seasonSelect">Season</label><select id="seasonSelect"></select>
+        <div id="seasonSessionToggle" class="season-session-toggle" role="group" aria-label="Select results type">
+          <button type="button" data-season-session="race" aria-pressed="true">RACE</button>
+          <button type="button" data-season-session="sprint" aria-pressed="false">SPRINT</button>
+          <button type="button" data-season-session="weekend" aria-pressed="false">WEEKEND</button>
+        </div>
+        <span id="raceFilter" class="race-filter" hidden><span>Round</span><select id="raceSelect" hidden></select><details id="racePicker" class="race-picker"><summary aria-label="Select Round"><span id="racePickerLabel"></span></summary><span id="racePickerOptions" class="race-picker-options"></span></details></span>
+      </div>
+      </div>
+      <button id="nextRaceCard" class="next-race-card" type="button" aria-haspopup="dialog" aria-controls="raceDialog" hidden>
+        <span class="next-race-kicker">NEXT GRAND PRIX</span>
+        <strong id="nextRaceName"></strong>
+        <span id="nextRaceCircuit" class="next-race-circuit"></span>
+        <span class="next-race-footer"><span id="nextRaceDates"></span><span>Race &amp; Circuit Details →</span></span>
+      </button>
+      </div>
+    <section id="tyreGuide" class="panel-section tyre-guide" hidden aria-label="Tyre compound guide"></section>
+    <section id="tireLab" class="panel-section tire-lab" hidden aria-label="Tyre strategy laboratory"></section>
+    <section id="seasonOverview" class="panel-section" hidden>
+      <div class="results-grid-heading results-caption-row"><span id="resultsCaption" hidden></span><button id="seasonMetricToggle" class="season-metric-toggle" type="button" aria-label="Show race positions" aria-pressed="false"><span data-season-metric="positions">POSITIONS</span><span data-season-metric="points" class="is-active">POINTS</span></button><span id="resultsHelp" class="results-help">드라이버 클릭 시 프로필 표시 · 위아래 스크롤 / Shift + 휠로 좌우 이동</span></div>
+      <div class="results-frame">
+      <div id="resultsHeaderViewport" class="results-header-viewport">
+        <table id="resultsHeaderTable" class="results-table" aria-label="成绩表头">
+          <colgroup id="resultsHeaderColumns"></colgroup>
+          <thead><tr id="resultsHeaders"></tr></thead>
+        </table>
+      </div>
+      <div class="results-scroll" tabindex="0" aria-label="车手成绩总览，可横向滚动">
+        <table id="resultsDataTable" class="results-table" aria-labelledby="resultsCaption">
+          <colgroup id="resultsDataColumns"></colgroup>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+    <section id="driverProfileSection" class="panel-section" hidden></section>
+    <section id="teamProfileSection" class="panel-section" hidden></section>
+    <section id="archiveDirectory" class="panel-section archive-directory" hidden></section>
+    <section id="circuitExplorer" class="panel-section circuit-explorer" hidden>
+      <div class="circuit-explorer-grid">
+        <div class="circuit-map-panel">
+          <div id="interactiveCircuitMap" class="interactive-circuit-map"></div>
+          <p id="circuitMapAvailabilityNote" class="circuit-availability-note" hidden></p>
+        </div>
+        <div class="circuit-information">
+          <div id="circuitSectorButtons" class="circuit-sector-buttons" aria-label="Select circuit overview or sector"></div>
+          <div class="circuit-information-scroll">
+          <article id="circuitOverviewDetails" class="circuit-sector-details circuit-overview-details">
+            <span class="circuit-sector-badge">CIRCUIT OVERVIEW</span>
+            <h3 id="circuitOverviewName"></h3>
+            <div id="circuitFacts" class="circuit-facts"></div>
+            <h4>Grand Prix Winners</h4>
+            <div id="circuitWinners" class="circuit-winners"></div>
+            <p id="circuitHistoryNote" class="circuit-map-note"></p>
+          </article>
+          <article id="circuitSectorDetails" class="circuit-sector-details" aria-live="polite" hidden></article>
+          </div>
+        </div>
+      </div>
+      <p id="circuitSources" class="cockpit-note"></p>
+    </section>
+    <section id="circuitComparison" class="panel-section" aria-label="Circuit comparison content" hidden></section>
+    <section id="racePositionChart" class="panel-section race-position-chart" aria-label="Race position changes" hidden></section>
+    <section id="statsSection" class="panel-section">
+      <h3>OVERVIEW</h3>
+      <div id="stats" class="stats-grid"></div>
+    </section>
+
+    <section id="chartSection" class="panel-section">
+      <div class="section-heading">
+        <h3 id="chartTitle">데이터 시각화</h3>
+        <span>시즌 데이터</span>
+      </div>
+      <div id="chart" class="chart"></div>
+    </section>
+
+    <section id="imageSection" class="panel-section" hidden>
+      <h3>갤러리</h3>
+      <div id="gallery" class="gallery"></div>
+    </section>
+  </div>
+</section>
+<dialog id="driverDialog" class="driver-dialog" aria-labelledby="driverDialogTitle">
+  <div class="panel-header">
+    <div><h2 id="driverDialogTitle" class="title"></h2></div>
+    <button id="driverDialogClose" class="panel-close" type="button" aria-label="关闭车手资料">✕</button>
+  </div>
+  <p id="driverDialogDescription" class="panel-description" hidden></p>
+  <div id="driverDialogProfile" role="region" aria-label="Driver profile details" tabindex="0"></div>
+  <div id="driverDialogStats" class="stats-grid"></div>
+</dialog>
+<script src="js/season-data.js?v=usgp-2026-10-26"></script>
+<dialog id="raceDialog" class="driver-dialog race-dialog" aria-labelledby="raceDialogTitle">
+  <div class="panel-header">
+    <div><h2 id="raceDialogTitle" class="title"></h2></div>
+    <button id="raceDialogClose" class="panel-close" type="button" aria-label="서킷 상세 정보 닫기">✕</button>
+  </div>
+  <p id="raceDialogDescription" class="panel-description"></p>
+  <div class="race-detail-grid">
+    <figure class="circuit-map">
+      <button id="raceMapZoom" class="circuit-map-zoom" type="button" aria-label="구간별 서킷 지도 확대" aria-haspopup="dialog" aria-controls="mapDialog">
+        <img id="raceCircuitMap" alt="" referrerpolicy="no-referrer">
+        <span class="map-zoom-hint" aria-hidden="true" title="서킷 지도 확대">⤢</span>
+      </button>
+      <p id="raceMapError" hidden>서킷 지도를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.</p>
+      <figcaption id="raceMapCredit" hidden></figcaption>
+      <div class="sector-legend"><span>S1 · 제1섹터</span><span>S2 · 제2섹터</span><span>S3 · 제3섹터</span></div>
+    </figure>
+    <div id="raceDialogStats" class="stats-grid"></div>
+  </div>
+</dialog>
+<dialog id="mapDialog" class="map-dialog" aria-labelledby="mapDialogTitle">
+  <div class="map-dialog-header">
+    <h2 id="mapDialogTitle">구간별 서킷 지도</h2>
+    <button id="mapDialogClose" class="panel-close" type="button" aria-label="확대 지도 닫기">✕</button>
+  </div>
+  <img id="enlargedCircuitMap" alt="" referrerpolicy="no-referrer">
+  <p id="enlargedMapCredit" class="cockpit-note" hidden></p>
+</dialog>
+<script src="js/next-race-data.js?v=usgp-2026-10-26"></script>
+<script src="js/driver-profiles.js?v=size-opt-125"></script>
+<script src="js/team-media.js?v=size-opt-125"></script>
+<script src="js/archive-media.js?v=size-opt-125"></script>
+<script src="js/driver-signatures.js?v=size-opt-125"></script>
+<script src="js/scoring.js?v=size-opt-125"></script>
+<script src="js/cockpit-data.js?v=size-opt-125"></script>
+<script src="js/circuit-data.js?v=size-opt-125"></script>
+<script src="js/circuit-catalog.js?v=usgp-2026-10-26"></script>
+<script src="js/asset-manifest.js?v=all-resources-264"></script>
+<script src="js/resource-preload.js?v=all-resources-264"></script>
+<script src="js/image-cache.js?v=all-resources-264"></script>
+<script src="js/circuit-explorer.js?v=size-opt-125"></script>
+<script src="js/circuit-comparison.js?v=size-opt-129"></script>
+<script src="js/race-position-data.js?v=usgp-2026-10-26"></script>
+<script src="js/race-weekend.js?v=circuit-tower-268"></script>
+<script src="js/race-position-chart.js?v=race-weekend-238"></script>
+<script src="js/airflow.js?v=size-opt-125"></script>
+<script src="js/part-labels.js?v=cockpit-anchor-149"></script>
+<script src="js/gaussian-blur.js?v=size-opt-125"></script>
+<script src="js/airflow-reflection.js?v=size-opt-125"></script>
+<script src="js/neon-outline.js?v=size-opt-125"></script>
+<script src="js/speed-lines.js?v=size-opt-125"></script>
+<script src="js/embedded-models.js?v=size-opt-125"></script>
+<script src="js/tyre-material.js?v=size-opt-125"></script>
+<script src="js/tyre-race-data.js?v=usgp-2026-10-26"></script>
+<script src="js/tire-lab.js?v=usgp-2026-10-26"></script>
+<script src="js/ferrari-particle-data.js?v=packed-particles-132"></script>
+<script src="js/database-portal.js?v=return-unselected-224"></script>
+<script src="js/driver-grid.js?v=helmet-reveal-260"></script>
+<script src="js/driver-introductions.js?v=official-bios-261"></script>
+<script src="js/driver-helmet-reveal.js?v=all-resources-264"></script>
+<script src="js/driver-editorial.js?v=helmet-reveal-261"></script>
+<script src="js/startup-loader.js?v=sf26-loader-266"></script>
+<script src="js/app.js?v=sf26-loader-265"></script>
+
+<script src="js/team-logo-alignment.js?v=size-opt-125"></script>
+<script src="js/team-landing.js?v=team-rain-231"></script>
+<script src="js/team-particle-car.js?v=team-rain-231"></script>
+<script src="js/particle-earth.js?v=cosmic-circuits-187"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,58 @@
+/* Each content view has its own ambient shape and motion. No layout animation. */
+#panel.database-fullscreen.globe-view::after{
+  background:radial-gradient(ellipse at 32% 36%,#24588c70,transparent 31%),radial-gradient(ellipse at 69% 51%,#733e9863,transparent 29%),radial-gradient(ellipse at 49% 72%,#19758b55,transparent 30%);
+  animation:cosmos-orbit 30s ease-in-out infinite alternate;
+}
+#panel.database-fullscreen.circuit-view::before{
+  background:linear-gradient(123deg,transparent 36%,#469ac04a 44%,transparent 52%),linear-gradient(60deg,transparent 53%,#335cae40 59%,transparent 65%),radial-gradient(ellipse at 60% 72%,#20767f3d,transparent 31%);
+  animation:circuit-beam-pass 17s ease-in-out infinite alternate;
+}
+#panel.database-fullscreen.team-selection-view::before{
+  background:radial-gradient(ellipse at 29% 18%,#649dbb70,transparent 26%),radial-gradient(ellipse at 70% 63%,#206b7859,transparent 30%),linear-gradient(100deg,transparent 35%,#284e7233 50%,transparent 65%);
+  animation:team-studio-sway 16s ease-in-out infinite alternate;
+}
+#panel.database-fullscreen.driver-overview-view::before{
+  background:linear-gradient(100deg,transparent 22%,#65428955 36%,transparent 48%),linear-gradient(80deg,transparent 46%,#3a70a95c 60%,transparent 74%);
+  animation:driver-curtain-sweep 21s ease-in-out infinite alternate;
+}
+#panel.database-fullscreen.team-detail-view::before{
+  background:radial-gradient(ellipse at 22% 52%,#9b48534d,transparent 27%),radial-gradient(ellipse at 76% 32%,#3c70985c,transparent 29%),radial-gradient(ellipse at 65% 77%,#3e448d42,transparent 26%);
+  animation:team-rim-breathe 13s ease-in-out infinite alternate;
+}
+#driverDialog::before,#panel.database-fullscreen.driver-view::before{
+  background:radial-gradient(ellipse at 25% 32%,#486ebc60,transparent 28%),radial-gradient(ellipse at 75% 66%,#7b437859,transparent 27%),radial-gradient(ellipse at 53% 72%,#1b71803a,transparent 24%);
+  animation:driver-portrait-bloom 15s ease-in-out infinite alternate;
+}
+#panel.database-fullscreen.table-view::before{
+  background:radial-gradient(ellipse at 50% 38%,#297e9f70,transparent 28%),linear-gradient(174deg,transparent 40%,#346d9c4d 48%,transparent 56%),radial-gradient(ellipse at 77% 73%,#354b873d,transparent 28%);
+  animation:overview-tide 19s ease-in-out infinite alternate;
+}
+#panel.database-fullscreen.race-position-view::before{
+  background:linear-gradient(125deg,transparent 31%,#447fa563 42%,transparent 53%),radial-gradient(ellipse at 70% 59%,#7c427064,transparent 27%);
+  animation:results-crosslight 14s ease-in-out infinite alternate;
+}
+#panel.database-fullscreen.race-position-view::after{
+  background:linear-gradient(65deg,transparent 46%,#9a745c3d 53%,transparent 61%),radial-gradient(ellipse at 35% 58%,#28508f47,transparent 26%);
+  animation:results-crosslight 18s ease-in-out -7s infinite alternate-reverse;
+}
+#panel.database-fullscreen.tire-view::before{
+  background:radial-gradient(ellipse at 65% 42%,transparent 15%,color-mix(in srgb,var(--tire-theme,#75dafa) 27%,transparent) 23%,transparent 33%),radial-gradient(ellipse at 34% 67%,color-mix(in srgb,var(--tire-theme,#75dafa) 16%,#24648a38),transparent 29%);
+  animation:tyre-halo-roll 24s linear infinite;
+}
+@keyframes cosmos-orbit{from{transform:translate3d(-4%,-3%,0) rotate(-16deg) scale(.96)}to{transform:translate3d(5%,6%,0) rotate(36deg) scale(1.08)}}
+@keyframes circuit-beam-pass{from{transform:translate3d(-9%,-3%,0)}to{transform:translate3d(10%,5%,0)}}
+@keyframes team-studio-sway{from{transform:translate3d(-5%,-3%,0) rotate(-5deg)}to{transform:translate3d(5%,2%,0) rotate(9deg)}}
+@keyframes driver-curtain-sweep{from{transform:translate3d(-9%,0,0) skewX(-5deg)}to{transform:translate3d(9%,2%,0) skewX(7deg)}}
+@keyframes team-rim-breathe{from{transform:scale(.94) rotate(-7deg);opacity:.68}to{transform:scale(1.08) rotate(8deg);opacity:1}}
+@keyframes driver-portrait-bloom{from{transform:translate3d(-3%,2%,0) scale(.93);opacity:.65}to{transform:translate3d(4%,-3%,0) scale(1.09);opacity:1}}
+@keyframes overview-tide{from{transform:translate3d(0,-8%,0) rotate(-3deg)}to{transform:translate3d(2%,8%,0) rotate(4deg)}}
+@keyframes results-crosslight{from{transform:translate3d(-8%,-4%,0) rotate(-12deg)}to{transform:translate3d(8%,5%,0) rotate(16deg)}}
+@keyframes tyre-halo-roll{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.06)}100%{transform:rotate(360deg) scale(1)}}
+/* Further reduce existing glass blur by 30%; lights themselves use no blur filter. */
+#panel .race-timing-tower,#panel .race-podium-lower{backdrop-filter:blur(5.9px)}
+#panel .race-session-card{backdrop-filter:blur(6.9px)}
+#panel.cockpit-view .team-logo-track{backdrop-filter:blur(3.9px)}
+#panel.database-fullscreen:not(.show)::before,#panel.database-fullscreen:not(.show)::after{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+  #panel.database-fullscreen::before,#panel.database-fullscreen::after,#driverDialog::before{animation:none;will-change:auto}
+}

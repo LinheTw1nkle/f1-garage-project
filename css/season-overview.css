@@ -1,0 +1,24 @@
+/* Current deep-blue / cyan palette for the season overview only. */
+#panel.table-view.cockpit-view{--accent:#75dafa;--text-secondary:#99adc3;color:#edf5ff}
+#panel.table-view.cockpit-view .kicker{color:#75dafa}
+#panel.table-view.cockpit-view .next-race-card{background:linear-gradient(115deg,#18324a9e,#0a192be0);border-color:#7aa7c940;border-left-color:#75dafa;color:#edf5ff}
+#panel.table-view.cockpit-view .next-race-card:hover{background:#193b53b0;border-color:#75dafa80}
+#panel.table-view.cockpit-view .next-race-kicker{color:#8be3fa}
+#panel.table-view.cockpit-view .next-race-footer{border-color:#83b2ce30;color:#9db3c9}
+#panel.table-view.cockpit-view :is(.season-metric-toggle,.season-session-toggle){background:#0b1a2cc9;border-color:#7aa7c940;color:#99adc3}
+#panel.table-view.cockpit-view .season-metric-toggle .is-active,
+#panel.table-view.cockpit-view .season-session-toggle button[aria-pressed='true']{background:#75dafa20;color:#c9f6ff;box-shadow:inset 0 -2px #75dafa}
+#panel.table-view.cockpit-view .season-session-toggle button:hover{background:#75dafa12;color:#d3f6ff}
+#panel.table-view.cockpit-view .season-metric-toggle:hover{border-color:#75dafa80}
+#panel.table-view.cockpit-view :is(.season-metric-toggle,.season-session-toggle button):focus-visible{outline:2px solid #75dafa;outline-offset:3px}
+#panel.table-view.cockpit-view :is(#overviewFilters select,.results-grid-heading){color:#b9cedf;background:#0d2034;border-color:#7aa7c940}
+#panel.table-view.cockpit-view .results-frame{background:#081726e0;border-color:#7aa7c940}
+#panel.table-view.cockpit-view :is(.results-caption-row,.results-header-viewport){background:#10263b;border-color:#7aa7c92b;color:#a9c2d7}
+#panel.table-view.cockpit-view .results-scroll{background:#081726}
+#panel.table-view.cockpit-view :is(.results-table th,.results-frozen-header){background:#10263b;color:#bfd9eb}
+#panel.table-view.cockpit-view .results-frozen-header>span{border-bottom-color:#75dafa30}
+#panel.table-view.cockpit-view .results-table td{background:#0b1b2d;color:#b9ccdf;border-bottom-color:#7aa7c919}
+#panel.table-view.cockpit-view .results-table tbody tr:nth-child(even) td{background:#0f2338}
+#panel.table-view.cockpit-view .results-table tbody tr:hover td{background:#193a51}
+#panel.table-view.cockpit-view .results-table .points-cell{color:#8de6ff}
+#panel.table-view.cockpit-view .results-table .driver-name-button:hover{color:#8de6ff}

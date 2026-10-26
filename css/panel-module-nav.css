@@ -1,0 +1,293 @@
+#panel.database-fullscreen > .panel-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 60px;
+  min-height: 60px;
+  flex: 0 0 60px;
+  background: transparent;
+  border-bottom: 1px solid #ffffff24;
+}
+
+#panel .panel-module-nav {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(18px, 2.4vw, 42px);
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+#panel .panel-module-nav::-webkit-scrollbar { display: none; }
+#panel .panel-module-nav button {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+  padding: 1px 0 0;
+  border: 0;
+  background: transparent;
+  color: #9ba8b8;
+  font: 400 12px 'Garage Formula1 Regular', var(--font-main);
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+#panel .panel-module-nav button:hover,
+#panel .panel-module-nav button[aria-current="page"] { color: #f7f8fb; }
+#panel .panel-module-nav button[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: #e10600;
+  box-shadow: 0 0 12px #e1060080;
+}
+
+#panel .database-return {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  height: 36px;
+  width: 36px;
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid #7aa7c970;
+  border-radius: 999px;
+  background: #11243b99;
+  color: #f5f8fc;
+  font: 700 12px 'Arial Rounded MT Bold', 'Trebuchet MS', 'Segoe UI', sans-serif;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+#panel .database-return:hover { background: #17304d; border-color: #75dafa; }
+#panel .database-return:active { transform: scale(.96); }
+#panel .database-return span { font: 18px/1 var(--font-main); }
+#panel:not(.circuit-view) .database-return span {
+  position: relative;
+  display: block;
+  width: 14px;
+  height: 14px;
+  overflow: hidden;
+  color: transparent;
+  font-size: 0;
+}
+#panel:not(.circuit-view) .database-return span::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 11px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: #f5f8fc;
+  transform: translateY(-50%);
+}
+#panel:not(.circuit-view) .database-return span::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-left: 1.5px solid #f5f8fc;
+  border-bottom: 1.5px solid #f5f8fc;
+  transform: translateY(-50%) rotate(45deg);
+  transform-origin: center;
+}
+
+#panel .circuit-toolbar-nav {
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+  gap: clamp(18px, 2.2vw, 38px);
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#panel .circuit-toolbar-nav[hidden] { display: none; }
+#panel .circuit-toolbar-nav::-webkit-scrollbar { display: none; }
+#panel .circuit-toolbar-nav .globe-detail-back,
+#panel .circuit-toolbar-nav .cockpit-tabs,
+#panel .circuit-toolbar-nav .cockpit-tabs button { height: 100%; margin: 0; }
+#panel .circuit-toolbar-nav .globe-detail-back,
+#panel .circuit-toolbar-nav .cockpit-tabs button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 1px 0 0;
+  border: 0;
+  background: transparent;
+  color: #9bb1c7;
+  font: 600 12px/1.2 var(--font-main);
+  white-space: nowrap;
+}
+#panel .circuit-toolbar-nav .globe-detail-back:hover,
+#panel .circuit-toolbar-nav .cockpit-tabs button:hover,
+#panel .circuit-toolbar-nav .cockpit-tabs button[aria-pressed="true"] { color: #f5f8fc; }
+#panel .circuit-toolbar-nav .globe-detail-back::after,
+#panel .circuit-toolbar-nav .cockpit-tabs button[aria-pressed="true"]::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: #75dafa;
+  box-shadow: 0 0 12px #62cfff80;
+}
+#panel .circuit-toolbar-nav .cockpit-tabs {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(18px, 2.2vw, 38px);
+  flex-wrap: nowrap;
+}
+#panel.circuit-view .database-return {
+  border-color: #7aa7c970;
+  background: #11243b99;
+  color: #f5f8fc;
+}
+#panel.circuit-view .database-return:hover { border-color: #75dafa; background: #17304d; }
+#panel.circuit-view .database-return span {
+  position: relative;
+  display: block;
+  width: 14px;
+  height: 14px;
+  overflow: hidden;
+  color: transparent;
+  font-size: 0;
+  transform: none;
+}
+#panel.circuit-view .database-return span::before,
+#panel.circuit-view .database-return span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 15px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: #f5f8fc;
+  transform-origin: center;
+}
+#panel.circuit-view .database-return span::before { transform: translate(-50%,-50%) rotate(45deg); }
+#panel.circuit-view .database-return span::after { transform: translate(-50%,-50%) rotate(-45deg); }
+
+#panel .panel-toolbar > .panel-subtoolbar {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  gap: clamp(18px, 2.2vw, 38px);
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+#panel .panel-toolbar > .panel-subtoolbar:not(:has(> :not([hidden]))) { display: none; }
+#panel .panel-subtoolbar .cockpit-tabs {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  gap: 24px;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#panel .panel-subtoolbar .cockpit-tabs::-webkit-scrollbar { display: none; }
+#panel .panel-subtoolbar .cockpit-tabs button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #9bb1c7;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+#panel .panel-subtoolbar .cockpit-tabs button:hover,
+#panel .panel-subtoolbar .cockpit-tabs button[aria-pressed="true"] { color: #f5f8fc; background: transparent; }
+#panel .panel-subtoolbar .cockpit-tabs button[aria-pressed="true"]::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: #75dafa;
+  box-shadow: 0 0 12px #62cfff80;
+}
+#panel .panel-subtoolbar .globe-detail-back,
+#panel .panel-subtoolbar .cockpit-detail-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  height: 34px;
+  margin: 0;
+  padding: 0 10px;
+}
+
+@media(max-width:700px) {
+  #panel.database-fullscreen > .panel-toolbar {
+    display: flex;
+    height: 52px;
+    min-height: 52px;
+    flex-basis: 52px;
+  }
+  #panel .database-return { width: 34px; height: 34px; padding: 0; }
+  #panel .database-return span { font-size: 16px; }
+  #panel .circuit-toolbar-nav { gap: 14px; }
+  #panel .circuit-toolbar-nav .cockpit-tabs { gap: 14px; }
+  #panel .circuit-toolbar-nav .globe-detail-back,
+  #panel .circuit-toolbar-nav .cockpit-tabs button { font-size: 10px; }
+  #panel .panel-toolbar > .panel-subtoolbar { height: 100%; min-height: 0; flex-basis: auto; gap: 12px; }
+  #panel .panel-subtoolbar .cockpit-tabs { gap: 16px; }
+  #panel .panel-subtoolbar .cockpit-tabs button { font-size: 11px; }
+}
+
+/* Share the circuit archive's deep-blue surface and cyan navigation language. */
+#panel.database-fullscreen {
+  background-color: #06101f;
+  background-image: radial-gradient(ellipse at 73% 53%, #12376c32, transparent 44%),
+    linear-gradient(115deg, #122038 0%, #081324 48%, #030916 100%);
+  color: #f5f7fc;
+}
+#panel.database-fullscreen.tire-view {
+  background-color: #06101f;
+  background-image: radial-gradient(ellipse at 0 0, color-mix(in srgb,var(--tire-theme) 9%,transparent), transparent 52%),
+    linear-gradient(115deg, #122038 0%, #081324 48%, #030916 100%);
+}
+#panel.database-fullscreen > .panel-toolbar { border-bottom-color: #7892ae40; }
+#panel.database-fullscreen .panel-body { color: #d8e1ec; }
+#panel.database-fullscreen .kicker { color: #75dafa; }
+#panel.database-fullscreen:not(.tire-view) :is(.cockpit-detail-back,.cockpit-controls select,.race-picker summary) {
+  border-color: #7aa7c940;
+  background-color: #0e1b2c;
+}
+#panel.database-fullscreen:not(.tire-view) :is(.stat-card,.results-frame,.race-classification,.comparison-card,.team-profile-header,.team-driver-card) {
+  background-color: #0b1727;
+  border-color: #7aa7c928;
+}
+#panel.database-fullscreen.tire-view .panel-subtoolbar .cockpit-tabs button[aria-pressed="true"]::after {
+  background: var(--tire-theme);
+  box-shadow: 0 0 12px color-mix(in srgb,var(--tire-theme) 55%,transparent);
+}
+#panel.database-fullscreen.tire-view .panel-subtoolbar .cockpit-tabs button[aria-pressed="true"],
+#panel.database-fullscreen.tire-view .kicker { color: var(--tire-theme); }
+
+@media(prefers-reduced-motion:reduce) {
+  #panel .panel-module-nav { scroll-behavior: auto; }
+  #panel .panel-module-nav button,
+  #panel .database-return { transition: none; }
+}

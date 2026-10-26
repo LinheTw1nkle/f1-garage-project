@@ -1,0 +1,156 @@
+[
+  {
+    "id": "albon",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 313752
+  },
+  {
+    "id": "alonso",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 328526
+  },
+  {
+    "id": "antonelli",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 320623
+  },
+  {
+    "id": "bearman",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 300221
+  },
+  {
+    "id": "bortoleto",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 324200
+  },
+  {
+    "id": "bottas",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 349457
+  },
+  {
+    "id": "colapinto",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 301680
+  },
+  {
+    "id": "gasly",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 309755
+  },
+  {
+    "id": "hadjar",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 324554
+  },
+  {
+    "id": "hamilton",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 355117
+  },
+  {
+    "id": "hulkenberg",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 299770
+  },
+  {
+    "id": "lawson",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 1219101
+  },
+  {
+    "id": "leclerc",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 313403
+  },
+  {
+    "id": "lindblad",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 1091575
+  },
+  {
+    "id": "norris",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 280312
+  },
+  {
+    "id": "ocon",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 300171
+  },
+  {
+    "id": "perez",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 350844
+  },
+  {
+    "id": "piastri",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 294095
+  },
+  {
+    "id": "russell",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 334929
+  },
+  {
+    "id": "sainz",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 340312
+  },
+  {
+    "id": "stroll",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 341228
+  },
+  {
+    "id": "verstappen",
+    "width": 1000,
+    "height": 1200,
+    "cornerAlpha": 0,
+    "bytes": 314355
+  }
+]

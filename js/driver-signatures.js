@@ -1,0 +1,1 @@
+'use strict';const driverSignatures={"leclerc":{"image":"img/signatures/leclerc.svg","source":"https://commons.wikimedia.org/wiki/File:Charles_Leclerc_Signature.svg"},"hamilton":{"image":"img/signatures/hamilton.png","source":"https://commons.wikimedia.org/wiki/File:Signature_de_Lewis_Hamilton_png.png"}};

@@ -1,0 +1,99 @@
+/* One first screen; portrait and canvas always use the same physical plane. */
+#driverDialog.driver-dialog[open]{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:clamp(18px,2.5vw,48px);box-sizing:border-box;border:0;border-radius:0;background:linear-gradient(120deg,color-mix(in srgb,var(--driver-light,#75dafa) 5%,#0a1424),#050b16 72%)}
+#driverDialog.driver-dialog[open]{padding-bottom:0}
+#driverDialog.driver-dialog::before{inset:0;opacity:.12;animation:driver-local-light 12s ease-in-out infinite alternate;background:radial-gradient(ellipse at 45% 57%,color-mix(in srgb,var(--driver-light,#75dafa) 32%,transparent),transparent 38%),radial-gradient(ellipse at 83% 70%,color-mix(in srgb,var(--driver-light,#75dafa) 18%,transparent),transparent 22%)}
+@keyframes driver-local-light{from{transform:translate3d(-1%,0,0) scale(1)}to{transform:translate3d(1%,-1%,0) scale(1.04)}}
+#driverDialog #driverDialogClose{display:grid;place-items:center;width:36px;height:36px;padding:0;border:1px solid #7aa7c970;border-radius:50%;background:#11243b99;color:#f5f8fc}
+#driverDialog #driverDialogClose:focus-visible{outline:2px solid #83eaff;outline-offset:3px}
+#driverDialog #driverDialogProfile.driver-editorial{scroll-snap-type:y mandatory;overflow:auto;padding:0;scroll-behavior:auto;overflow-anchor:none}
+#driverDialog .driver-editorial .driver-editorial-left .driver-given-name.driver-plain-name{font:400 clamp(56px,18cqi,92px)/1.3 'Garage Northwell Clean Alt',cursive;text-transform:none;letter-spacing:0;white-space:normal;padding:0 4px 4px;overflow:visible}
+#driverDialog .driver-editorial .driver-editorial-left .driver-surname{font:900 clamp(24px,9cqi,48px)/1.3 'Garage Formula1 Black',Arial,sans-serif;letter-spacing:-.015em;white-space:normal;overflow-wrap:normal}
+#driverDialog .driver-editorial-history{display:flex;flex-direction:column;justify-content:center;max-width:1200px;margin:auto}
+#driverDialog .driver-editorial-story.driver-editorial-quote{max-width:1260px;align-items:flex-start;gap:20px}
+.driver-editorial-quote-mark{display:block;height:60px;color:var(--driver-light,#e10600);font:900 100px/.9 'Garage Formula1 Black',Arial,sans-serif}
+.driver-editorial-quote-text{margin:0;font:900 clamp(25px,3.1vw,48px)/1.18 'Garage Formula1 Black',Arial,sans-serif;letter-spacing:-.025em;text-transform:uppercase;color:#f2f6fc;overflow-wrap:normal}
+.driver-editorial-quote-author{margin:10px 0 0;font:400 clamp(13px,1vw,17px)/1.5 'Garage Formula1 Regular',Arial,sans-serif;color:#a8bbcd}
+#driverDialog .driver-editorial-story,#driverDialog .driver-editorial-data,#driverDialog .driver-editorial-history{padding-top:clamp(40px,6dvh,80px);padding-bottom:clamp(40px,6dvh,80px)}
+#driverDialog #driverDialogProfile .driver-editorial-data{height:100%;min-height:100%;grid-template-columns:minmax(0,.46fr) minmax(0,.54fr);align-items:center;gap:clamp(28px,4vw,72px);padding-top:clamp(20px,3dvh,32px);padding-bottom:clamp(20px,3dvh,32px)}
+#driverDialog .driver-editorial-data :is(.driver-editorial-career-card,.driver-editorial-biography){height:100%;max-height:680px;box-sizing:border-box}
+#driverDialog .driver-editorial-data .driver-editorial-career-card{display:flex;flex-direction:column;min-height:0;padding:clamp(18px,2vw,28px);border-radius:30px}
+#driverDialog .driver-editorial-data .driver-section-title{flex:none;margin:0 0 14px;font-size:clamp(13px,1.1vw,18px)}
+#driverDialog #driverDialogProfile .driver-editorial-data .driver-honors{flex:1;min-height:0;grid-template-rows:repeat(7,minmax(0,1fr))}
+#driverDialog #driverDialogProfile .driver-editorial-data .driver-honors .stat-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:0;padding:8px 0;gap:14px;text-align:left}
+#driverDialog #driverDialogProfile .driver-editorial-data .driver-honors .stat-card>span{font-size:clamp(11px,.85vw,14px);text-align:left}
+#driverDialog #driverDialogProfile .driver-editorial-data .driver-honors .stat-card>strong{margin:0;font-size:clamp(24px,2vw,38px);text-align:right;white-space:nowrap}
+#driverDialog .driver-editorial-biography{display:flex;flex-direction:column;min-width:0;min-height:0;padding:clamp(18px,2vw,28px) 0}
+#driverDialog .driver-editorial-biography .driver-editorial-heading{margin:0 0 20px;font-size:clamp(13px,1.1vw,18px)}
+.driver-editorial-biography-text{display:flex;flex:1;flex-direction:column;justify-content:space-between;gap:clamp(14px,2dvh,24px)}
+.driver-editorial-biography-text p{margin:0;font:400 clamp(14px,1.1vw,20px)/1.75 Inter,Arial,sans-serif;color:#c4d0dd;max-width:42em}
+.driver-editorial-biography-long .driver-editorial-biography-text{gap:8px}
+.driver-editorial-biography-long .driver-editorial-biography-text p{font-size:clamp(12px,.8vw,15px);line-height:1.55;max-width:none}
+@media(max-width:800px){
+  #driverDialog #driverDialogProfile .driver-editorial-data{height:auto;min-height:100%;grid-template-columns:minmax(0,1fr);gap:28px}
+  #driverDialog .driver-editorial-data :is(.driver-editorial-career-card,.driver-editorial-biography){height:auto;max-height:none}
+  #driverDialog #driverDialogProfile .driver-editorial-data .driver-honors{grid-template-rows:repeat(7,minmax(48px,1fr))}
+  .driver-editorial-biography-text p{font-size:14px;line-height:1.7}
+}
+#driverDialog .driver-editorial-hero{height:100%;min-height:0;padding:0 clamp(12px,2vw,36px);gap:clamp(12px,1.2vw,24px);grid-template-columns:minmax(0,.29fr) minmax(0,.46fr) minmax(0,.25fr)}
+#driverDialog .driver-editorial-hero .driver-editorial-visual.driver-composite{height:100%;min-height:440px;align-self:stretch;outline:none;overflow:visible}
+.driver-composite-entry,.driver-composite-motion{position:absolute;inset:0}
+.driver-composite-entry{left:-17%;right:-17%;visibility:hidden;overflow:hidden;mask-image:linear-gradient(#000 0 80%,#000e 87%,#0008 94%,transparent 100%)}
+.driver-composite-entry.is-ready{visibility:visible}
+.driver-composite-motion{will-change:transform}
+.driver-composite-plane{position:absolute;top:-2%;left:50%;width:min(112%,112dvh);aspect-ratio:10/11;transform:translateX(-50%);isolation:isolate}
+#driverDialog .driver-editorial-hero .driver-composite-plane .driver-composite-portrait{position:absolute;inset:6.363636% 0 auto;width:100%;height:auto;aspect-ratio:5/6;overflow:visible;transform:none;filter:none;transition:none;border:0;background:none;margin:0}
+#driverDialog .driver-editorial-hero .driver-composite-plane .driver-composite-portrait img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top;transform:none;filter:none;transition:none}
+.driver-composite-portrait .portrait-upload,.driver-composite-portrait .portrait-placeholder{position:absolute;inset:20% 0 auto;text-align:center}
+.driver-helmet-surface{position:absolute;display:block;z-index:2;pointer-events:none}
+.driver-composite:focus-visible{outline:1px solid #82e8ff70!important;outline-offset:-8px}
+.driver-composite[data-framing='legacy'] .driver-composite-plane{width:90%}
+.driver-composite .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#driverDialog .driver-editorial-left{padding:28px 0 28px clamp(0px,2.1vw,40px);z-index:3}
+.driver-editorial-id-number{display:flex;align-items:center;gap:12px}
+.driver-editorial-id-number img{display:block;width:36px;height:22px;object-fit:contain}
+#driverDialog .driver-editorial-right{z-index:3;padding:24px clamp(0px,1vw,18px) 24px 0;justify-content:center;gap:clamp(30px,5dvh,54px)}
+#driverDialog .driver-editorial-fact-block{padding:20px 0;background:none}
+#driverDialog .driver-editorial-season{border-bottom:1px solid #aec3d224;padding-bottom:30px}
+#driverDialog .driver-editorial-season .driver-editorial-metric>strong{font-size:clamp(23px,1.8vw,35px);color:#d9e3ec}
+#driverDialog .driver-editorial-career .driver-editorial-metrics{display:grid;grid-template-columns:1fr 1fr;gap:24px 28px}
+#driverDialog .driver-editorial-career .driver-editorial-metric:first-child{grid-column:1/-1;gap:10px}
+#driverDialog .driver-editorial-career .driver-editorial-metric:first-child>strong{font-size:clamp(46px,4vw,72px);line-height:1.05}
+#driverDialog .driver-editorial-career .driver-editorial-metric:not(:first-child){padding-top:16px;border-top:1px solid #aec3d21c}
+#driverDialog .driver-editorial-fact-block h3{font:400 clamp(12px,.85vw,16px)/1.5 'Garage Formula1 Regular',Arial,sans-serif;letter-spacing:.08em;margin-bottom:24px}
+#driverDialog .driver-editorial-metric>span{font:400 clamp(9px,.62vw,12px)/1.5 'Garage Formula1 Regular',Arial,sans-serif;letter-spacing:.02em}
+#driverDialog .driver-editorial-metric>strong{font:900 clamp(24px,2.1vw,40px)/1.3 'Garage Formula1 Black',Arial,sans-serif;font-variant-numeric:tabular-nums}
+#driverDialog .driver-editorial-hero::before{opacity:.55;animation:driver-contour-drift 4.5s linear infinite;will-change:transform}
+@keyframes driver-contour-drift{0%{transform:translate3d(5%,-3%,0) rotate(-18deg) scale(1.32);opacity:0}15%,80%{opacity:.55}100%{transform:translate3d(-7%,5%,0) rotate(-14deg) scale(1.4);opacity:0}}
+@media(max-width:1050px){
+  #driverDialog .driver-editorial-hero{grid-template-columns:minmax(0,.3fr) minmax(0,.43fr) minmax(0,.27fr);gap:14px}
+  #driverDialog .driver-editorial-right{grid-column:auto;flex-direction:column;gap:26px;padding-left:0}
+  #driverDialog .driver-editorial-fact-block{flex:initial;padding:10px 7px}
+  #driverDialog .driver-editorial-metrics{gap:7px}
+  #driverDialog .driver-editorial-metric>strong{font-size:clamp(20px,2.6vw,28px)}
+  #driverDialog .driver-editorial-identity-list{font-size:10px;gap:10px}
+}
+@media(max-width:680px){
+  #driverDialog #driverDialogProfile.driver-editorial{overflow:auto}
+  #driverDialog .driver-editorial-hero{height:auto;min-height:100%;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(250px,42dvh) auto;gap:0;padding:8px 12px 16px}
+  #driverDialog .driver-editorial-left{order:0;padding:12px 0;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:center}
+  #driverDialog .driver-editorial-left .driver-identity-card{margin:0;grid-row:1/3}
+  #driverDialog .driver-editorial-left .driver-given-name.driver-plain-name,#driverDialog .driver-editorial-left .driver-surname{font-size:clamp(26px,7.2vw,42px)}
+  #driverDialog .driver-editorial .driver-editorial-left .driver-given-name.driver-plain-name{font-size:44px}
+  #driverDialog .driver-editorial .driver-editorial-left .driver-surname{font-size:clamp(18px,5.5vw,28px)}
+  #driverDialog .driver-editorial-identity-list{font-size:9px;gap:5px;max-width:145px}
+  #driverDialog .driver-editorial-driver-switch{margin:6px 0 0;gap:12px;justify-content:flex-end;font-size:8px}
+  #driverDialog .driver-editorial-hero .driver-editorial-visual.driver-composite{order:1;height:100%;min-height:250px}
+  .driver-composite-plane{width:min(112%,460px);top:0}
+  .driver-composite-entry{left:0;right:0}
+  #driverDialog .driver-editorial-right{order:2;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:8px 0 0}
+  #driverDialog .driver-editorial-fact-block h3{margin-bottom:14px;font-size:11px}
+  #driverDialog .driver-editorial-fact-block p,#driverDialog .driver-editorial-fact-block time{font-size:10px;margin-top:4px}
+  #driverDialog .driver-editorial-metric>strong{font-size:18px}
+  #driverDialog .driver-editorial-metric>span{font-size:8px}
+  #driverDialog .driver-editorial-season .driver-editorial-metric>strong{font-size:18px}
+  #driverDialog .driver-editorial-season{padding-bottom:12px}
+  #driverDialog .driver-editorial-career .driver-editorial-metrics{gap:12px 8px}
+  #driverDialog .driver-editorial-career .driver-editorial-metric:first-child>strong{font-size:30px}
+  #driverDialog .driver-editorial-career .driver-editorial-metric:not(:first-child){padding-top:8px}
+}
+@media(prefers-reduced-motion:reduce){#driverDialog #driverDialogProfile.driver-editorial{scroll-behavior:auto;scroll-snap-type:y proximity}.driver-composite-motion{will-change:auto}#driverDialog .driver-editorial-hero::before,#driverDialog.driver-dialog::before{animation:none;will-change:auto}}

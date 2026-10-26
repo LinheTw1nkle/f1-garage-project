@@ -1,0 +1,165 @@
+/* A broadcast-style race archive using the existing F1 Garage palette. */
+#panel.race-position-view{isolation:isolate;overflow:clip}
+#panel.race-position-view::before,#panel.race-position-view::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none}
+#panel.race-position-view::before{inset:-50%;background:radial-gradient(ellipse at 32% 38%,#288cbc90,transparent 32%),radial-gradient(ellipse at 67% 56%,#6f348c6b,transparent 32%),radial-gradient(ellipse at 43% 70%,#267a7750,transparent 30%);animation:race-ambient-drift 18s ease-in-out infinite alternate;will-change:transform}
+#panel.race-position-view::after{inset:-45%;background:radial-gradient(ellipse at 58% 30%,#568bb658,transparent 33%),radial-gradient(ellipse at 29% 60%,#a4774838,transparent 28%);animation:race-ambient-drift 14s ease-in-out -7s infinite alternate-reverse;will-change:transform}
+@keyframes race-ambient-drift{0%{transform:translate3d(-4%,-3%,0) rotate(-16deg)}50%{transform:translate3d(10%,6%,0) rotate(12deg)}100%{transform:translate3d(-6%,11%,0) rotate(38deg)}}
+#panel.race-position-view #cockpitTop{display:none}
+#panel.race-position-view>.panel-body{position:relative;display:block;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;min-height:0;padding-top:26px;scrollbar-width:thin;scrollbar-color:#6787a14d transparent}
+#panel.race-position-view #racePositionChart{display:block;overflow:visible;height:auto;min-height:0;margin:0;padding:0}
+.race-weekend-workspace{display:grid;grid-template-columns:186px minmax(0,1fr);align-items:start;gap:clamp(22px,2.5vw,42px);min-width:0}
+.race-timing-tower{position:sticky;top:0;display:flex;flex-direction:column;max-height:calc(100dvh - 155px);min-height:240px;isolation:isolate;background:linear-gradient(155deg,#151d2cdb,#060d19d9);border:1px solid #91acc124;border-top:3px solid #75dafa;box-shadow:0 16px 45px #0004;backdrop-filter:blur(8.4px);border-radius:0 0 9px 0;overflow:hidden}
+.race-tower-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:14px 13px 12px;border-bottom:1px solid #a8b8cc2b;background:#090e18b0}
+.race-tower-mark{font:900 12px/1 'Garage Formula1 Black',sans-serif;font-style:normal;white-space:nowrap;color:#fff}
+.race-tower-season{font:400 12px/1 'Garage Formula1 Regular',sans-serif;white-space:nowrap;color:#b9c7d5}
+.race-tower-caption{grid-column:1/-1;font-size:8px;letter-spacing:.25em;color:#7f97b1;margin-top:5px}
+.race-tower-list{display:flex;flex-direction:column;min-height:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#8ea2b838 transparent;padding:3px 0}
+.race-tower-item{flex:0 0 auto;position:relative;display:block;width:100%;padding:0;border:0;border-bottom:1px solid #b2c4d110;border-left:3px solid transparent;background:linear-gradient(90deg,#161c2870,#0a102076);color:#dfe6f0;text-align:left;transition:background .25s ease-out,transform .25s ease-out,border-color .25s;transform-origin:left center}
+.race-tower-item:nth-child(even){background:linear-gradient(90deg,#1e253375,#0c122078)}
+.race-tower-row{display:grid;grid-template-columns:19px 25px minmax(0,1fr) 7px;gap:8px;align-items:center;min-height:34px;padding:7px 11px 7px 8px}
+.race-tower-round{font:400 9px 'Garage Formula1 Regular',sans-serif;color:#5e7189}
+.race-tower-flag{display:flex;align-items:center}
+.race-tower-flag .country-flag{width:23px;min-width:23px;max-width:23px;height:15px;min-height:15px;max-height:15px}
+.race-tower-code{font:900 12px/1.3 'Garage Formula1 Black',sans-serif;letter-spacing:.055em}
+.race-tower-indicator{width:4px;height:14px;background:#546378;transform:skew(-14deg);opacity:.4}
+.race-tower-item:hover,.race-tower-item:focus-visible{z-index:1;background:#273d54cf;transform:translateX(3px) scale(1.012);border-left-color:#bceeff;filter:none}
+.race-tower-item[aria-pressed='true']{background:linear-gradient(90deg,#224d62dd,#14293ddd);border-left-color:#75dafa;color:white}
+.race-tower-item[aria-pressed='true'] .race-tower-row{min-height:42px}
+.race-tower-item[aria-pressed='true'] .race-tower-indicator{opacity:1;background:#75dafa}
+.race-tower-expanded{display:grid;grid-template-rows:0fr;max-height:0;opacity:0;overflow:hidden;padding:0 12px 0 40px;transition:max-height .3s ease-out,opacity .25s,padding .3s}
+.race-tower-fullname,.race-tower-grandprix{min-height:0;display:block;overflow:hidden}
+.race-tower-fullname{font-size:10px;font-weight:700;line-height:1.5;color:#e9f7ff}
+.race-tower-grandprix{font-size:8px;line-height:1.5;color:#8eb0c7;margin-top:4px}
+.race-tower-item[aria-pressed='true'] .race-tower-expanded{grid-template-rows:auto auto;max-height:110px;opacity:1;padding-bottom:12px}
+.race-tower-footer{padding:10px 12px;border-top:1px solid #b7cad21c;background:#080e18c0;font:400 8px 'Garage Formula1 Regular',sans-serif;color:#7d92aa;letter-spacing:.08em}
+.race-weekend-main{min-width:0;padding:0 2px 24px}
+.race-weekend-heading{padding:0 0 20px;margin:0 0 20px;border-bottom:1px solid #86a1b32b}
+.race-weekend-eyebrow{display:block;color:#75dafa;font-size:9px;letter-spacing:.22em;font-weight:700;margin-bottom:13px}
+.race-weekend-title{margin:0;color:#f5f7fc;font:900 clamp(22px,2.7vw,42px)/1.3 'Garage Formula1 Black',sans-serif;letter-spacing:.018em;overflow-wrap:anywhere}
+.race-weekend-subtitle{color:#8fa5bc;font-size:12px;margin:10px 0 18px;line-height:1.6}
+.race-weekend-facts{display:flex;flex-wrap:wrap;gap:14px 32px}
+.race-weekend-facts>span{display:flex;gap:9px;align-items:baseline}
+.race-weekend-facts small{font-size:8px;letter-spacing:.13em;color:#698099}
+.race-weekend-facts strong{font:400 10px 'Garage Formula1 Regular',sans-serif;color:#d4e5f3}
+.race-weekend-content{--race-stage-height:clamp(350px,calc(100dvh - 265px),550px);display:grid;grid-template-columns:minmax(0,1fr) clamp(360px,30vw,430px);align-items:start;gap:clamp(24px,3vw,48px)}
+.race-weekend-section-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px;min-height:24px}
+.race-weekend-section-heading h3{margin:0;font:400 11px/1.5 'Garage Formula1 Regular',sans-serif;letter-spacing:.07em;color:#edf6ff}
+.race-weekend-section-heading>span{font-size:8px;letter-spacing:.13em;color:#698199}
+.race-weekend-schedule{display:grid;grid-template-rows:30px repeat(5,minmax(0,1fr));gap:12px;min-width:0;height:var(--race-stage-height)}
+.race-weekend-schedule>.race-weekend-section-heading{margin-bottom:4px}
+.race-session-card{background:linear-gradient(115deg,#aecde910,#19324d29);border:1px solid #b6dbf132;border-radius:20px;overflow:hidden;box-shadow:inset 0 1px #e5f4ff09,0 10px 25px #0000000c;backdrop-filter:blur(9.8px);transition:border-color .25s,background .25s,box-shadow .25s}
+.race-session-card:hover{border-color:#a7e4ff6b;box-shadow:inset 0 1px #e5f4ff12,0 10px 30px #07172933}
+.race-session-card[open]{border-color:#75dafa60;background:#13283f8c}
+.race-session-summary{display:grid;grid-template-columns:46px minmax(0,1fr) 20px;align-items:center;gap:18px;padding:16px 22px;min-height:100%;list-style:none;cursor:pointer}
+.race-session-summary::-webkit-details-marker{display:none}
+.race-session-summary:hover{background:#bceaff07}
+.race-session-code{display:grid;place-items:center;width:44px;height:40px;border:1px solid #8cb1c62e;border-radius:11px;color:#9bdff5;background:#14304672;font:400 11px 'Garage Formula1 Regular',sans-serif}
+.race-session-card[data-session='race'] .race-session-code{background:#75dafa;color:#06101f;border-color:#75dafa}
+.race-session-card[data-session='sprint'] .race-session-code{color:#e1bcff;border-color:#b978e85c;background:#6f368424}
+.race-session-identity strong{display:block;font:400 clamp(12px,1.1vw,16px)/1.5 'Garage Formula1 Regular',sans-serif;color:#e5eff8;letter-spacing:.04em}
+.race-session-identity small{display:block;font-size:9px;line-height:1.6;color:#708ba6;margin-top:5px}
+.race-session-leader{text-align:right;max-width:165px}
+.race-session-leader strong{display:block;font-size:10px;color:#c3d6e6;font-weight:600}
+.race-session-leader small{display:block;font-size:9px;font-variant-numeric:tabular-nums;color:#7691aa;margin-top:5px}
+.race-session-expand{font-size:20px;color:#7eacc4;transition:transform .25s}
+.race-session-card[open] .race-session-expand{transform:rotate(45deg)}
+.race-session-body{padding:0 13px 12px;border-top:1px solid #88a6be20;overflow:auto;max-height:400px;scrollbar-width:thin;scrollbar-color:#789bb34d transparent}
+.race-session-table{width:100%;border-collapse:collapse;text-align:left;font-size:10px;font-variant-numeric:tabular-nums}
+.race-session-table th{position:sticky;top:0;background:#0d1d2f;color:#7fa6bd;font-size:8px;font-weight:500;padding:11px 6px;border-bottom:1px solid #88a6be2e;white-space:nowrap}
+.race-session-table td{padding:10px 6px;border-bottom:1px solid #88a6be14;color:#c6d7e6}
+.race-session-table td:first-child{width:29px;color:#86cfe8;font-weight:700}
+.race-session-driver strong{display:block;border-left:2px solid var(--race-team-color);padding-left:7px;font-size:10px;font-weight:600}
+.race-session-driver small{display:block;padding-left:9px;margin-top:3px;color:#68829c;font-size:8px}
+.race-session-table td:nth-child(n+3){white-space:nowrap;font-size:9px}
+.race-session-empty{font-size:11px;line-height:1.7;color:#8096ab;margin:17px 0}
+.race-session-source{display:inline-block;margin-top:12px;font-size:8px;letter-spacing:.1em;color:#7bcee7;text-decoration:none}
+.race-podium-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:430px;margin-inline:auto}
+.race-podium-driver{min-width:0;grid-column:span 2;border:0;background:transparent;overflow:hidden;border-radius:0}
+.race-podium-place-1{grid-column:2/4;grid-row:1}
+.race-podium-place-2{grid-column:1/3;grid-row:2}.race-podium-place-3{grid-column:3/5;grid-row:2}
+.race-podium-photo{position:relative;aspect-ratio:1.18;overflow:hidden;background:transparent}
+.race-podium-photo img{position:absolute;inset:0;display:block;width:100%;height:100%;min-width:0;object-fit:contain;object-position:center top;transform:translateY(-4%) scale(6.2);transform-origin:50% 0;filter:saturate(.9)}
+.race-podium-lower{position:relative;display:grid;grid-template-columns:35px minmax(0,1fr);column-gap:8px;align-items:center;padding:9px 8px 9px 5px;border:1px solid #aec6dc21;border-left:4px solid var(--race-team-color);background:linear-gradient(105deg,#070b12ef,#101722dc);min-height:69px;backdrop-filter:blur(8.4px)}
+.race-podium-lower .race-podium-rank{grid-row:1/3;font:900 23px/1 Inter,Arial,sans-serif;color:#fff;letter-spacing:-.07em;text-align:center}
+.race-podium-place-1 .race-podium-rank{color:#f2d58d}
+.race-podium-lower .race-podium-name{display:block;min-width:0;color:#fff;font-family:Inter,Arial,sans-serif;line-height:1.15;overflow-wrap:normal}
+.race-podium-lower .race-podium-given{display:block;font-size:12px;font-weight:500}
+.race-podium-lower .race-podium-surname{display:block;margin-top:2px;font-size:clamp(13px,1.15vw,17px);font-weight:850;letter-spacing:-.035em;text-transform:uppercase;overflow-wrap:anywhere}
+.race-podium-lower .race-podium-team{grid-column:2;display:block;color:#b4c0ce;font:500 10px/1.3 Inter,Arial,sans-serif;margin-top:5px}
+.race-podium-placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:#58718b;font-size:9px;letter-spacing:.1em}
+.race-weekend-chart{margin-top:32px;padding-top:23px;border-top:1px solid #86a1b32b;min-width:0}
+.race-chart-session-tabs{display:flex;gap:7px}
+.race-chart-session-tabs button{padding:7px 12px;color:#849eb5;background:#0d1c2f;border:1px solid #789cb531;border-radius:3px;font:400 9px 'Garage Formula1 Regular',sans-serif}
+.race-chart-session-tabs button[aria-pressed='true']{color:#acf0ff;background:#173c50;border-color:#75dafa80}
+#panel.race-position-view .race-weekend-chart .race-results-layout{display:flex;flex-direction:column;gap:12px;overflow:visible;height:auto;min-height:0}
+#panel.race-position-view .race-weekend-chart .race-position-plot{flex:none;display:block;width:100%;height:clamp(350px,37vw,530px);min-height:350px;border-color:#789cb52e;background:linear-gradient(145deg,#0b1928e0,#060e19e0);border-radius:4px}
+.race-chart-comparison{border:1px solid #789cb52e;border-radius:3px;background:#0b172799}
+.race-chart-comparison>summary{list-style:none;padding:12px;color:#89b7cc;font:400 9px 'Garage Formula1 Regular',sans-serif;letter-spacing:.05em;cursor:pointer}
+.race-chart-comparison>summary::after{content:'+';float:right}
+.race-chart-comparison[open]>summary::after{content:'−'}
+#panel.race-position-view .race-weekend-chart .race-classification{max-height:none;height:auto;padding:12px;width:100%;border:0;background:transparent;flex:none;overflow:visible}
+#panel.race-position-view .race-weekend-chart .race-classification-scroll{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;max-height:340px;overflow:auto}
+#panel.race-position-view .race-weekend-chart .race-classification-row{min-width:0;width:100%;font-size:10px}
+.race-weekend-chart .race-position-note{line-height:1.8;font-size:9px;color:#668098;margin:13px 0 0}
+.race-weekend-chart .race-position-note a{color:#8acfe7}
+@media(min-width:1800px){.race-session-summary{padding-inline:28px}}
+@media(max-width:900px){.race-weekend-workspace{grid-template-columns:156px minmax(0,1fr);gap:22px}.race-weekend-content{grid-template-columns:minmax(0,1fr)}.race-weekend-podium{margin-top:8px}.race-podium-grid{max-width:510px;margin:0 auto}.race-tower-row{grid-template-columns:17px 23px minmax(0,1fr) 4px;gap:6px;padding-inline:6px}.race-tower-code{font-size:11px}.race-session-summary{padding-block:13px}}
+@media(max-width:700px){#panel.race-position-view>.panel-body{padding-top:18px}.race-weekend-workspace{grid-template-columns:116px minmax(0,1fr);gap:14px}.race-timing-tower{max-height:calc(100dvh - 125px)}.race-tower-heading{padding:12px 8px}.race-tower-mark{font-size:9px}.race-tower-season{font-size:8px}.race-tower-caption{font-size:7px}.race-tower-row{grid-template-columns:20px minmax(0,1fr) 4px;gap:6px;padding:8px 7px}.race-tower-round{display:none}.race-tower-flag .country-flag{width:20px;min-width:20px;max-width:20px;height:13px;min-height:13px;max-height:13px}.race-tower-code{font-size:9px;letter-spacing:0}.race-tower-expanded{padding-left:8px;padding-right:8px}.race-tower-fullname{font-size:9px}.race-tower-grandprix{font-size:7px}.race-tower-footer{font-size:7px;padding-inline:7px}.race-weekend-title{font-size:20px}.race-weekend-eyebrow{font-size:8px;line-height:1.6}.race-weekend-subtitle{font-size:10px}.race-weekend-facts{gap:10px}.race-weekend-facts>span{display:grid;gap:4px}.race-weekend-facts small{font-size:7px}.race-weekend-facts strong{font-size:8px}.race-weekend-content{gap:20px}.race-weekend-section-heading{align-items:flex-start;flex-wrap:wrap}.race-weekend-section-heading h3{font-size:9px}.race-weekend-section-heading>span{font-size:7px}.race-session-summary{grid-template-columns:30px minmax(0,1fr) 10px;gap:7px;padding:10px 8px}.race-session-code{width:29px;height:32px;font-size:8px}.race-session-leader{grid-column:2;grid-row:2;text-align:left;max-width:none}.race-session-expand{grid-column:3;grid-row:1/3}.race-session-identity strong{font-size:8px}.race-session-identity small,.race-session-leader small,.race-session-leader strong{font-size:8px}.race-session-body{padding-inline:8px}.race-session-table{min-width:330px}.race-podium-grid{gap:8px}.race-podium-photo{aspect-ratio:.85}.race-podium-rank{font-size:15px;left:6px;top:6px}.race-podium-lower{padding:8px 6px}.race-podium-lower strong{font-size:9px}.race-podium-lower span{font-size:8px}#panel.race-position-view .race-weekend-chart .race-classification-scroll{grid-template-columns:minmax(0,1fr)}#panel.race-position-view .race-weekend-chart .race-position-plot{overflow-x:auto;overflow-y:hidden;height:360px}.race-weekend-chart .race-lap-readout{position:absolute;top:40px;margin:0}.race-chart-session-tabs button{font-size:8px;padding:6px 9px}}
+.race-weekend-schedule:has(.race-session-card[open]){height:auto;grid-template-rows:30px repeat(5,auto)}
+.race-session-card[open] .race-session-summary{min-height:76px}
+@media(min-width:901px) and (max-height:760px){.race-weekend-content{--race-stage-height:calc(100dvh - 240px);grid-template-columns:minmax(0,1fr) 380px}.race-podium-photo{aspect-ratio:1.35}.race-session-summary{padding:10px 18px}}
+@media(max-width:900px){.race-weekend-schedule{height:auto;grid-template-rows:30px repeat(5,minmax(76px,auto))}.race-podium-grid{max-width:340px}.race-weekend-content{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:700px){.race-session-summary{grid-template-columns:30px minmax(0,1fr) 12px;gap:8px;padding:14px 10px}.race-session-expand{grid-column:3;grid-row:1}.race-session-identity strong{font-size:10px}.race-session-card{border-radius:15px}.race-podium-photo{aspect-ratio:1.15}}
+.race-session-identity strong{font-size:clamp(16px,1.4vw,21px);font-weight:600}
+.race-session-code{font-size:13px}
+.race-session-body{padding:0 20px 15px;max-height:clamp(260px,47dvh,470px)}
+.race-session-table{font-size:14px;table-layout:fixed}
+.race-session-table th{font-size:10px;padding:14px 8px;letter-spacing:.04em}
+.race-session-table th:first-child,.race-session-table td:first-child{width:48px}
+.race-session-table th:nth-child(2){width:46%}
+.race-session-table th:last-child{width:66px;text-align:right}
+.race-session-table td{padding:14px 8px;vertical-align:middle}
+.race-session-table td:last-child{text-align:right}
+.race-session-driver strong{font-size:15px;line-height:1.35;padding-left:10px;border-left-width:3px}
+.race-session-driver small{font-size:11px;margin-top:5px;padding-left:13px}
+.race-session-table td:nth-child(n+3){font-size:13px;font-variant-numeric:tabular-nums}
+.race-session-empty{font-size:14px}
+@media(max-width:1100px) and (min-width:901px){.race-weekend-content{grid-template-columns:minmax(0,1fr) 280px}.race-session-summary{gap:10px;padding-inline:14px}.race-session-identity strong{font-size:14px}}
+@media(max-width:700px){.race-session-identity strong{font-size:12px}.race-session-body{padding-inline:10px}.race-session-table{min-width:420px}.race-podium-lower{grid-template-columns:30px minmax(0,1fr);gap:4px;padding:8px 5px}.race-podium-lower .race-podium-rank{font-size:20px}.race-podium-lower .race-podium-surname{font-size:12px}.race-podium-lower .race-podium-given{font-size:11px}.race-podium-lower .race-podium-team{font-size:9px}}
+.race-podium-lower{grid-template-columns:36px minmax(0,1fr);grid-template-rows:37px 23px;gap:0 13px;padding:0;border:0;min-height:60px;background:#0b0d13d9;overflow:hidden}
+.race-podium-lower .race-podium-rank{position:relative;grid-row:1;display:grid;place-items:center;align-self:stretch;background:#a9b1ba47;font:800 22px/1 Inter,Arial,sans-serif;letter-spacing:-.06em;color:#fff}
+.race-podium-lower .race-podium-rank::after{content:'';position:absolute;right:-7px;top:0;bottom:0;width:7px;background:var(--race-team-color);transform:skewX(-23deg);transform-origin:center}
+.race-podium-lower .race-podium-name{display:flex;align-items:center;align-self:stretch;min-width:0;overflow:hidden;background:#05070b8a;padding-right:6px}
+.race-podium-name-ink{display:flex;align-items:baseline;gap:5px;width:max-content;flex:none;white-space:nowrap;transform-origin:left center;line-height:1}
+.race-podium-lower .race-podium-given{display:inline;font:400 29px/1 'Garage Northwell Clean Alt',cursive;white-space:nowrap}
+.race-podium-lower .race-podium-surname{display:inline;margin:0;font:900 15px/1 'Garage Formula1 Black',sans-serif;letter-spacing:-.025em;white-space:nowrap;overflow-wrap:normal;text-transform:uppercase}
+.race-podium-lower .race-podium-team{grid-column:2;grid-row:2;align-self:center;font:400 12px/1.2 Inter,Arial,sans-serif;margin:0;color:#c5d3e0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.race-podium-photo{max-height:150px}
+.race-tower-item{transition:background .3s ease,transform .3s cubic-bezier(.2,.75,.25,1),border-color .3s}
+@media(max-width:1100px) and (min-width:901px){.race-weekend-content{grid-template-columns:minmax(0,1fr) 320px}}
+@media(max-width:900px){.race-podium-grid{max-width:430px}}
+@media(max-width:700px){.race-podium-lower{grid-template-columns:25px minmax(0,1fr);grid-template-rows:34px 22px;column-gap:9px;padding:0;min-height:56px}.race-podium-lower .race-podium-rank{font-size:17px}.race-podium-lower .race-podium-rank::after{width:5px;right:-5px}.race-podium-lower .race-podium-given{font-size:25px}.race-podium-lower .race-podium-surname{font-size:13px}.race-podium-lower .race-podium-team{font-size:10px}}
+@font-face{font-family:'Garage Red Hat Display';src:url('../fonts/RedHatDisplay-Variable.ttf') format('truetype');font-style:normal;font-weight:300 900;font-display:swap}
+/* Reference lower thirds are 300px wide; use 80% (240px) per driver. */
+@media(min-width:1101px){.race-weekend-content{grid-template-columns:minmax(0,1fr) 494px;column-gap:28px}.race-podium-grid{max-width:494px}}
+.race-podium-photo{width:180px;max-width:100%;margin-inline:auto;aspect-ratio:1.35}
+.race-podium-lower{grid-template-columns:38px minmax(0,1fr);grid-template-rows:56px 26px;column-gap:14px;min-height:82px;width:240px;max-width:100%;margin-inline:auto}
+.race-podium-lower .race-podium-name{overflow:visible;padding:0 9px 0 2px}
+.race-podium-name-ink{line-height:1.6;align-items:baseline}
+.race-podium-lower .race-podium-given{font-size:32px;line-height:1.6}
+.race-podium-lower .race-podium-surname{font-size:16px;line-height:1.4}
+.race-podium-lower .race-podium-team{font-family:'Garage Red Hat Display',Arial,sans-serif;font-size:14px;line-height:1.4;font-weight:400;padding-left:2px}
+@media(max-width:900px){.race-podium-grid{width:494px;max-width:100%}}
+@media(max-width:700px){.race-podium-lower{grid-template-columns:25px minmax(0,1fr);grid-template-rows:48px 25px;min-height:73px;column-gap:9px}.race-podium-lower .race-podium-given{font-size:28px;line-height:1.6}.race-podium-lower .race-podium-surname{font-size:14px}.race-podium-lower .race-podium-team{font-size:12px}}
+@media(min-width:1200px){.race-weekend-content{grid-template-columns:minmax(0,1fr) 534px}.race-podium-grid{max-width:534px}}
+.race-podium-lower{width:260px;grid-template-columns:38px minmax(0,1fr);grid-template-rows:44px 26px;column-gap:16px;min-height:70px}
+.race-podium-lower .race-podium-name{padding:0 10px 0 2px;overflow:hidden}
+.race-podium-name-ink{gap:4px;line-height:1.3;align-items:baseline}
+.race-podium-lower .race-podium-given{font:500 20px/1.3 'Garage Red Hat Display',Arial,sans-serif}
+.race-podium-lower .race-podium-surname{font:700 20px/1.3 'Garage Red Hat Display',Arial,sans-serif;letter-spacing:-.025em}
+.race-podium-lower .race-podium-rank{isolation:isolate;background:transparent;font:700 27px/1 'Garage Red Hat Display',Arial,sans-serif;letter-spacing:0;left:0;top:0;padding-right:1px}
+.race-podium-lower .race-podium-rank::before{content:'';position:absolute;inset:0 -12px 0 0;background:#606269;clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%);z-index:-1}
+.race-podium-lower .race-podium-rank::after{left:calc(100% - 6px);right:auto;top:0;bottom:0;width:25px;background:var(--race-team-color);transform:none;clip-path:polygon(18px 0,25px 0,7px 100%,0 100%);z-index:-1}
+.race-session-driver strong{font-family:'Garage Red Hat Display',Arial,sans-serif}
+@media(max-width:700px){.race-podium-lower{grid-template-columns:26px minmax(0,1fr);grid-template-rows:40px 25px;column-gap:16px;min-height:65px}.race-podium-lower .race-podium-given,.race-podium-lower .race-podium-surname{font-size:17px}.race-podium-lower .race-podium-rank{font-size:24px}}
+@media(prefers-reduced-motion:reduce){#panel.race-position-view::before,#panel.race-position-view::after{animation:none;will-change:auto}.race-tower-item,.race-tower-expanded,.race-session-expand{transition:none}}

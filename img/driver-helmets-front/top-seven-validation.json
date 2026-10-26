@@ -1,0 +1,51 @@
+[
+  {
+    "id": "antonelli",
+    "width": 1254,
+    "height": 1254,
+    "cornerAlpha": 0,
+    "format": "Format32bppArgb"
+  },
+  {
+    "id": "russell",
+    "width": 1254,
+    "height": 1254,
+    "cornerAlpha": 0,
+    "format": "Format32bppArgb"
+  },
+  {
+    "id": "hamilton",
+    "width": 1254,
+    "height": 1254,
+    "cornerAlpha": 0,
+    "format": "Format32bppArgb"
+  },
+  {
+    "id": "verstappen",
+    "width": 1086,
+    "height": 1448,
+    "cornerAlpha": 0,
+    "format": "Format32bppArgb"
+  },
+  {
+    "id": "leclerc",
+    "width": 1254,
+    "height": 1254,
+    "cornerAlpha": 0,
+    "format": "Format32bppArgb"
+  },
+  {
+    "id": "norris",
+    "width": 1447,
+    "height": 1087,
+    "cornerAlpha": 0,
+    "format": "Format32bppArgb"
+  },
+  {
+    "id": "piastri",
+    "width": 1254,
+    "height": 1254,
+    "cornerAlpha": 0,
+    "format": "Format32bppArgb"
+  }
+]

@@ -1,0 +1,83 @@
+{
+  "season": 2026,
+  "scope": "Current project standings top seven; remaining drivers postponed by user.",
+  "drivers": [
+    {
+      "id": "antonelli",
+      "name": "Kimi Antonelli",
+      "source": "https://www.headgrid.fr/products/antonelli-2026/5.png",
+      "sourceType": "2026 replica product photograph",
+      "input": "previously downloaded candidate",
+      "file": "antonelli.png",
+      "projectStandingsRank": 1,
+      "processing": "built-in image_gen background extraction",
+      "review": "Inspected on navy and white backgrounds; transparent PNG alpha verified."
+    },
+    {
+      "id": "russell",
+      "name": "George Russell",
+      "source": "https://f1store.formula1.com/en/mercedes-amg-petronas-f1-team/mercedes-george-russell-2026-season-spark-1%3A5-helmet/t-10195346%2Bp-242248331065103%2Bz-9-3494801226",
+      "sourceType": "official F1 store 2026 Spark replica product photograph",
+      "input": "sources/russell-official-7.jpg",
+      "file": "russell.png",
+      "projectStandingsRank": 2,
+      "processing": "built-in image_gen background extraction",
+      "review": "Inspected on navy and white backgrounds; transparent PNG alpha verified."
+    },
+    {
+      "id": "hamilton",
+      "name": "Lewis Hamilton",
+      "source": "https://competitionmotorsport.com/cdn/shop/files/lewis-hamilton-2026-f1-mini-helmet-front-view_1280x.jpg?v=1781718207",
+      "sourceType": "2026 Bell replica product photograph",
+      "input": "sources/hamilton.jpg",
+      "file": "hamilton.png",
+      "projectStandingsRank": 3,
+      "processing": "built-in image_gen background extraction",
+      "review": "Inspected on navy and white backgrounds; transparent PNG alpha verified."
+    },
+    {
+      "id": "verstappen",
+      "name": "Max Verstappen",
+      "source": "https://assets.redbullshop.com/images/f_auto%2Cq_auto/t_product-detail-3by4/products/RBR/2026/M-RBR26174_5_3/1-2-Max-Verstappen-2026-Season-Mini-Helmet.jpg",
+      "sourceType": "official Red Bull store 2026 Schuberth replica product image",
+      "input": "sources/verstappen-3.jpg",
+      "file": "verstappen.png",
+      "projectStandingsRank": 4,
+      "processing": "built-in image_gen background extraction",
+      "review": "Inspected on navy and white backgrounds; transparent PNG alpha verified."
+    },
+    {
+      "id": "leclerc",
+      "name": "Charles Leclerc",
+      "source": "https://competitionmotorsport.com/cdn/shop/files/charles-leclerc-2026-f1-mini-helmet-front-view_1280x.jpg?v=1781714359",
+      "sourceType": "2026 Bell replica product photograph",
+      "input": "sources/leclerc.jpg",
+      "file": "leclerc.png",
+      "projectStandingsRank": 5,
+      "processing": "built-in image_gen background extraction",
+      "review": "Inspected on navy and white backgrounds; transparent PNG alpha verified."
+    },
+    {
+      "id": "norris",
+      "name": "Lando Norris",
+      "source": "https://gphelmet.com/cdn/shop/files/Norris-2026-Helmet-f1_1200x1200.jpg?v=1774637251",
+      "sourceType": "2026 replica product photograph",
+      "input": "sources/norris-gp.jpg",
+      "file": "norris.png",
+      "projectStandingsRank": 6,
+      "processing": "built-in image_gen background extraction",
+      "review": "Inspected on navy and white backgrounds; transparent PNG alpha verified."
+    },
+    {
+      "id": "piastri",
+      "name": "Oscar Piastri",
+      "source": "https://www.fastracer.com/cdn/shop/files/bell-oscar-piastri-1_2-scale-f1-mini-helmet-mcLaren-2026-f1-season-front-fast-racer.jpg?v=1781302245&width=800",
+      "sourceType": "2026 Bell replica product photograph",
+      "input": "sources/piastri.jpg",
+      "file": "piastri.png",
+      "projectStandingsRank": 7,
+      "processing": "built-in image_gen background extraction",
+      "review": "Inspected on navy and white backgrounds; transparent PNG alpha verified."
+    }
+  ]
+}

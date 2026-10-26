@@ -1,0 +1,39 @@
+/* Motorsport editorial hero: identity / original portrait or helmet / race facts. */
+#driverDialog .driver-editorial-hero{grid-template-columns:minmax(0,.26fr) minmax(0,.46fr) minmax(0,.28fr);gap:clamp(18px,2.2vw,42px);align-items:center;isolation:isolate;overflow:hidden}
+#driverDialog .driver-editorial-hero::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-radial-gradient(ellipse at 48% 50%,transparent 0 115px,#a8bfd00b 116px 117px,transparent 118px 225px);transform:rotate(-18deg) scale(1.25)}
+#driverDialog .driver-editorial-left{container-type:inline-size;max-width:none;position:relative;z-index:2}
+#driverDialog .driver-editorial-left .driver-identity-card{margin-bottom:32px}
+#driverDialog .driver-editorial-left .driver-given-name.driver-plain-name,
+#driverDialog .driver-editorial-left .driver-surname{font:400 clamp(34px,19cqi,78px)/1.02 'Garage Anton',sans-serif;letter-spacing:-.015em;text-transform:uppercase;white-space:nowrap;overflow-wrap:normal;padding:0}
+.driver-editorial-identity-list{display:flex;flex-direction:column;gap:12px;font:400 12px/1.6 'Garage Formula1 Regular',Arial,sans-serif;color:#d4dfeb}
+.driver-editorial-nationality strong{display:flex;align-items:center;gap:10px;font:inherit}
+.driver-editorial-nationality .country-flag{width:23px;height:15px;object-fit:cover}
+.driver-editorial-lead{font:400 13px/1.8 Inter,Arial,sans-serif;color:#9eb1c6;margin:26px 0 0;max-width:27em}
+.driver-editorial-driver-switch{display:flex;align-items:center;gap:18px;margin-top:24px;color:#7f96a9;font:400 10px/1.4 Inter,Arial,sans-serif;letter-spacing:.1em}
+.driver-editorial-driver-switch button{border:0;background:none;color:#d4e6f2;font-size:22px;padding:5px;transition:color .2s,transform .2s}
+.driver-editorial-driver-switch button:hover{color:var(--driver-light);transform:translateX(2px)}
+#driverDialog .driver-editorial-hero .driver-editorial-visual{position:relative;justify-self:center;align-self:center;width:100%;height:min(70dvh,720px);max-width:none;isolation:isolate;--pointer-x:0;--pointer-y:0}
+.driver-editorial-hero .driver-editorial-visual::before{display:none}
+#driverDialog .driver-editorial-hero .driver-portrait{width:100%;height:100%;max-height:none;aspect-ratio:auto;margin:0;border:0;background:none;transform:translate3d(calc(var(--pointer-x)*11px),calc(var(--pointer-y)*7px),0) rotate(calc(var(--pointer-x)*1deg));transition:opacity .45s ease;will-change:transform}
+#driverDialog .driver-editorial-hero .driver-editorial-visual[data-framing='half'] .driver-portrait img{object-fit:contain;object-position:center top;transform:scale(1.12);transform-origin:50% 0}
+.driver-editorial-helmet{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;transform:translate3d(calc(var(--pointer-x)*18px),calc(var(--pointer-y)*11px),0) rotate(calc(var(--pointer-x)*2deg));transition:opacity .45s ease;will-change:transform;filter:drop-shadow(0 25px 25px #0005);pointer-events:none}
+.driver-editorial-visual[data-mode='portrait'] .driver-editorial-helmet{opacity:0}
+.driver-editorial-visual[data-mode='helmet'] .driver-portrait{opacity:0;pointer-events:none}
+.driver-editorial-hero .driver-editorial-number{bottom:15%;right:-2%;z-index:-1;width:min(55%,230px);height:150px;opacity:.1}
+.driver-editorial-view-switch{position:absolute;bottom:0;left:50%;transform:translateX(-50%);display:flex;gap:22px;z-index:3}
+.driver-editorial-view-switch button{padding:8px 0;background:none;color:#788c9f;border:0;border-bottom:1px solid transparent;font:500 9px/1.4 Inter,Arial,sans-serif;letter-spacing:.16em}
+.driver-editorial-view-switch button[aria-pressed='true']{color:#f0f6fc;border-bottom-color:var(--driver-light)}
+.driver-editorial-right{display:flex;flex-direction:column;gap:clamp(22px,4vh,46px);min-width:0;position:relative;z-index:2;padding-left:clamp(0px,1vw,20px)}
+.driver-editorial-fact-block{position:relative;padding:12px 10px;min-width:0;background:linear-gradient(#b8d5e433,#b8d5e433) left top/10px 1px no-repeat,linear-gradient(#b8d5e433,#b8d5e433) left top/1px 10px no-repeat,linear-gradient(#b8d5e433,#b8d5e433) right bottom/10px 1px no-repeat,linear-gradient(#b8d5e433,#b8d5e433) right bottom/1px 10px no-repeat}
+.driver-editorial-fact-block h3{margin:0 0 17px;font:500 9px/1.4 Inter,Arial,sans-serif;letter-spacing:.15em;color:color-mix(in srgb,var(--driver-light) 70%,#e3edf5)}
+.driver-editorial-race-name{display:block;font:500 13px/1.6 'Garage Formula1 Regular',Arial,sans-serif;text-transform:uppercase;color:#edf5ff}
+.driver-editorial-fact-block p,.driver-editorial-fact-block time{display:block;margin:7px 0 0;font:400 11px/1.65 Inter,Arial,sans-serif;color:#9fb5c8}
+.driver-editorial-metrics{display:flex;justify-content:space-between;gap:12px}
+.driver-editorial-metric{display:flex;flex-direction:column;gap:7px;min-width:0}
+.driver-editorial-metric>span{font:400 8px/1.4 Inter,Arial,sans-serif;letter-spacing:.08em;color:#8fa6ba}
+.driver-editorial-metric>strong{font:400 clamp(24px,2.8vw,44px)/1.1 'Garage Anton',sans-serif;font-variant-numeric:tabular-nums;color:#f2f6fc}
+#driverDialog .driver-editorial-story{display:flex;flex-direction:column;justify-content:center;max-width:1100px;margin:auto}
+.driver-editorial-story .driver-editorial-intro{font-size:clamp(20px,2.7vw,38px);line-height:1.65;max-width:32em}
+@media(max-width:1050px){#driverDialog .driver-editorial-hero{grid-template-columns:minmax(0,.4fr) minmax(0,.6fr)}.driver-editorial-right{grid-column:1/-1;flex-direction:row;gap:18px;padding:0}.driver-editorial-fact-block{flex:1}#driverDialog .driver-editorial-hero .driver-editorial-visual{height:50dvh}.driver-editorial-left .driver-editorial-lead{font-size:12px}}
+@media(max-width:600px){#driverDialog .driver-editorial-hero{grid-template-columns:minmax(0,1fr);gap:24px}.driver-editorial-left{order:1}#driverDialog .driver-editorial-left .driver-identity-card{margin-bottom:22px}#driverDialog .driver-editorial-left .driver-given-name.driver-plain-name,#driverDialog .driver-editorial-left .driver-surname{font-size:clamp(40px,12vw,66px)}#driverDialog .driver-editorial-hero .driver-editorial-visual{order:2;height:53dvh;width:100%}.driver-editorial-right{order:3;grid-column:auto;flex-direction:column;gap:20px}.driver-editorial-fact-block{padding:14px}.driver-editorial-metric>strong{font-size:38px}.driver-editorial-lead{display:none}}
+@media(prefers-reduced-motion:reduce){.driver-editorial-helmet,#driverDialog .driver-editorial-hero .driver-portrait{transition:none;will-change:auto;transform:none}}

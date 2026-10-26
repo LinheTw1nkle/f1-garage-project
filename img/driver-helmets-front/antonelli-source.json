@@ -1,0 +1,13 @@
+{
+  "driver": "antonelli",
+  "season": 2026,
+  "source": "https://www.headgrid.fr/products/antonelli-2026/5.png",
+  "sourceType": "replica helmet product photograph",
+  "method": "built-in image_gen background extraction",
+  "file": "antonelli.png",
+  "width": 1254,
+  "height": 1254,
+  "transparent": true,
+  "review": "Inspected against dark navy and white backgrounds; wall, tabletop and cast shadow removed.",
+  "prompt": "Use case: background-extraction. Precisely isolate the existing front-facing Antonelli helmet onto genuine transparent alpha. Remove white wall, wooden tabletop and external shadows. Preserve frontal angle, silhouette, visor reflections, vents, top aerodynamic pieces, colors and sponsor lettering. Retain complete black bottom rim. Professionally antialiased edges; no white fringe, fuzzy halo, dark outline, background remnants or clipped protrusions. Helmet white areas remain opaque. Center with modest transparent padding."
+}

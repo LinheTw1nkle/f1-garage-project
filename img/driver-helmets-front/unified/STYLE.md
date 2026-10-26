@@ -1,0 +1,12 @@
+# Unified top-seven helmet assets
+
+Reference: sources/leclerc.jpg (Charles Leclerc replica helmet product photograph).
+Leclerc is the unchanged visual anchor. The other six are AI-retouched using built-in image_gen to match softer product-photography lighting, restrained contrast, material texture and visor reflections. These edited assets are not newly captured real photographs. Original source records remain in ../top-seven-sources.json. Original first-pass cutouts remain archived in ../top-seven-helmets.zip.
+
+Final assets: seven 1254 x 1254 transparent PNGs. Scope is the current project's top seven drivers only. Website layout and code were not changed.
+
+Exact base prompt:
+
+Use case: style-transfer / photorealistic product asset. Image 1 is ONLY the lighting/material/photographic-style reference: the real Charles Leclerc helmet product photo. Image 2 is the EDIT TARGET, a different driver's helmet whose exact identity and artwork must be preserved. Match Image 1's natural product-photography look: broad soft diffused studio illumination, restrained realistic contrast and saturation, photographic lacquer/plastic texture, gentle optical softness at tiny details, physically plausible visor highlights and natural ambient shading. Remove the graphic-illustration / digitally painted / CGI look from the target. Avoid razor-sharp vector-looking printing, glowing colors, heavy clarity, aggressive sharpening, dramatic blue light bars, synthetic gloss or added vignette. Do not copy Leclerc's colors, logos, stripes, visor tint, shell geometry or branding onto the target. Keep Image 2's own exact helmet color design, sponsor logo positions, wording, shell model, vents, clear top aero pieces, visor tint and perfectly frontal camera angle; do not invent text, omit logos or add wear. Present a single isolated helmet with true transparent alpha, NO backdrop, floor, shadow outside silhouette, halo or detached pixels. Clean professionally antialiased silhouette; retain the full bottom rim and all clear protrusions, no fringe. Composition: SQUARE canvas, centered, helmet fills approximately 84% of canvas height, equal left/right clear padding, full object uncut. The result must look like a photograph from the same studio shoot as Image 1, not an illustration.
+
+Piastri correction: remove accidentally transferred Riva wording using the original Piastri source as authority; preserve photographic treatment and clean the transparent alpha matte.

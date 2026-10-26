@@ -1,0 +1,13 @@
+#loading.loading{background:#000;background-image:none}
+.sf26-loader{--load-progress:0;display:flex;flex-direction:column;align-items:center;justify-content:center;width:min(76vw,1000px);gap:clamp(24px,4vh,46px);color:#fff}
+.sf26-loader-percent{display:flex;align-items:baseline;gap:6px;font:400 clamp(28px,3.2vw,48px)/1.2 'Garage Formula1 Regular',Arial,sans-serif;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.sf26-loader-unit{font-size:.46em;opacity:.7}
+.sf26-loader-art{display:block;width:100%;height:auto;overflow:visible}
+.sf26-loader-art path{stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.sf26-loader-guide{opacity:.1}
+.sf26-loader-art .sf26-loader-progress{stroke-dasharray:100;stroke-dashoffset:100;vector-effect:none;stroke-width:8}
+#sceneTransition.is-startup{background:#000;background-image:none;transition:opacity .26s ease,visibility 0s .26s}
+#sceneTransition.is-startup.is-visible{opacity:1;visibility:visible;transition:none}
+#sceneTransition.is-startup>.transition-display{display:none}
+#sceneTransition:not(.is-startup)>.sf26-loader{display:none}
+@media(max-width:600px){.sf26-loader{width:88vw;gap:32px}.sf26-loader-art path{stroke-width:5}}
