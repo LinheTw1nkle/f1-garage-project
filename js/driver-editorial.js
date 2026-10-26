@@ -1,5 +1,5 @@
 /* Driver editorial with a helmet hero and the original scrollable archive. */
-const driverFrontAssets=Object.keys(driverIntroductions).map(id=>`img/driver-front-portraits/${id}.png`);
+const driverFrontAssets=Object.keys(driverIntroductions).map(id=>`img/driver-front-portraits/${id}.webp`);
 if(typeof garageAssetManifest!=='undefined')garageAssetManifest.images.push(...driverFrontAssets,...driverHelmetReveal.assets);
 function renderDriverEditorial(container,driver,profile,season,media,parts){
   container.driverSwitching=false;container.editorialObserver?.disconnect();container.editorialCleanup?.();
@@ -10,7 +10,7 @@ function renderDriverEditorial(container,driver,profile,season,media,parts){
   const hero=el('section','driver-editorial-screen driver-editorial-hero');hero.setAttribute('aria-label',`${driver.name} driver profile`);
   const visual=el('div','driver-editorial-visual');
   const front=String(season)==='2026'&&Object.hasOwn(driverIntroductions,driver.id),image=portrait.querySelector('img');
-  if(front){image.src=`img/driver-front-portraits/${driver.id}.png`;image.decoding='async';}
+  if(front){image.src=`img/driver-front-portraits/${driver.id}.webp`;image.decoding='async';}
   const copy=el('div','driver-editorial-copy driver-editorial-left'),identityList=el('div','driver-editorial-identity-list');
   const nationality=basics.querySelectorAll('.stat-card')[1]?.querySelector('strong');
   if(nationality){const row=el('div','driver-editorial-nationality');row.append(nationality.cloneNode(true));identityList.append(row);}

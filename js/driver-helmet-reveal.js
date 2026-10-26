@@ -13,10 +13,10 @@ const driverHelmetReveal=(()=>{
   const cache=new Map(),clamp=n=>Math.max(0,Math.min(1,n));
   const canvas=(w,h)=>Object.assign(document.createElement('canvas'),{width:w,height:h});
   const context=c=>c.getContext('2d');
-  // File-origin images taint a canvas. Load the same PNG bytes as a data URI
+  // File-origin images taint a canvas. Load the same WebP bytes as a data URI
   // only for local files; HTTP deployments keep their regular image requests.
   async function imageSource(id){
-    if(location.protocol!=='file:')return `img/driver-helmets-front/${id}.png`;
+    if(location.protocol!=='file:')return `img/driver-helmets-front/${id}.webp`;
     if(!window.driverHelmetLocalTextures?.[id])await new Promise((resolve,reject)=>{
       const script=document.createElement('script');
       script.src=`js/helmet-local-textures/${id}.js`;
@@ -193,5 +193,5 @@ const driverHelmetReveal=(()=>{
     }
     return results;
   }
-  return{mount,preload,anchors,assets:Object.keys(anchors).map(id=>`img/driver-helmets-front/${id}.png`)};
+  return{mount,preload,anchors,assets:Object.keys(anchors).map(id=>`img/driver-helmets-front/${id}.webp`)};
 })();

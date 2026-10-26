@@ -28,11 +28,11 @@ async function preloadArchiveImages(...collections){
     if(/source/i.test(key))return;
     if(typeof value==='string'){
       if(value&&(/^(src|photo|image|portrait)$/i.test(key)||/\.(png|jpe?g|webp|gif|svg|avif)([?#].*)?$/i.test(value)))urls.add(value);
-      const letters=[...value];if(letters.length===2&&letters.every(c=>c.codePointAt(0)>=0x1f1e6&&c.codePointAt(0)<=0x1f1ff)){const code=letters.map(c=>String.fromCharCode(c.codePointAt(0)-0x1f1e6+97)).join('');urls.add(`https://flagcdn.com/w160/${code}.png`);}
+      const letters=[...value];if(letters.length===2&&letters.every(c=>c.codePointAt(0)>=0x1f1e6&&c.codePointAt(0)<=0x1f1ff)){const code=letters.map(c=>String.fromCharCode(c.codePointAt(0)-0x1f1e6+97)).join('');urls.add(`img/flags/w160/${code}.png`);}
     }else if(value&&typeof value==='object'&&!seen.has(value)){seen.add(value);Object.entries(value).forEach(([k,v])=>visit(v,k));}
   }
   collections.forEach(value=>visit(value));garageAssetManifest.images.forEach(src=>urls.add(src));
-  for(const src of[...urls])if(src.includes('flagcdn.com/w160/'))urls.add(src.replace('/w160/','/w80/'));
+  for(const src of[...urls])if(src.includes('img/flags/w160/'))urls.add(src.replace('/w160/','/w80/'));
   for(const src of[...urls])if(src.includes('-color.webp')){const white=src.replace('-color.webp','.webp');if(!white.startsWith('img/')||garageAssetManifest.images.includes(white))urls.add(white);}
   document.querySelectorAll('img[src]').forEach(image=>urls.add(image.getAttribute('src')));
   const scanRules=rules=>{for(const rule of rules){if(rule.cssRules)scanRules(rule.cssRules);if(!rule.style)continue;for(const match of rule.style.cssText.matchAll(/url\(["']?([^"')]+)["']?\)/g)){const raw=match[1];if(/\.(png|jpe?g|webp|gif|svg|avif)([?#].*)?$/i.test(raw))urls.add(new URL(raw,rule.parentStyleSheet?.href||document.baseURI).href);}}};
