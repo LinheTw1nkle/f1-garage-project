@@ -40,9 +40,10 @@
   .results-mobile-identities{display:block;position:absolute;left:0;bottom:0;width:82px;z-index:9;overflow:hidden;pointer-events:none;opacity:0;transform:translateX(-100%);transition:transform .2s ease,opacity .2s ease;background:#0b1b2df5;border-right:1px solid #75dafa50}
   .results-mobile-identities.is-visible{opacity:1;transform:none;pointer-events:auto}
   .results-mobile-identity{position:absolute;left:0;top:0;width:100%;display:flex;align-items:center;justify-content:center;gap:5px;border:0;border-bottom:1px solid #7aa7c926;border-left:2px solid var(--team-color);padding:4px;background:#10263bf5;color:#edf5ff;font:900 10px/1.3 'Garage Formula1 Black',Arial,sans-serif}
-  .results-mobile-identity img{display:block;width:22px;height:18px;object-fit:contain}
+  .results-mobile-identity img{display:block;width:20px;height:18px;object-fit:contain;flex:0 0 20px;margin:0}
   .results-mobile-identity{letter-spacing:0;white-space:nowrap}
   .results-mobile-identity>span,.results-mobile-identity>img{flex-shrink:0}
+  .results-mobile-identity{display:grid;grid-template-columns:20px max-content;justify-content:center;column-gap:6px;padding-inline:6px;text-align:center}
   #driverDialog.driver-dialog[open]{width:100%;height:100dvh;padding:12px 14px 0}
   #driverDialog.driver-dialog>.panel-header{flex-basis:48px;min-height:48px;padding-bottom:10px}
   #driverDialog #driverDialogProfile.driver-editorial{width:100%;scroll-snap-type:y proximity;touch-action:pan-y;overflow-x:hidden}
