@@ -22,19 +22,28 @@
 <link rel="stylesheet" href="css/circuit-pickers.css?v=size-opt-125">
 <link rel="stylesheet" href="css/globe-layout.css?v=cosmic-circuits-181">
 <link rel="stylesheet" href="css/globe-cosmos.css?v=cosmic-circuits-239">
-<link rel="stylesheet" href="css/panel-module-nav.css?v=panel-nav-220">
-<link rel="stylesheet" href="css/database-portal.css?v=codrops-rebuild-220">
-<link rel="stylesheet" href="css/driver-grid.css?v=driver-motion-260">
+<link rel="stylesheet" href="css/panel-module-nav.css?v=editorial-unified-local-305">
+<link rel="stylesheet" href="css/database-portal.css?v=hover-preview-local-301">
+<link rel="stylesheet" href="css/driver-grid.css?v=driver-caption-local-303">
 <link rel="stylesheet" href="css/race-weekend.css?v=circuit-tower-268">
 
 <link rel="stylesheet" href="css/module-atmosphere.css?v=driver-fixed-toolbar-244">
-<link rel="stylesheet" href="css/season-overview.css?v=season-overview-241">
-<link rel="stylesheet" href="css/page-lighting.css?v=page-lighting-245">
+<link rel="stylesheet" href="css/season-overview.css?v=editorial-local-273">
+<link rel="stylesheet" href="css/page-lighting.css?v=editorial-local-273">
 <link rel="stylesheet" href="css/driver-editorial.css?v=vertical-driver-profile-248">
 <link rel="stylesheet" href="css/grid01-driver.css?v=grid01-driver-249">
 <link rel="stylesheet" href="css/driver-helmet-reveal.css?v=helmet-reveal-261">
 <link rel="stylesheet" href="css/startup-loader.css?v=sf26-loader-267">
 <link rel="stylesheet" href="css/mobile-database.css?v=mobile-center-272">
+<link rel="stylesheet" href="css/archive-foundations.css?v=driver-team-size-local-304">
+<link rel="stylesheet" href="css/cockpit-screen-transition.css?v=interruptible-flight-local-282">
+<link rel="stylesheet" href="css/team-editorial.css?v=team-no-arrows-local-300">
+<link rel="stylesheet" href="css/database-theme.css?v=smooth-immersive-return-local-311">
+<link rel="stylesheet" href="css/race-weekend-scroll.css?v=scrollytell-local-295">
+<link rel="stylesheet" href="css/draggable-photo-strip.css?v=codrops-strip-local-297">
+<link rel="stylesheet" href="css/database-editorial.css?v=diverse-portal-local-307">
+<link rel="stylesheet" href="css/team-driver-lineup.css?v=team-lineup-local-312">
+<link rel="stylesheet" href="css/team-selection-garage.css?v=team-garage-local-313">
 </head>
 
 <body>
@@ -91,13 +100,13 @@
     <div class="panel-subtoolbar">
       <button id="cockpitBack" class="cockpit-detail-back" type="button" hidden aria-label="Back to team selection">← BACK</button>
       <nav id="tyreTabs" class="cockpit-tabs" aria-label="Tyre pages" hidden>
-        <button type="button" data-tyre-page="tyre" aria-pressed="true">TYRE</button>
-        <button type="button" data-tyre-page="strategy" aria-pressed="false">STRATEGY</button>
+        <button type="button" data-tyre-page="tyre" aria-pressed="true">TYRE GUIDE</button>
+        <button type="button" data-tyre-page="strategy" aria-pressed="false">STRATEGY LAB</button>
       </nav>
       <nav id="raceSessionTabs" class="cockpit-tabs" aria-label="Race session" hidden></nav>
       <nav id="cockpitTabs" class="cockpit-tabs" aria-label="驾驶舱资料分类" hidden></nav>
     </div>
-    <button id="back" class="database-return" type="button" aria-label="Return to Database" title="Return to Database"><span aria-hidden="true">←</span></button>
+    <button id="back" class="database-return garage-action" type="button" aria-label="Return to Database" title="Return to Database"><i class="garage-action-window" aria-hidden="true"><span class="garage-action-glyph">←</span></i></button>
   </div>
 
   <div class="panel-body">
@@ -107,7 +116,7 @@
           <div class="globe-heading"><span class="kicker">FORMULA 1 · GLOBAL CIRCUITS</span><h2>THE RACING<br>WORLD</h2></div>
           <div id="globeIntro" class="globe-intro">
             <span class="globe-intro-rule" aria-hidden="true"></span>
-            <p>From city streets to purpose-built tracks, every Formula 1 circuit has its own rhythm. Explore the globe to discover the venues across each region.</p>
+            <p>Select a region on the globe to find its circuits. Drag to rotate and explore the racing world.</p>
           </div>
           <aside class="globe-circuits" aria-label="Circuits by region" hidden>
             <div class="globe-region-heading"><button id="globeReset" class="globe-reset" type="button" aria-label="Back to world globe" title="Back to world globe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><h3 id="globeContinentTitle">Europe</h3></div>
@@ -144,21 +153,21 @@
         <span class="next-race-kicker">NEXT GRAND PRIX</span>
         <strong id="nextRaceName"></strong>
         <span id="nextRaceCircuit" class="next-race-circuit"></span>
-        <span class="next-race-footer"><span id="nextRaceDates"></span><span>Race &amp; Circuit Details →</span></span>
+        <span class="next-race-footer"><span id="nextRaceDates"></span><span>View race details</span></span>
       </button>
       </div>
     <section id="tyreGuide" class="panel-section tyre-guide" hidden aria-label="Tyre compound guide"></section>
     <section id="tireLab" class="panel-section tire-lab" hidden aria-label="Tyre strategy laboratory"></section>
     <section id="seasonOverview" class="panel-section" hidden>
-      <div class="results-grid-heading results-caption-row"><span id="resultsCaption" hidden></span><button id="seasonMetricToggle" class="season-metric-toggle" type="button" aria-label="Show race positions" aria-pressed="false"><span data-season-metric="positions">POSITIONS</span><span data-season-metric="points" class="is-active">POINTS</span></button><span id="resultsHelp" class="results-help">드라이버 클릭 시 프로필 표시 · 위아래 스크롤 / Shift + 휠로 좌우 이동</span></div>
+      <div class="results-grid-heading results-caption-row"><span id="resultsCaption" hidden></span><button id="seasonMetricToggle" class="season-metric-toggle" type="button" aria-label="Show race positions" aria-pressed="false"><span data-season-metric="positions">POSITIONS</span><span data-season-metric="points" class="is-active">POINTS</span></button></div>
       <div class="results-frame">
       <div id="resultsHeaderViewport" class="results-header-viewport">
-        <table id="resultsHeaderTable" class="results-table" aria-label="成绩表头">
+        <table id="resultsHeaderTable" class="results-table" aria-label="Season results column headings">
           <colgroup id="resultsHeaderColumns"></colgroup>
           <thead><tr id="resultsHeaders"></tr></thead>
         </table>
       </div>
-      <div class="results-scroll" tabindex="0" aria-label="车手成绩总览，可横向滚动">
+      <div class="results-scroll" tabindex="0" aria-label="Driver season results. Scroll horizontally to compare rounds.">
         <table id="resultsDataTable" class="results-table" aria-labelledby="resultsCaption">
           <colgroup id="resultsDataColumns"></colgroup>
           <tbody id="resultsBody"></tbody>
@@ -190,7 +199,6 @@
           </div>
         </div>
       </div>
-      <p id="circuitSources" class="cockpit-note"></p>
     </section>
     <section id="circuitComparison" class="panel-section" aria-label="Circuit comparison content" hidden></section>
     <section id="racePositionChart" class="panel-section race-position-chart" aria-label="Race position changes" hidden></section>
@@ -201,14 +209,14 @@
 
     <section id="chartSection" class="panel-section">
       <div class="section-heading">
-        <h3 id="chartTitle">데이터 시각화</h3>
-        <span>시즌 데이터</span>
+        <h3 id="chartTitle">Data visualization</h3>
+        <span>Season data</span>
       </div>
       <div id="chart" class="chart"></div>
     </section>
 
     <section id="imageSection" class="panel-section" hidden>
-      <h3>갤러리</h3>
+      <h3>Gallery</h3>
       <div id="gallery" class="gallery"></div>
     </section>
   </div>
@@ -216,81 +224,91 @@
 <dialog id="driverDialog" class="driver-dialog" aria-labelledby="driverDialogTitle">
   <div class="panel-header">
     <div><h2 id="driverDialogTitle" class="title"></h2></div>
-    <button id="driverDialogClose" class="panel-close" type="button" aria-label="关闭车手资料">✕</button>
+    <button id="driverDialogClose" class="panel-close garage-action" type="button" aria-label="Close driver profile"><i class="garage-action-window" aria-hidden="true"><span class="garage-action-glyph"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></i></button>
   </div>
   <p id="driverDialogDescription" class="panel-description" hidden></p>
   <div id="driverDialogProfile" role="region" aria-label="Driver profile details" tabindex="0"></div>
   <div id="driverDialogStats" class="stats-grid"></div>
 </dialog>
-<script src="js/season-data.js?v=usgp-2026-10-26"></script>
+<script src="js/season-data.js?v=brazil-2026-11-09"></script>
 <dialog id="raceDialog" class="driver-dialog race-dialog" aria-labelledby="raceDialogTitle">
   <div class="panel-header">
     <div><h2 id="raceDialogTitle" class="title"></h2></div>
-    <button id="raceDialogClose" class="panel-close" type="button" aria-label="서킷 상세 정보 닫기">✕</button>
+    <button id="raceDialogClose" class="panel-close garage-action" type="button" aria-label="Close circuit details"><i class="garage-action-window" aria-hidden="true"><span class="garage-action-glyph"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></i></button>
   </div>
   <p id="raceDialogDescription" class="panel-description"></p>
   <div class="race-detail-grid">
     <figure class="circuit-map">
-      <button id="raceMapZoom" class="circuit-map-zoom" type="button" aria-label="구간별 서킷 지도 확대" aria-haspopup="dialog" aria-controls="mapDialog">
+      <button id="raceMapZoom" class="circuit-map-zoom" type="button" aria-label="Enlarge circuit map" aria-haspopup="dialog" aria-controls="mapDialog">
         <img id="raceCircuitMap" alt="" referrerpolicy="no-referrer">
-        <span class="map-zoom-hint" aria-hidden="true" title="서킷 지도 확대">⤢</span>
+        <span class="map-zoom-hint" aria-hidden="true" title="Enlarge circuit map">⤢</span>
       </button>
-      <p id="raceMapError" hidden>서킷 지도를 불러올 수 없습니다. 잠시 후 다시 시도해 주세요.</p>
-      <figcaption id="raceMapCredit" hidden></figcaption>
-      <div class="sector-legend"><span>S1 · 제1섹터</span><span>S2 · 제2섹터</span><span>S3 · 제3섹터</span></div>
+      <p id="raceMapError" hidden>The circuit map could not be loaded. Please try again.</p>
+      <div class="sector-legend"><span>S1 · Sector 1</span><span>S2 · Sector 2</span><span>S3 · Sector 3</span></div>
     </figure>
     <div id="raceDialogStats" class="stats-grid"></div>
   </div>
 </dialog>
 <dialog id="mapDialog" class="map-dialog" aria-labelledby="mapDialogTitle">
   <div class="map-dialog-header">
-    <h2 id="mapDialogTitle">구간별 서킷 지도</h2>
-    <button id="mapDialogClose" class="panel-close" type="button" aria-label="확대 지도 닫기">✕</button>
+    <h2 id="mapDialogTitle">Circuit sector map</h2>
+    <button id="mapDialogClose" class="panel-close garage-action" type="button" aria-label="Close enlarged map"><i class="garage-action-window" aria-hidden="true"><span class="garage-action-glyph"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></i></button>
   </div>
   <img id="enlargedCircuitMap" alt="" referrerpolicy="no-referrer">
-  <p id="enlargedMapCredit" class="cockpit-note" hidden></p>
 </dialog>
-<script src="js/next-race-data.js?v=usgp-2026-10-26"></script>
+<script src="js/next-race-data.js?v=brazil-2026-11-09"></script>
 <script src="js/driver-profiles.js?v=size-opt-125"></script>
 <script src="js/team-media.js?v=size-opt-125"></script>
 <script src="js/archive-media.js?v=size-opt-125"></script>
 <script src="js/driver-signatures.js?v=size-opt-125"></script>
 <script src="js/scoring.js?v=size-opt-125"></script>
 <script src="js/cockpit-data.js?v=size-opt-125"></script>
-<script src="js/circuit-data.js?v=size-opt-269"></script>
-<script src="js/circuit-catalog.js?v=usgp-2026-10-26"></script>
-<script src="js/asset-manifest.js?v=size-opt-269"></script>
+<script src="js/circuit-data.js?v=ui-local-274"></script>
+<script src="js/circuit-catalog.js?v=brazil-2026-11-09"></script>
+<script src="js/asset-manifest.js?v=driver-news-split-local-288"></script>
 <script src="js/resource-preload.js?v=all-resources-264"></script>
 <script src="js/image-cache.js?v=size-opt-269"></script>
-<script src="js/circuit-explorer.js?v=size-opt-125"></script>
-<script src="js/circuit-comparison.js?v=size-opt-269"></script>
-<script src="js/race-position-data.js?v=usgp-2026-10-26"></script>
-<script src="js/race-weekend.js?v=circuit-tower-268"></script>
-<script src="js/race-position-chart.js?v=size-opt-269"></script>
+<script src="js/circuit-explorer.js?v=no-source-captions-local-309"></script>
+<script src="js/circuit-comparison.js?v=shared-background-no-external-local-308"></script>
+<script src="js/race-position-data.js?v=brazil-2026-11-09"></script>
+<script src="js/race-weekend-scroll.js?v=editorial-unified-local-305"></script>
+<script src="js/race-weekend.js?v=editorial-unified-local-305"></script>
+<script src="js/race-position-chart.js?v=no-source-captions-local-309"></script>
 <script src="js/airflow.js?v=size-opt-125"></script>
 <script src="js/part-labels.js?v=cockpit-anchor-149"></script>
 <script src="js/gaussian-blur.js?v=size-opt-125"></script>
 <script src="js/airflow-reflection.js?v=size-opt-125"></script>
-<script src="js/neon-outline.js?v=size-opt-125"></script>
+<script src="js/neon-outline.js?v=cooperative-startup-local-310"></script>
 <script src="js/speed-lines.js?v=size-opt-125"></script>
 <script src="js/embedded-models.js?v=size-opt-125"></script>
 <script src="js/tyre-material.js?v=size-opt-125"></script>
-<script src="js/tyre-race-data.js?v=usgp-2026-10-26"></script>
-<script src="js/tire-lab.js?v=usgp-2026-10-26"></script>
+<script src="js/tyre-race-data.js?v=brazil-2026-11-09"></script>
+<script src="js/tire-lab.js?v=no-source-captions-local-309"></script>
 <script src="js/ferrari-particle-data.js?v=packed-particles-132"></script>
-<script src="js/database-portal.js?v=return-unselected-224"></script>
-<script src="js/driver-grid.js?v=helmet-reveal-260"></script>
+<script src="js/database-portal.js?v=diverse-portal-local-307"></script>
+<script src="js/driver-grid.js?v=editorial-unified-local-305"></script>
 <script src="js/driver-introductions.js?v=official-bios-261"></script>
-<script src="js/driver-helmet-reveal.js?v=size-opt-269"></script>
-<script src="js/driver-editorial.js?v=size-opt-269"></script>
+<script src="js/driver-helmet-reveal.js?v=cooperative-startup-local-310"></script>
+<script src="js/driver-editorial.js?v=quiet-guidance-local-306"></script>
 <script src="js/startup-loader.js?v=sf26-loader-266"></script>
-<script src="js/app.js?v=mobile-center-272"></script>
+<script src="js/cockpit-screen-transition.js?v=interruptible-flight-local-282"></script>
+<script src="js/vendor/gsap.min.js?v=3.10.4"></script>
+<script src="js/vendor/ScrollTrigger.min.js?v=3.10.4"></script>
+<script src="js/vendor/lenis.min.js?v=1.3.17"></script>
+<script src="js/scroll-motion.js?v=scrollytell-local-295"></script>
+<script src="js/archive-detail-motion.js?v=team-opacity-local-299"></script>
+<script src="js/vendor/draggabilly.pkgd.min.js?v=2.2.0"></script>
+<script src="js/draggable-photo-strip.js?v=team-no-arrows-local-300"></script>
+<script src="js/team-profile-data.js?v=team-details-local-292"></script>
+<script src="js/team-story-details.js?v=team-lineup-local-312"></script>
+<script src="js/team-editorial.js?v=quiet-guidance-local-306"></script>
+<script src="js/app.js?v=smooth-immersive-return-local-311"></script>
 
 <script src="js/team-logo-alignment.js?v=size-opt-125"></script>
-<script src="js/team-landing.js?v=mobile-270"></script>
-<script src="js/team-particle-car.js?v=mobile-270"></script>
+<script src="js/team-landing.js?v=neutral-rebuild-local-314"></script>
+<script src="js/team-particle-car.js?v=neutral-rebuild-local-314"></script>
 <script src="js/particle-earth.js?v=cosmic-circuits-187"></script>
-<script src="js/mobile-database.js?v=mobile-center-272"></script>
+<script src="js/mobile-database.js?v=no-source-captions-local-309"></script>
 </body>
 </html>
 

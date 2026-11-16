@@ -41,6 +41,9 @@ function orderDriverGrid(drivers,year=selectedSeason){
 function renderDriverMotionGrid(root,drivers){
   root.replaceChildren();root.classList.add('driver-motion-grid');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)'),items=[];
+  root.setAttribute('aria-label',`${selectedSeason} drivers. Select a portrait to view the driver profile.`);
+  const heading=document.querySelector('#cockpitTop .panel-content-heading');
+  if(heading&&!heading.querySelector('.database-page-guide')){const guide=document.createElement('p');guide.className='database-page-guide';guide.textContent='Select a driver to explore their story and career.';heading.append(guide);}
   const element=(tag,className,text)=>{const node=document.createElement(tag);node.className=className;if(text)node.textContent=text;return node;};
   orderDriverGrid(drivers).forEach((driver,index)=>{
     const card=element('button','driver-motion-card');card.type='button';card.dataset.driverId=driver.id;card.setAttribute('aria-label',`View ${driver.name} driver profile`);card.setAttribute('aria-haspopup','dialog');
@@ -59,10 +62,10 @@ function renderDriverMotionGrid(root,drivers){
     card.style.setProperty('--surname-size',`${surname.length>10?21:surname.length>8?24:29}px`);
     const number=element('span','driver-motion-number');number.setAttribute('aria-hidden','true');
     if(media?.numberImage){const image=element('img','');image.src=media.numberImage;image.alt='';image.decoding='async';image.loading=index<6?'eager':'lazy';number.append(image);}else number.textContent=driver.number||'—';
-    const caption=element('span','driver-motion-caption'),code=element('span','driver-motion-code',String(index+1).padStart(2,'0'));
-    caption.append(code,element('span','driver-motion-team',driver.team),element('span','driver-motion-arrow','↗'));
+    const caption=element('span','driver-motion-caption');
+    caption.append(element('span','driver-motion-team',driver.team));
     box.append(shadow,frame,photo,name,title,number,caption);card.append(box);root.append(card);
-    const layers=[shadow,photo,title,name,number,caption,frame],ranges=[[30,20,-2],[-10,-10,0],[20,10,0],[20,35,-12],[-20,0,3],[5,3,0],[8,-6,1]];
+    const layers=[shadow,photo,title,name,number,caption,frame],ranges=[[0,0,0],[-3,-3,0],[2,1,0],[2,3,-1],[-2,0,.5],[0,0,0],[0,0,0]];
     let raf=0,x=0,y=0,tx=0,ty=0;
     const tick=()=>{raf=0;if(!card.isConnected||root.classList.contains('is-transitioning'))return;x+=(tx-x)*.12;y+=(ty-y)*.12;layers.forEach((layer,i)=>{const [dx,dy,rotation]=ranges[i];layer.style.transform=`translate3d(${x*dx}px,${y*dy}px,0) rotate(${x*rotation}deg)`;});if(Math.abs(tx-x)+Math.abs(ty-y)>.002)raf=requestAnimationFrame(tick);};
     const move=event=>{if(reduced.matches||event.pointerType==='touch'||root.classList.contains('is-transitioning'))return;const bounds=card.getBoundingClientRect();tx=(event.clientX-bounds.left)/bounds.width*2-1;ty=(event.clientY-bounds.top)/bounds.height*2-1;if(!raf)raf=requestAnimationFrame(tick);};

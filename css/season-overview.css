@@ -11,7 +11,7 @@
 #panel.table-view.cockpit-view .season-session-toggle button:hover{background:#75dafa12;color:#d3f6ff}
 #panel.table-view.cockpit-view .season-metric-toggle:hover{border-color:#75dafa80}
 #panel.table-view.cockpit-view :is(.season-metric-toggle,.season-session-toggle button):focus-visible{outline:2px solid #75dafa;outline-offset:3px}
-#panel.table-view.cockpit-view :is(#overviewFilters select,.results-grid-heading){color:#b9cedf;background:#0d2034;border-color:#7aa7c940}
+#panel.table-view.cockpit-view #overviewFilters select{color:#b9cedf;background:#0d2034;border-color:#7aa7c940}
 #panel.table-view.cockpit-view .results-frame{background:#081726e0;border-color:#7aa7c940}
 #panel.table-view.cockpit-view :is(.results-caption-row,.results-header-viewport){background:#10263b;border-color:#7aa7c92b;color:#a9c2d7}
 #panel.table-view.cockpit-view .results-scroll{background:#081726}

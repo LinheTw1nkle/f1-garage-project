@@ -1,0 +1,144 @@
+/* Layout and circle clipping adapted from Codrops ShapesSlideshow Demo 1 (MIT). */
+#panel.team-detail-view #cockpitTop{display:none}
+#panel.team-detail-view .panel-body{padding-top:0;overflow:hidden}
+#panel.team-detail-view #teamProfileSection{display:block;position:relative;overflow:hidden;padding:0;margin:0;gap:0;flex:1;min-height:0}
+#panel.database-fullscreen.team-detail-view::before,#panel.database-fullscreen.team-detail-view::after{background:none;opacity:0;animation:none}
+.team-shapes{position:relative;width:100%;height:100%;min-height:0;overflow:hidden;isolation:isolate;container-type:size;outline-offset:-2px;color:#f0f5fb;overscroll-behavior:none;touch-action:pan-x pinch-zoom}
+.team-shapes-stage,.team-shape-slide,.team-shape-img-wrap,.team-shape-img{position:absolute;inset:0;width:100%;height:100%}
+.team-shape-slide{margin:0;opacity:0;pointer-events:none;display:flex;align-items:center}
+.team-shape-slide.slide--current{opacity:1;pointer-events:auto}
+.team-shape-img-wrap{overflow:hidden;will-change:transform,clip-path}
+.team-shape-img{overflow:hidden;will-change:transform;background:#07111e;backface-visibility:hidden}
+.team-shape-img:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0208139c,transparent 75%)}
+.team-shape-cover{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.team-shape-slide--profile .team-shape-cover{object-position:58% center}
+.team-shape-slide--points .team-shape-cover{object-position:61% center}
+.team-shape-photo-pair,.team-shape-photo-half,.team-shape-photo-wall{position:absolute;inset:0;width:100%;height:100%}
+.team-shape-photo-half:first-child{clip-path:polygon(0 0,calc(var(--split-center) + var(--split-tilt)) 0,calc(var(--split-center) - var(--split-tilt)) 100%,0 100%)}
+.team-shape-photo-half:last-child{clip-path:polygon(calc(var(--split-center) + var(--split-tilt)) 0,100% 0,100% 100%,calc(var(--split-center) - var(--split-tilt)) 100%)}
+.team-shape-photo-half .team-shape-cover{left:var(--visible-left);right:auto;width:calc(var(--split-center) - var(--visible-left) + var(--split-tilt) + 2%);object-position:64% 40%}
+.team-shape-photo-half:last-child .team-shape-cover{left:calc(var(--split-center) - var(--split-tilt) - 2%);right:auto;width:calc(var(--visible-right) - var(--split-center) + var(--split-tilt) + 2%);object-position:calc(50% + clamp(12px,2.8cqw,52px)) 40%}
+.team-shape-photo-wall{display:grid;grid-template-columns:56% 44%;grid-template-rows:50% 50%;gap:0}
+.team-shape-photo-wall .team-shape-cover{position:relative;min-width:0;min-height:0}
+.team-shape-photo-wall .team-shape-cover:first-child{grid-row:1/3;object-position:42% center}
+.team-shapes-brand{position:absolute;top:28px;left:4%;right:4%;display:flex;align-items:center;gap:14px;pointer-events:none;font-family:'Garage Formula1 Regular',sans-serif;font-size:clamp(14px,1.5cqw,23px);line-height:1.5}
+.team-shapes-brand img{width:44px;height:44px;object-fit:contain}
+.team-shape-car{position:absolute;left:31%;top:24%;width:69%;height:55%;object-fit:contain;object-position:center}
+.team-shape-pair{position:absolute;left:42%;top:12%;bottom:0;width:53%;display:flex;gap:0;overflow:hidden}
+.team-shape-pair img{display:block;flex:0 1 50%;width:50%;min-width:0;height:100%;object-fit:cover;object-position:50% 0;filter:grayscale(1)}
+.team-shape-year{position:absolute;left:39%;top:14%;right:-3%;font-family:'Garage Formula1 Black',sans-serif;font-size:clamp(90px,18cqw,310px);line-height:1;letter-spacing:-.08em;opacity:.12}
+.team-shape-mark{position:absolute;left:57%;top:32%;width:25%;height:48%;object-fit:contain}
+.team-shape-wall{position:absolute;inset:12% 3% 9% 40%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:60% 1fr;gap:14px;transform:rotate(-5deg)}
+.team-shape-wall>img{width:100%;height:100%;min-width:0;min-height:0;object-fit:cover;object-position:center top;background:#0b1523}
+.team-shape-wall .team-shape-wall-car{grid-column:1/3;grid-row:2;object-fit:contain;background:color-mix(in srgb,var(--team-color) 9%,#0a1421)}
+.team-shape-caption{position:relative;width:100%;padding:0 7%;pointer-events:none}
+.team-shape-entry{display:block;width:max-content;max-width:100%;border:0;padding:0;background:none;text-align:left;color:inherit;cursor:pointer;pointer-events:auto}
+#panel.team-detail-view .team-shape-headline{margin:0;font-family:'Garage Formula1 Black',sans-serif;font-size:clamp(40px,6cqw,100px);font-weight:900;font-synthesis:none;line-height:1.12;letter-spacing:.018em}
+.team-shape-text-row{position:relative;overflow:hidden;display:block;white-space:nowrap;max-width:100%}
+.team-shape-text-row>span{display:block;position:relative;padding:.12em .15em .18em;will-change:transform}
+.team-shape-text-row:last-child{color:var(--team-color)}
+.team-shapes[aria-busy="true"] .team-shape-entry{pointer-events:none}
+.team-shapes-pages{position:absolute;right:4%;bottom:30px;display:flex;gap:6px;z-index:5}
+.team-shapes-page{display:grid;place-items:center;width:32px;height:36px;padding:0;border:0;background:none;cursor:pointer}
+.team-shapes-page:after{content:'';width:5px;height:5px;border:1px solid #d9eaff70;border-radius:50%;transition:background .2s,transform .2s}
+.team-shapes-page[aria-current="true"]:after{background:var(--team-color);border-color:var(--team-color);transform:scale(1.5)}
+.team-shapes :is(button):focus-visible,.team-shapes:focus-visible{outline:1px solid #a3dff9;outline-offset:6px}
+.team-shapes-status{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap}
+@media(max-width:800px){
+ .team-shapes-brand{top:20px;font-size:15px;gap:10px}.team-shapes-brand img{width:32px;height:32px}
+ .team-shape-caption{align-self:flex-end;padding:0 6% 16%}
+ #panel.team-detail-view .team-shape-headline{font-size:clamp(30px,8.6cqw,60px)}
+ .team-shape-car{left:6%;top:15%;width:94%;height:47%}
+ .team-shape-pair{left:17%;top:12%;width:80%;height:53%;bottom:auto}
+ .team-shape-year{left:22%;top:15%;font-size:27cqw}.team-shape-mark{left:40%;top:25%;width:38%;height:30%}
+ .team-shape-wall{inset:11% 4% 38% 14%;gap:8px}
+ .team-shapes-pages{right:5%;bottom:12px}.team-shapes-page{width:28px}
+ .team-shape-img:after{background:linear-gradient(0deg,#020813b8,transparent 78%)}
+ .team-shape-photo-half .team-shape-cover{object-position:64% 40%}
+ .team-shape-photo-wall{grid-template-columns:50% 50%;grid-template-rows:56% 44%}
+ .team-shape-photo-wall .team-shape-cover:first-child{grid-row:1;grid-column:1/3}
+}
+@media(max-height:540px) and (min-aspect-ratio:6/5){
+ .team-shapes-brand{top:10px;font-size:13px}.team-shapes-brand img{width:28px;height:28px}
+ .team-shape-caption{align-self:center;padding:0 5%}
+ #panel.team-detail-view .team-shape-headline{font-size:clamp(28px,7.8cqh,47px)}
+ .team-shapes-pages{bottom:4px}
+ .team-shape-car{left:35%;top:12%;width:63%;height:74%}.team-shape-pair{left:45%;top:12%;width:50%;height:88%}
+ .team-shape-year{left:42%;top:15%;font-size:18cqw}.team-shape-mark{left:63%;top:25%;width:21%;height:56%}.team-shape-wall{inset:12% 4% 9% 45%}
+}
+@media(prefers-reduced-motion:reduce){.team-shapes *{will-change:auto!important;transition:none!important}}
+
+/* Empty and single-item toolbars become a floating close/return control. */
+#panel.database-fullscreen:is(.globe-view,.table-view,.race-position-view,.team-detail-view,.driver-view)>.panel-toolbar{
+ position:absolute;inset:0 0 auto;min-height:0;height:0;flex-basis:0;border:0;padding:0;pointer-events:none;
+}
+#panel.database-fullscreen:is(.globe-view,.table-view,.race-position-view,.team-detail-view,.driver-view)>.panel-toolbar>.panel-subtoolbar{display:none}
+#panel.database-fullscreen:is(.globe-view,.table-view,.race-position-view,.team-detail-view,.driver-view)>.panel-toolbar>.database-return{
+ position:absolute;right:clamp(20px,2.6vw,48px);top:clamp(20px,2.6vw,48px);pointer-events:auto;
+}
+#panel.database-fullscreen:is(.table-view,.race-position-view,.driver-view)>.panel-body{padding-top:60px}
+#panel.database-fullscreen.team-detail-view{padding:0}
+#panel.database-fullscreen.team-detail-view>.panel-body{padding:0;overflow:hidden}
+.team-shapes{--team-gutter:clamp(22px,6vw,112px)}
+.team-shapes-brand{left:var(--team-gutter);top:clamp(28px,5vh,48px)}
+.team-shapes-brand img,.team-story-brand img{transform:translateX(calc(-100% * var(--logo-inset,0)))}
+.team-shape-caption{padding-inline:var(--team-gutter)}
+.team-shape-text-row>span{padding-left:0}
+.team-shape-img:after{background:linear-gradient(90deg,#1119,transparent 75%)}
+.team-shapes[data-detail-open]{touch-action:pan-y pinch-zoom}
+.team-shapes[data-detail-open]>.team-shapes-brand,
+.team-shapes[data-detail-open]>.team-shapes-pages{visibility:hidden}
+.team-shapes[data-detail-open] .team-shape-entry{pointer-events:none}
+.team-story-detail{position:absolute;inset:0;z-index:10;overflow:auto;overscroll-behavior:contain;touch-action:pan-y pinch-zoom;background:var(--database-surface);padding:clamp(28px,5vh,48px) var(--team-gutter) 60px;box-sizing:border-box;outline:none}
+.team-story-detail[hidden]{display:none}
+.team-story-heading{margin-bottom:clamp(28px,4vh,48px);padding-right:44px}
+.team-story-brand{display:flex;align-items:center;gap:14px;font:400 18px/1.5 'Garage Formula1 Regular',sans-serif}
+.team-story-brand img{width:40px;height:40px;object-fit:contain}
+.team-story-heading h1{margin:28px 0 0;font:900 clamp(32px,4vw,68px)/1.25 'Garage Formula1 Black',sans-serif;letter-spacing:.015em}
+.team-story-detail h2{font:900 clamp(20px,2vw,32px)/1.4 'Garage Formula1 Black',sans-serif;margin:0 0 26px}
+.team-story-detail h3{font:600 14px/1.5 var(--archive-body);margin:28px 0 12px;color:#aaa}
+.team-story-profile{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.team-story-profile-visual{margin:0;position:sticky;top:0;overflow:hidden;background:#191919;min-height:380px;height:55vh}
+.team-story-profile-visual img{width:100%;height:100%;object-fit:cover}
+.team-story-profile-visual img.is-car{object-fit:contain}
+.team-story-facts{margin:0}
+.team-story-facts>div{display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-bottom:1px solid var(--database-rule)}
+.team-story-facts dt{font:400 13px/1.6 var(--archive-body);color:#aaa}
+.team-story-facts dd{margin:0;text-align:right;max-width:65%;font:400 15px/1.6 'Garage Formula1 Regular',sans-serif;overflow-wrap:anywhere}
+.team-story-source{margin-top:40px;font:400 12px/1.6 var(--archive-body);color:#999}
+.team-story-source a{color:inherit;text-underline-offset:4px}
+.team-story-drivers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.team-story-driver{border:0;border-top:1px solid var(--database-rule);padding:0;background:transparent;color:inherit;text-align:left;cursor:pointer;min-width:0}
+.team-story-driver-visual{height:42vh;min-height:260px;overflow:hidden;position:relative;background:radial-gradient(ellipse at 50% 100%,#292929,#171717 75%)}
+.team-story-driver-visual img{width:100%;height:100%;object-fit:contain;object-position:center bottom;transition:transform .5s}
+.team-story-driver:hover .team-story-driver-visual img{transform:scale(1.025)}
+.team-story-driver-copy{padding-top:22px}
+.team-story-driver-copy h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 18px;margin-bottom:18px}
+.team-story-given{font:400 clamp(36px,4vw,60px)/1.3 'Garage Northwell Clean Alt',cursive}
+.team-story-surname{font:900 clamp(20px,2.5vw,38px)/1.3 'Garage Formula1 Black',sans-serif;text-transform:uppercase}
+.team-story-driver-link{display:block;margin-top:22px;color:var(--database-red-ink);font:600 13px/1.5 var(--archive-body)}
+.team-story-results{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,100px);align-items:start}
+.team-story-records,.team-story-season-summary{margin:0}
+.team-story-records>div,.team-story-season-summary>div{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid var(--database-rule)}
+.team-story-records dt,.team-story-season-summary dt{font:400 14px/1.5 var(--archive-body);color:#aaa}
+.team-story-records dd,.team-story-season-summary dd{margin:0;font:400 clamp(22px,2.3vw,36px)/1.4 'Garage Formula1 Regular',sans-serif}
+.team-story-records>div:first-child dd{color:var(--database-red-ink)}
+.team-story-race-scroll{overflow-x:auto;overscroll-behavior:contain}
+.team-story-race-table{width:100%;border-collapse:collapse;font:400 12px/1.6 var(--archive-body)}
+.team-story-race-table th,.team-story-race-table td{padding:13px 12px;border-bottom:1px solid var(--database-rule);text-align:right;white-space:nowrap}
+.team-story-race-table th:first-child{text-align:left;padding-left:0}
+.team-story-race-table thead th{font-weight:600;color:#aaa}
+.team-story-race-table tbody th{font-weight:400}
+.team-story-race-table .is-podium{color:#ffb1ad}
+@media(max-width:800px){
+ .team-shapes-brand{left:var(--team-gutter);top:26px}
+ .team-shape-caption{padding:0 var(--team-gutter) 16%}
+ .team-shape-img:after{background:linear-gradient(0deg,#111a,transparent 78%)}
+ .team-story-detail{padding-top:26px;padding-bottom:36px}
+ .team-story-brand{font-size:15px}.team-story-brand img{width:32px;height:32px}
+ .team-story-heading h1{margin-top:26px;font-size:clamp(28px,6vw,44px)}
+ .team-story-profile,.team-story-results,.team-story-drivers{grid-template-columns:1fr;gap:36px}
+ .team-story-profile-visual{position:relative;height:36vh;min-height:220px}
+ .team-story-driver-visual{height:43vh}
+}
+@media(prefers-reduced-motion:reduce){.team-story-detail *{transition:none!important}}

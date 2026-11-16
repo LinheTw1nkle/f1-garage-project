@@ -1,0 +1,225 @@
+/* Neutral charcoal surfaces shared by database pages and their transitions. */
+:root{
+  --database-surface:radial-gradient(ellipse at 18% 8%,#1c1c1c26,transparent 54%),linear-gradient(150deg,#121212 0%,#0f0f0f 52%,#0c0c0c 100%);
+  --database-card:linear-gradient(145deg,#1e1e1ee8,#1a1a1aed);
+  --database-red:#be3530;
+  --database-red-ink:#e66760;
+  --database-rule:#ffffff1c;
+}
+#panel.database-fullscreen,
+#panel.database-fullscreen:is(.globe-view,.circuit-view,.cockpit-view,.tire-view,.race-position-view,.team-detail-view,.driver-view),
+#driverDialog.driver-dialog,
+#driverDialog.driver-dialog[open],
+#raceDialog.driver-dialog,
+#mapDialog.map-dialog{
+  background:var(--database-surface);
+  --archive-rule:var(--database-rule);
+  --archive-muted:#aaa;
+}
+/* Keep artwork and stars, without the former page-wide blue washes. */
+#panel.database-fullscreen:is(.globe-view,.circuit-view,.cockpit-view,.tire-view,.race-position-view,.team-detail-view,.driver-view)::before,
+#panel.database-fullscreen:is(.globe-view,.circuit-view,.cockpit-view,.tire-view,.race-position-view,.team-detail-view,.driver-view)::after,
+#driverDialog.driver-dialog[open]::before{
+  background:none;opacity:0;animation:none;
+}
+#panel.team-detail-view .team-shape-img{background-color:#121212}
+/* The dialog is only a transparent carrier: the moving wipe owns the surface. */
+dialog.driver-motion-curtain{background:transparent}
+.driver-motion-wipe{background:var(--database-surface)}
+#driverDialog.driver-motion-detail::backdrop{background:transparent}
+#driverDialog.driver-motion-detail>.panel-header{background:transparent;border-color:var(--database-rule)}
+
+/* Raised surfaces retain depth without a blue cast. Team and tyre accents stay colored. */
+#panel.database-fullscreen :is(.next-race-card,.race-session-card,.race-timing-tower,.race-chart-comparison,.race-position-plot,.circuit-map-panel,.circuit-sector-details,.comparison-chart,.comparison-card,.team-driver-card,.stat-card,.race-classification,.tire-wheel-card,.tire-strategy-card,.tyre-guide-info),
+#panel.database-fullscreen.race-position-view .race-weekend-chart .race-position-plot,
+#panel.table-view.cockpit-view .next-race-card,
+#driverDialog .driver-editorial-career-card,
+#raceDialog .stat-card{
+  background:var(--database-card);
+}
+#panel.table-view.cockpit-view .next-race-card:hover,
+#panel.database-fullscreen .next-race-card:hover,
+#panel.database-fullscreen .race-session-card[open]{background:linear-gradient(145deg,#272727e8,#232323ed)}
+#panel.database-fullscreen :is(.circuit-facts>div,.comparison-chip,.comparison-circuit-menu,.comparison-card-switcher button,.circuit-sector-buttons button,.cockpit-controls select,.race-picker summary,.race-picker-options,.tyre-nomination-popover,.tyre-strategy-nomination summary,.tire-round,.tire-play,.tire-strategy-modes),
+#panel.database-fullscreen #comparisonAdd,
+#panel.table-view.cockpit-view #overviewFilters select{
+  background:#202020;
+}
+#panel.database-fullscreen :is(.circuit-sector-buttons button[aria-pressed="true"],.comparison-card-switcher button[aria-pressed="true"],.tire-strategy-mode[aria-pressed="true"]){background:#303030}
+#panel.database-fullscreen .driver-motion-photo{background:radial-gradient(ellipse at 50% 80%,color-mix(in srgb,var(--driver-color) 6%,#202020),#181818 75%)}
+#panel.database-fullscreen .driver-motion-given{background:#1b1b1be8;border-color:#ffffff60}
+#panel.database-fullscreen .driver-motion-frame{border-color:#ffffff30;border-top-color:var(--driver-color)}
+#panel.database-fullscreen .driver-motion-shadow{background:repeating-linear-gradient(135deg,#ffffff22 0 1px,transparent 1px 6px)}
+#panel.database-fullscreen :is(.database-return,.panel-close),
+#driverDialog.driver-motion-detail #driverDialogClose{background:#ffffff06;border-color:#ffffff40}
+#panel.database-fullscreen :is(.database-return,.panel-close):hover,
+#driverDialog.driver-motion-detail #driverDialogClose:hover{background:#ffffff13}
+
+/* Compact lists, sticky table cells and mobile identities use the same gray scale. */
+#panel.database-fullscreen :is(.race-tower-item,.race-podium-lower){background:#191919ed}
+#panel.database-fullscreen .race-tower-item:nth-child(even){background:#202020}
+#panel.database-fullscreen .race-tower-item[aria-pressed="true"]{background:#353535}
+#panel.database-fullscreen .race-session-table th,
+#panel.database-fullscreen .circuit-winners th{background:#2b2b2b}
+#panel.database-fullscreen .circuit-winners td{background:#1b1b1b}
+#panel.database-fullscreen .circuit-winners tr:nth-child(even) td{background:#242424}
+#panel.table-view.cockpit-view :is(.results-frame,.results-scroll){background:#181818}
+#panel.table-view.cockpit-view :is(.results-header-viewport,.results-table th,.results-frozen-header){background:#2b2b2b}
+#panel.table-view.cockpit-view .results-table td{background:#1b1b1b}
+#panel.table-view.cockpit-view .results-table tbody tr:nth-child(even) td{background:#222}
+#panel.table-view.cockpit-view .results-table tbody tr:hover td,
+#panel.table-view.cockpit-view .results-table tbody tr:focus-within td{background:#333}
+#panel.table-view.cockpit-view #resultsBody :is(.position-podium-1,.position-podium-2,.position-podium-3){background:#292929}
+#panel.table-view.cockpit-view :is(.season-metric-toggle,.season-session-toggle){background:#202020}
+#panel.table-view.cockpit-view .season-metric-toggle .is-active,
+#panel.table-view.cockpit-view .season-session-toggle button[aria-pressed="true"]{background:#ffffff14}
+#panel.table-view.cockpit-view .season-session-toggle button:hover{background:#ffffff0b}
+#panel.table-view .results-mobile-identities,
+#panel.table-view .results-mobile-identity{background:#242424}
+#panel.table-view .results-frame::after{background:#2b2b2b}
+#panel.table-view.cockpit-view .results-scroll{scrollbar-color:#666 #181818}
+#panel.table-view .results-scroll::-webkit-scrollbar-thumb{background:#666}
+#panel.table-view .results-scroll::-webkit-scrollbar-track,
+#panel.table-view .results-scroll::-webkit-scrollbar-corner{background:#181818}
+
+/* Compound selection keeps its existing semantic color, on a neutral base. */
+#panel.tire-view .tyre-type-row[aria-pressed="true"]{background:color-mix(in srgb,var(--type-color) 9%,#202020)}
+#panel.tire-view .tire-stint{background:color-mix(in srgb,var(--compound-color) 16%,#202020)}
+#panel.tire-view .tire-stint:hover{background:color-mix(in srgb,var(--compound-color) 28%,#202020)}
+#panel.tire-view .tire-actual-stint[aria-pressed="true"]{background:color-mix(in srgb,var(--compound-color) 30%,#202020)}
+
+/* Red controls; tyre compounds and circuit sector colors remain data cues. */
+#panel.database-fullscreen :is(.database-return,.panel-close),
+#driverDialog.driver-motion-detail #driverDialogClose,
+#raceDialog .panel-close,
+#mapDialog .panel-close{
+  background:#be353012;border-color:#be353066;color:#fff;
+}
+#panel.database-fullscreen :is(.database-return,.panel-close):hover,
+#driverDialog.driver-motion-detail #driverDialogClose:hover,
+#raceDialog .panel-close:hover,
+#mapDialog .panel-close:hover{background:#be353030;border-color:var(--database-red)}
+#panel.database-fullscreen :is(.driver-overview-nav,.panel-module-nav) button:hover,
+#panel.database-fullscreen:not(.tire-view) .cockpit-tabs button:hover{color:var(--database-red-ink)}
+#panel.database-fullscreen .driver-overview-nav button[aria-current='page']{border-bottom-color:var(--database-red);color:#fff}
+#panel.database-fullscreen .panel-module-nav button[aria-current='page']::after,
+#panel.database-fullscreen:not(.tire-view) .cockpit-tabs button[aria-pressed='true']::after{
+  background:var(--database-red);box-shadow:none;
+}
+#panel.cockpit-view #archiveControls button{
+  background:#be35300b;color:#bbb;border-color:#be353038;
+}
+#panel.cockpit-view #archiveControls button:hover{
+  background:#be353024;color:#fff;border-color:#be353080;
+}
+#panel.cockpit-view #archiveControls button[aria-pressed='true']{
+  background:#96342e;color:#fff;border-color:var(--database-red);border-bottom-color:var(--database-red);
+}
+#panel.table-view.cockpit-view .season-metric-toggle .is-active,
+#panel.table-view.cockpit-view .season-session-toggle button[aria-pressed='true']{
+  background:#be353026;color:#fff;box-shadow:inset 0 -2px var(--database-red);
+}
+#panel.table-view.cockpit-view .season-session-toggle button:hover{background:#be353018;color:#fff}
+#panel.table-view.cockpit-view .season-metric-toggle:hover{border-color:#be353080}
+#panel.database-fullscreen #comparisonAdd,
+#panel.database-fullscreen .tire-play{background:#96342e;color:#fff;border-color:#be353080}
+#panel.database-fullscreen #comparisonAdd:enabled:hover,
+#panel.database-fullscreen .tire-play:hover{background:#ae3b33}
+#panel.database-fullscreen .race-picker-option:hover,
+#panel.database-fullscreen .race-picker-option[aria-pressed='true'],
+#panel.database-fullscreen .comparison-circuit-menu button:hover{background:#be353018}
+#panel.database-fullscreen .race-tower-item[aria-pressed='true']{background:#be35301c;border-left-color:var(--database-red)}
+#panel.database-fullscreen .race-tower-item:hover{background:#be353012}
+#panel.database-fullscreen :is(button,summary,select):focus-visible,
+#driverDialog :is(button,summary,select):focus-visible{outline-color:var(--database-red-ink)}
+#driverDialog .driver-scroll-cue:hover{color:#fff;border-color:var(--database-red)}
+
+/* Muted red treatment also applies to the next-race card and its mobile expander. */
+#panel.table-view.cockpit-view .next-race-card{border-color:#ffffff1c;border-left-color:var(--database-red);color:#e5e5e5}
+#panel.table-view.cockpit-view .next-race-card:hover{border-color:#be353066;border-left-color:var(--database-red)}
+#panel.table-view.cockpit-view .next-race-kicker{color:#cf7972}
+#panel.table-view.cockpit-view :is(.next-race-circuit,.next-race-footer){color:#aaa;border-color:#ffffff18}
+#panel.table-view.cockpit-view .next-race-card::before{color:var(--database-red-ink);border-color:#be353055}
+/* Driver profiles have a floating close button, without a navigation strip. */
+#driverDialog.driver-dialog>.panel-header{
+ position:absolute;inset:0 0 auto;min-height:0;height:0;flex-basis:0;border:0;padding:0;margin:0;pointer-events:none;z-index:30;
+}
+#driverDialog.driver-dialog>.panel-header :is(.driver-detail-context,div){display:none}
+#driverDialog.driver-dialog #driverDialogClose{
+ position:absolute;top:clamp(24px,3vw,48px);right:clamp(24px,3vw,48px);pointer-events:auto;background:#be353012;border-color:#be353066;color:#eee;
+}
+#driverDialog.driver-dialog #driverDialogClose:hover{background:#be353030;border-color:var(--database-red)}
+
+#driverDialog #driverDialogClose:focus-visible{outline:2px solid var(--database-red-ink);outline-offset:3px}
+#panel .mobile-next-race-content{color:#bbb}
+#panel .mobile-next-race-map{background:#191919}
+#panel .mobile-next-race-stats dt{color:#999}
+#panel .mobile-next-race-content a{color:var(--database-red-ink)}
+
+.database-word.is-selected::after{background:var(--database-red)}
+
+/* Adapted from Codrops ButtonHoverStyles: Skoll (MIT).
+ * Keep its sliding circular cover and two-part icon lift; use Garage colors.
+ * https://github.com/codrops/ButtonHoverStyles */
+:is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action{
+ position:relative;isolation:isolate;display:grid;place-items:center;flex:0 0 auto;
+ width:44px;height:44px;min-width:44px;padding:0;overflow:hidden;border-radius:50%;
+ border:1px solid #be353055;background:var(--database-red,#be3530);color:#fff;
+ box-shadow:none;cursor:pointer;line-height:1;touch-action:manipulation;
+ transition:border-color .3s,transform .18s; -webkit-tap-highlight-color:transparent;
+}
+:is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action::before{
+ content:'';position:absolute;inset:0;border-radius:50%;background:#242424;pointer-events:none;
+ transform:translate3d(0,0,0);transition:transform .3s cubic-bezier(.7,0,.2,1);
+}
+:is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action::after{content:none}
+:is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action .garage-action-window{
+ position:relative;z-index:1;display:block;width:20px;height:20px;overflow:hidden;font-style:normal;pointer-events:none;
+}
+:is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action .garage-action-glyph{
+ position:relative;display:block;width:20px;height:20px;overflow:visible;color:#fff;font-size:0;transform:none;
+}
+.garage-action-glyph svg{display:block;width:20px;height:20px}
+#panel #back.garage-action .garage-action-glyph::before{
+ content:'';position:absolute;left:50%;top:50%;width:16px;height:1.5px;border:0;border-radius:2px;
+ background:currentColor;transform:translate(-50%,-50%);
+}
+#panel #back.garage-action .garage-action-glyph::after{
+ content:'';position:absolute;left:3px;top:50%;width:7px;height:7px;border:0;
+ border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;background:none;
+ border-radius:0;transform:translateY(-50%) rotate(45deg);
+}
+#panel:is(.circuit-view) #back.garage-action .garage-action-glyph::before,
+#panel #back.garage-action[data-destination='archive-overview'] .garage-action-glyph::before{transform:translate(-50%,-50%) rotate(45deg)}
+#panel:is(.circuit-view) #back.garage-action .garage-action-glyph::after,
+#panel #back.garage-action[data-destination='archive-overview'] .garage-action-glyph::after{
+ left:50%;top:50%;width:16px;height:1.5px;border:0;border-radius:2px;background:currentColor;transform:translate(-50%,-50%) rotate(-45deg);
+}
+@media(hover:hover) and (pointer:fine){
+ :is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action:hover{background:var(--database-red,#be3530);color:#fff;border-color:var(--database-red,#be3530)}
+ :is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action:hover::before{transform:translate3d(0,100%,0)}
+ .garage-action:hover .garage-action-glyph{animation:garage-skoll-up .2s forwards,garage-skoll-return .2s forwards .2s}
+}
+.garage-action:focus-visible{outline:2px solid var(--database-red-ink,#e66760);outline-offset:4px}
+:is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action:focus-visible::before{transform:translate3d(0,100%,0)}
+.garage-action:focus-visible .garage-action-glyph{animation:garage-skoll-up .2s forwards,garage-skoll-return .2s forwards .2s}
+:is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action:active{transform:scale(.94)}
+@keyframes garage-skoll-up{to{transform:translate3d(0,-105%,0)}}
+@keyframes garage-skoll-return{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,0,0)}}
+@media(prefers-reduced-motion:reduce){
+ :is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action,
+ :is(#panel #back,#driverDialog #driverDialogClose,#raceDialogClose,#mapDialogClose).garage-action::before{transition:none}
+ .garage-action .garage-action-glyph{animation:none!important}
+}
+
+#panel.database-fullscreen:is(.globe-view,.table-view,.race-position-view,.team-detail-view,.driver-view) #back.garage-action,
+#driverDialog.driver-dialog #driverDialogClose.garage-action{position:absolute}
+
+/* One viewport background for the garage, aerodynamics and database flight.
+ * The loading screen retains its separate black surface until studio-scene mounts. */
+body.studio-scene,body.studio-scene.airflow-active{background:var(--database-surface)}
+body.studio-scene::before,body.studio-scene.airflow-active::before{background:#000;opacity:var(--garage-blackout,0);transition:opacity .3s ease-out}
+
+/* The scene's lighting mix fades this black layer without replacing the base background. */
+
+@media(prefers-reduced-motion:reduce){body.studio-scene::before,body.studio-scene.airflow-active::before{transition:none}}

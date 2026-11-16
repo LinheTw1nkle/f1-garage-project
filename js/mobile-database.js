@@ -6,6 +6,7 @@
   let rows=[],paintFrame=0,inertia=0,gesture=null,suppressClickUntil=0;
   const codes={verstappen:'VER',antonelli:'ANT',hulkenberg:'HUL',bortoleto:'BOR',colapinto:'COL',lindblad:'LIN'};
   function rebuild(){
+    cancelAnimationFrame(inertia);gesture=null;
     rows=[...body.rows];rail.replaceChildren();
     for(const row of rows){
       const full=row.querySelector('.driver-name-button');if(!full)continue;
@@ -24,6 +25,8 @@
     const visible=mobile.matches&&viewport.scrollLeft>=threshold;
     rail.classList.toggle('is-visible',visible);rail.inert=!visible;rail.setAttribute('aria-hidden',String(!visible));
     rail.style.top=header.offsetHeight+'px';
+    frame.classList.toggle('has-compact-identities',visible);
+    frame.style.setProperty('--identity-header-height',header.offsetHeight+'px');
     if(visible)rows.forEach((row,i)=>{const item=rail.children[i];if(item){item.style.height=row.offsetHeight+'px';item.style.transform=`translateY(${row.offsetTop-viewport.scrollTop}px)`;}});
   }
   function schedule(){if(!paintFrame)paintFrame=requestAnimationFrame(paint);}
@@ -59,6 +62,9 @@
     inertia=requestAnimationFrame(tick);
   }
   frame.addEventListener('touchend',finish,{passive:true});frame.addEventListener('touchcancel',finish,{passive:true});
+  // A new page gesture must not leave the table coasting independently.
+  document.addEventListener('touchstart',event=>{if(!frame.contains(event.target)){cancelAnimationFrame(inertia);gesture=null;}},{passive:true,capture:true});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(inertia);gesture=null;}});
   frame.addEventListener('click',event=>{if(mobile.matches&&performance.now()<suppressClickUntil){event.preventDefault();event.stopImmediatePropagation();}},{capture:true});
 
   const card=document.getElementById('nextRaceCard'),details=document.createElement('div');
@@ -70,7 +76,6 @@
   const map=add('img','');map.className='mobile-next-race-map';map.src=nextRaceData.map.src;map.alt=nextRaceData.map.alt;map.decoding='async';
   const stats=add('dl','');stats.className='mobile-next-race-stats';
   for(const[label,value]of[['Circuit Length',nextRaceData.length],['Race Laps / Distance',`${nextRaceData.laps} / ${nextRaceData.distance}`],['Lap Record',`${nextRaceData.lapRecord} · ${nextRaceData.recordDriver} · ${nextRaceData.recordTeam} · ${nextRaceData.recordYear}`],['Previous Winner',`${nextRaceData.previousWinner} · ${nextRaceData.previousTeam} · ${nextRaceData.previousRace}`]]){const row=add('div','',stats);add('dt',label,row);add('dd',value,row);}
-  for(const[label,url]of nextRaceData.sources||[]){const link=add('a',label);link.href=url;link.target='_blank';link.rel='noopener noreferrer';content.append(document.createElement('br'));}
   function collapse(){details.classList.remove('is-expanded');details.inert=true;details.setAttribute('aria-hidden','true');card.setAttribute('aria-expanded','false');}
   window.toggleMobileNextRace=()=>{const expanded=!details.classList.contains('is-expanded');details.classList.toggle('is-expanded',expanded);details.inert=!expanded;details.setAttribute('aria-hidden',String(!expanded));card.setAttribute('aria-expanded',String(expanded));};
   function sync(){collapse();card.inert=false;if(mobile.matches){card.setAttribute('aria-controls',details.id);card.removeAttribute('aria-haspopup');}else{card.setAttribute('aria-controls','raceDialog');card.setAttribute('aria-haspopup','dialog');card.removeAttribute('aria-expanded');}}

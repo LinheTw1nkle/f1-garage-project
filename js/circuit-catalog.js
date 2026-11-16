@@ -2,3 +2,9 @@
 
 /* United States GP winner · official final classification, 25 October 2026. */
 if(circuitData.austin){circuitData.austin.winners=circuitData.austin.winners.filter(row=>Number(row[0])!==2026);circuitData.austin.winners.unshift([2026,'Kimi Antonelli']);circuitData.austin.historyNote='Grand Prix race winners at this circuit · Records checked 26 October 2026.';circuitData.austin.sources.push(['Formula 1 · 2026 race result','https://www.formula1.com/en/results/2026/races/1297/united-states/race-result']);}
+
+/* Mexico City GP winner · official final classification, 1 November 2026. */
+if(circuitData.mexico){circuitData.mexico.winners=circuitData.mexico.winners.filter(row=>Number(row[0])!==2026);circuitData.mexico.winners.unshift([2026,'Max Verstappen']);circuitData.mexico.historyNote='Grand Prix race winners at this circuit · Records checked 2 November 2026.';circuitData.mexico.sources.push(['Formula 1 · 2026 race result','https://www.formula1.com/en/results/2026/races/1298/mexico/race-result']);}
+
+/* Sao Paulo GP winner · official final classification, 8 November 2026. */
+if(circuitData.interlagos){circuitData.interlagos.winners=circuitData.interlagos.winners.filter(row=>Number(row[0])!==2026);circuitData.interlagos.winners.unshift([2026,'Lando Norris']);circuitData.interlagos.historyNote='Grand Prix race winners at this circuit · Records checked 9 November 2026.';circuitData.interlagos.sources.push(['Formula 1 · 2026 race result','https://www.formula1.com/en/results/2026/races/1299/brazil/race-result']);}

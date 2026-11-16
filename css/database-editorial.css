@@ -1,0 +1,222 @@
+/* Shared database finish. Art direction stays specific; spacing and controls do not. */
+:root{
+  --db-gutter:clamp(24px,3.4vw,64px);
+  --db-ink:#f0eeeb;
+  --db-secondary:#b5b2ae;
+  --db-muted:#92908d;
+  --db-line:#ffffff19;
+  --db-raised:#1b1a19;
+}
+#panel.database-fullscreen,#driverDialog{
+  --archive-ink:var(--db-ink);--archive-muted:var(--db-secondary);--archive-rule:var(--db-line);
+}
+#panel.database-fullscreen :is(.title,.race-weekend-title){letter-spacing:-.015em;line-height:1.3}
+#panel.database-fullscreen .panel-description{max-width:56ch;color:var(--db-secondary)}
+#panel.database-fullscreen :is(.panel-module-nav,.cockpit-tabs,.driver-overview-nav) button{letter-spacing:.035em}
+.database-page-guide,.race-section-guide{
+  font:400 13px/1.6 'Garage Red Hat Display',Arial,sans-serif;color:var(--db-secondary);letter-spacing:.01em;
+}
+.database-page-guide{margin:10px 0 0}
+#panel.database-fullscreen :is(button,summary,a):focus-visible{outline:2px solid var(--database-red-ink);outline-offset:5px}
+
+/* Four larger photographs frame the titles instead of scattering small images. */
+.database-word-list{gap:clamp(19px,2.5vh,28px)}
+.database-word{font-size:clamp(38px,5vw,76px);line-height:1;letter-spacing:.012em;-webkit-text-stroke-color:#c5c2bead}
+.database-word-list:has(.database-word.is-selected) .database-word:not(.is-selected){opacity:.76;-webkit-text-stroke-color:#bdb9b49c}
+.database-word:is(:hover,:focus-visible,.is-selected){transform:rotate(var(--word-rotation)) scale(1.025)}
+.database-preview-card{box-shadow:none;background:#1b1a19;--rx:0deg!important;--ry:0deg!important;--tz:-80px!important}
+.database-preview-card:nth-child(1){left:3.5%!important;top:19%!important;width:18vw!important;height:21vh!important}
+.database-preview-card:nth-child(2){left:80%!important;top:9%!important;width:16vw!important;height:22vh!important}
+.database-preview-card:nth-child(3){left:5%!important;top:66%!important;width:17vw!important;height:21vh!important}
+.database-preview-card:nth-child(4){left:77%!important;top:65%!important;width:19vw!important;height:23vh!important}
+.database-preview-card img{filter:brightness(.86) saturate(.68);transform:none}
+.database-preview-group[data-module='Cockpit'] .database-preview-card img{object-fit:cover;padding:0;background:#1b1a19;object-position:center top}
+
+/* Portraits and names lead; framing and numbers are secondary. */
+#panel .driver-motion-shadow,#panel .driver-motion-frame{display:none}
+#panel .driver-motion-card .driver-motion-given{
+  border:0;background:none;box-shadow:none;padding:0 2px 7px;max-width:calc(100% - 40px);
+  top:-30px;color:var(--db-ink);font-size:clamp(34px,2.8vw,44px);
+}
+#panel .driver-motion-card .driver-motion-number{width:32px;height:24px;top:-12px;opacity:.78}
+#panel .driver-motion-card .driver-motion-surname{left:12px;right:12px;bottom:14px;line-height:1.3;letter-spacing:.015em}
+#panel .driver-motion-photo{background:#1b1a19}
+#panel .driver-motion-photo::after{content:'';position:absolute;inset:50% 0 0;background:linear-gradient(transparent,#11100fe0);pointer-events:none}
+#panel .driver-motion-surname{z-index:4}
+#panel .driver-motion-image{filter:grayscale(.7) contrast(1.01);transition:filter .3s ease}
+#panel .driver-motion-card:is(:hover,:focus-visible) .driver-motion-image{filter:grayscale(0) contrast(1.01)}
+#panel .driver-motion-card .driver-motion-caption{bottom:-37px;border-top:1px solid var(--db-line);padding-top:8px;min-height:27px;font-size:16px;line-height:1.4}
+#panel .driver-motion-team{color:var(--db-secondary)}
+#panel.driver-overview-view #archiveDirectory.driver-motion-grid{gap:82px 40px;padding-top:66px}
+#panel.driver-overview-view #title,#panel.team-selection-view #title{font-size:clamp(28px,2.6vw,43px);line-height:1.3}
+#panel .driver-motion-card:is(:hover,:focus-visible) .driver-motion-caption{border-top-color:var(--driver-color)}
+
+/* A visible second step makes the particle car an obvious entry. */
+
+.panel-body.has-particle-car>.team-particle-entry:is(:hover,:focus-visible){transform:translateY(-2px)}
+
+#panel.team-selection-view .team-selection-summary span{font-size:11px;letter-spacing:.055em;color:var(--db-muted)}
+#panel.team-selection-view .team-selection-summary strong{font-size:clamp(20px,1.8vw,28px);font-variant-numeric:tabular-nums}
+#panel.team-selection-view .team-selection-summary>div:last-child strong{font-size:15px;line-height:1.6}
+
+/* Full-bleed team stories use one title position and labeled section navigation. */
+.team-shapes{--team-gutter:var(--db-gutter)}
+#panel.team-detail-view .team-shapes-brand{left:var(--db-gutter);font-size:20px}
+#panel.team-detail-view .team-shape-caption{padding-left:var(--db-gutter);padding-right:var(--db-gutter)}
+#panel.team-detail-view .team-shape-headline{font-size:clamp(40px,5.4cqw,88px);line-height:1.14;letter-spacing:.025em}
+#panel.team-detail-view .team-shape-text-row:last-child{color:var(--db-ink)}
+
+
+.team-shapes-pages{left:var(--db-gutter);right:auto;bottom:34px;gap:24px;align-items:center}
+.team-shapes-page{position:relative;width:auto;min-width:44px;height:40px;padding:0 0 4px;color:#b8b5b1;font:500 13px/1.5 'Garage Red Hat Display',Arial,sans-serif;text-shadow:0 1px 12px #000}
+.team-shapes-page::after{position:absolute;bottom:0;left:0;width:100%;height:1px;border:0;border-radius:0;background:transparent;transition:background .2s}
+.team-shapes-page[aria-current='true']{color:#fff}
+.team-shapes-page[aria-current='true']::after{background:var(--database-red);transform:none}
+
+
+.team-shape-img:after{background:linear-gradient(90deg,#11100f9c,transparent 72%)}
+.team-story-detail{--team-gutter:var(--db-gutter)}
+.team-story-heading{border-color:var(--db-line)}
+.team-story-profile-copy h2{line-height:1.35;letter-spacing:-.01em}
+.team-story-facts>div,.team-story-records>div{border-color:var(--db-line)}
+.team-story-facts dt,.team-story-records dt{color:var(--db-muted)}
+.team-story-profile{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+.team-story-results{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.team-story-profile>*,.team-story-results>*,.team-story-drivers>*{min-width:0}
+.team-story-race-scroll{min-width:0;max-width:100%}
+.team-story-records dd,.team-story-season-summary dd{max-width:55%;overflow-wrap:anywhere;text-align:right}
+.team-story-records dt,.team-story-season-summary dt{min-width:0}
+.team-story-detail h2{overflow-wrap:anywhere}
+
+/* Maintain the helmet interaction; make the surrounding information quieter. */
+#driverDialog .driver-editorial-left{padding-right:12px}
+#driverDialog .driver-editorial-fact-block h3{color:var(--db-secondary);letter-spacing:.08em}
+#driverDialog .driver-editorial-season{border-color:var(--db-line)}
+#driverDialog .driver-editorial-season .driver-editorial-metric>strong{font-size:clamp(24px,2.6vw,38px)}
+#driverDialog .driver-editorial-career .driver-editorial-metric:first-child>strong{font-size:clamp(44px,4.5vw,68px)}
+#driverDialog .driver-editorial-career-card{background:#1b1a19;border:1px solid var(--db-line);border-radius:12px;box-shadow:none}
+
+#driverDialog .driver-scroll-cue{font-size:12px;letter-spacing:.025em;border-top-color:var(--db-line);padding:12px 16px}
+
+/* Data pages use rows and separators instead of stacked glass panels. */
+#panel.database-fullscreen :is(.race-session-card,.race-timing-tower,.race-podium-lower,.comparison-chart,.comparison-card,.circuit-map-panel,.circuit-sector-details,.tyre-guide-info,.tire-wheel-card,.tire-strategy-card){box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+#panel.database-fullscreen :is(.race-session-card,.comparison-chart,.comparison-card,.circuit-map-panel,.circuit-sector-details,.tyre-guide-info,.tire-wheel-card,.tire-strategy-card){border-color:var(--db-line);border-radius:8px;background:#1b1a19}
+#panel.race-position-view .race-session-card{border:0;border-bottom:1px solid var(--db-line);border-radius:0;background:#ffffff03}
+#panel.race-position-view .race-session-card[open]{background:#ffffff06}
+#panel.race-position-view .race-session-card:hover{background:#ffffff06;border-color:#ffffff30}
+#panel.race-position-view .race-session-code{background:none;border:0;color:var(--db-muted);font-size:12px}
+#panel.race-position-view .race-session-card[data-session='race'] .race-session-code{background:none;border:0;color:var(--database-red-ink)}
+#panel.race-position-view .race-session-summary{padding-inline:12px}
+#panel.race-position-view .race-session-identity strong{font-size:clamp(13px,1.05vw,16px);letter-spacing:.02em}
+#panel.race-position-view .race-session-expand{font:400 24px/1 'Garage Red Hat Display',Arial,sans-serif;color:var(--db-secondary)}
+#panel.race-position-view .race-timing-tower{border:0;border-right:1px solid var(--db-line);background:#ffffff02}
+#panel.race-position-view .race-tower-item{background:none}
+#panel.race-position-view .race-tower-item:nth-child(even){background:#ffffff02}
+#panel.race-position-view .race-weekend-heading{padding-bottom:12px}
+.race-weekend-chapters{display:flex;gap:24px;margin-top:14px;flex-wrap:wrap}
+.race-weekend-chapters button{min-height:36px;padding:4px 0 8px;background:none;border:0;border-bottom:1px solid transparent;border-radius:0;color:var(--db-secondary);font:500 13px/1.4 'Garage Red Hat Display',Arial,sans-serif}
+.race-weekend-chapters button:hover{color:#fff}
+.race-weekend-chapters button[aria-current='location']{color:#fff;border-bottom-color:var(--database-red)}
+#panel.race-position-view .race-weekend-section-heading .race-section-guide{font:400 12px/1.5 'Garage Red Hat Display',Arial,sans-serif;letter-spacing:0;color:var(--db-secondary)}
+#panel.race-position-view .race-weekend-section-heading{flex-wrap:wrap;gap:4px 18px}
+#panel.race-position-view .race-weekend-chart .race-position-plot{border:0;background:#ffffff02}
+#panel.race-position-view .race-podium-lower{background:#181716;border-radius:0}
+#panel.race-position-view .race-classification-row{border-bottom:1px solid var(--db-line);background:none}
+#panel.race-position-view .race-classification-name{font-family:'Garage Red Hat Display',Arial,sans-serif;font-weight:600}
+#panel.table-view.cockpit-view .results-frame{border-radius:4px;border-color:var(--db-line);box-shadow:none}
+#panel.table-view.cockpit-view :is(.results-header-viewport,.results-table th,.results-frozen-header){background:#242321}
+#panel.table-view.cockpit-view .results-table td{background:#171615;border-bottom-color:#ffffff0c}
+#panel.table-view.cockpit-view .results-table tbody tr:nth-child(even) td{background:#1b1a19}
+#panel.table-view.cockpit-view .results-table tbody tr:hover td{background:#292724}
+#panel.table-view.cockpit-view .next-race-card{background:#1b1a19;border-radius:6px;border-color:var(--db-line);border-left:2px solid var(--database-red);padding:18px 22px}
+#panel.table-view.cockpit-view .next-race-card:hover{background:#23211f}
+#panel.table-view.cockpit-view .next-race-card strong{font-size:21px}
+#panel.table-view .results-help{color:var(--db-secondary);font-size:12px}
+#panel.database-fullscreen.circuit-view .comparison-card{background:none;border:0;border-left:1px solid var(--db-line);border-radius:0}
+#panel.circuit-view .comparison-chart{background:#ffffff02;border:0}
+#panel.circuit-view .circuit-facts>div{background:none;border:0;border-bottom:1px solid var(--db-line);border-radius:0}
+#panel.circuit-view .circuit-sector-details{background:none;border:0;padding-top:20px}
+#panel.globe-view .globe-heading .kicker{color:var(--db-secondary);letter-spacing:.18em}
+#panel.globe-view .globe-heading h2{letter-spacing:.005em}
+#panel.globe-view .globe-intro p{font:400 16px/1.8 'Garage Red Hat Display',Arial,sans-serif;max-width:43ch;color:var(--db-secondary)}
+#panel.globe-view .globe-intro-rule{background:var(--database-red);box-shadow:none}
+#panel.tire-view .tyre-guide-heading .tire-eyebrow{color:var(--db-muted)}
+#panel.tire-view .tyre-guide-info{background:none;border:0;border-left:1px solid var(--db-line);border-radius:0}
+#panel.tire-view .tyre-guide-choice{min-width:38px;min-height:38px}
+#panel.tire-view .tyre-guide-choice[aria-pressed='true']{outline:1px solid var(--choice-color);outline-offset:4px}
+#panel.tire-view .tyre-guide-description{line-height:1.7;color:var(--db-secondary)}
+
+@media(max-width:1050px){
+ .race-weekend-chapters{gap:18px;margin-top:10px}
+
+ #panel.driver-overview-view #archiveDirectory.driver-motion-grid{gap:80px 32px}
+}
+@media(max-width:800px){
+ .team-story-profile,.team-story-results,.team-story-drivers{grid-template-columns:minmax(0,1fr)}
+ .team-story-records dd,.team-story-season-summary dd{font-size:24px}
+}
+@media(max-width:700px){
+ :root{--db-gutter:22px}
+ .database-word-list{top:45%;gap:22px}
+ .database-word{font-size:clamp(25px,8.2vw,42px);line-height:1.05}
+
+ .database-preview-card:nth-child(1){left:3%!important;top:10%!important;width:34vw!important;height:18vh!important}
+ .database-preview-card:nth-child(2){left:68%!important;top:11%!important;width:29vw!important;height:16vh!important}
+ .database-preview-card:nth-child(3){left:3%!important;top:67%!important;width:29vw!important;height:17vh!important}
+ .database-preview-card:nth-child(4){left:64%!important;top:65%!important;width:33vw!important;height:18vh!important}
+
+
+ #panel.team-selection-view .team-selection-summary strong{font-size:20px}
+ #panel .driver-motion-card .driver-motion-given{font-size:40px}
+ #panel .driver-motion-card .driver-motion-caption{font-size:16px}
+ #panel.driver-overview-view #archiveDirectory.driver-motion-grid{gap:82px 28px;padding-top:54px}
+ #panel.team-detail-view .team-shapes-brand{font-size:17px;top:24px}
+ #panel.team-detail-view .team-shape-caption{padding-bottom:110px}
+ #panel.team-detail-view .team-shape-headline{font-size:clamp(35px,9.3cqw,58px)}
+
+ .team-shapes-pages{left:var(--db-gutter);bottom:24px;gap:18px}
+ .team-shapes-page{font-size:12px;min-width:40px}
+
+
+ .race-weekend-chapters{gap:14px;margin-top:8px;flex-wrap:nowrap}
+ .race-weekend-chapters button{font-size:11px;min-height:32px;white-space:nowrap}
+ #panel.race-position-view .race-weekend-section-heading .race-section-guide{font-size:11px}
+ #panel.race-position-view .race-session-identity strong{font-size:11px}
+ #panel.race-position-view .race-session-code{font-size:9px}
+ #panel.race-position-view .race-session-summary{padding-inline:7px}
+ #panel.race-position-view .race-weekend-section-heading{margin-bottom:6px}
+ #panel.race-position-view .race-weekend-title{font-size:clamp(17px,4.4vw,24px);padding-right:32px}
+ #panel.table-view.cockpit-view .next-race-card strong{font-size:16px}
+ #panel.tire-view .tyre-guide-info{border-left:0;border-top:1px solid var(--db-line);padding-top:22px}
+ #panel.database-fullscreen.circuit-view .comparison-card{border-left:0;border-top:1px solid var(--db-line)}
+}
+
+@media(prefers-reduced-motion:reduce){.database-word,.driver-motion-image,.team-shapes-page::after{transition:none}}
+
+#driverDialog .driver-editorial-metric>strong.is-unavailable{font-size:24px!important;color:var(--db-muted)}
+@media(max-width:700px){
+ #panel.table-view.cockpit-view .cockpit-top-main{min-height:0;gap:12px}
+ #panel.table-view.cockpit-view .overview-filters{margin-top:12px}
+ #panel.table-view.cockpit-view .results-help{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.6}
+ #driverDialog .driver-editorial-career .driver-editorial-metric>strong{font-size:26px}
+ #driverDialog .driver-editorial-metric>strong.is-unavailable{font-size:22px!important}
+}
+
+#panel.database-fullscreen.circuit-view .comparison-introduction{justify-content:center;align-items:flex-start;padding:clamp(24px,4vw,64px);gap:14px;background:none}
+#panel .comparison-introduction>h3{font:600 clamp(22px,2.2vw,32px)/1.3 'Garage Red Hat Display',Arial,sans-serif;order:1;margin:0;letter-spacing:-.02em}
+#panel .comparison-introduction>p{order:2;max-width:34ch;margin:0;font:400 15px/1.8 'Garage Red Hat Display',Arial,sans-serif;color:var(--db-secondary)}
+#panel .comparison-introduction>.comparison-start{order:3;min-height:44px;margin:6px 0;padding:10px 18px;border:1px solid #be353080;border-radius:4px;background:#96342e;color:#fff;font:600 14px/1.5 'Garage Red Hat Display',Arial,sans-serif}
+#panel .comparison-introduction>.comparison-start:hover{background:#ae3b33}
+#panel .comparison-introduction>.comparison-empty-note{order:4;color:var(--db-muted);font-size:12px}
+#circuitComparison[data-comparison-empty='true'] .comparison-rating-heading::after{content:'Add a circuit to draw its profile';display:block;margin-top:8px;font:400 12px/1.6 'Garage Red Hat Display',Arial,sans-serif;letter-spacing:0;color:var(--db-secondary)}
+@media(max-width:700px){
+ #panel.database-fullscreen.circuit-view .comparison-introduction{border-left:0;border-top:1px solid var(--db-line);padding:24px 0;gap:12px}
+ #panel .comparison-introduction>p{font-size:14px}
+}
+
+@media(max-width:700px){#panel.table-view.cockpit-view .panel-content-heading{min-height:0}}
+
+/* The driver story cue is an icon; retain its existing scroll action. */
+#driverDialog .driver-scroll-cue{left:50%;right:auto;bottom:12px;transform:translateX(-50%);display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:0;border:0;background:transparent;color:#d2cfca}
+#driverDialog .driver-scroll-cue:hover{color:#fff}
+#driverDialog .driver-scroll-cue svg{display:block;width:24px;height:24px}

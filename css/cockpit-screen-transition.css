@@ -1,0 +1,9 @@
+/* The database backdrop stays mounted, stationary, underneath the entire flight. */
+body.garage-screen-flight #app{position:fixed;inset:0;z-index:3;pointer-events:none}
+body.garage-screen-flight>.home-screen{position:fixed;inset:0;z-index:40;visibility:visible;pointer-events:none;transition:none}
+body.garage-screen-flight>.home-screen .module-navigation{pointer-events:auto}
+body.garage-screen-flight #panel.database-fullscreen.show{transform-origin:0 0;transition:none!important;animation:none!important;pointer-events:none;will-change:transform;backface-visibility:hidden}
+body.garage-screen-flight .database-portal-stage:not(.is-screen-surface){opacity:0;visibility:hidden;pointer-events:none}
+body.garage-screen-flight .is-screen-surface{transform-origin:0 0;opacity:1;transition:none!important;animation:none!important;pointer-events:none;will-change:transform;backface-visibility:hidden}
+body.garage-screen-flight .database-portal-backdrop{transform:none!important;opacity:1!important;animation:none!important}
+body.garage-screen-settling #app{opacity:0!important;transition:opacity .1s linear}

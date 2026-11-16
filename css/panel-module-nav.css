@@ -276,7 +276,7 @@
   background-color: #0e1b2c;
 }
 #panel.database-fullscreen:not(.tire-view) :is(.stat-card,.results-frame,.race-classification,.comparison-card,.team-profile-header,.team-driver-card) {
-  background-color: #0b1727;
+  background-color: #1b1a19;
   border-color: #7aa7c928;
 }
 #panel.database-fullscreen.tire-view .panel-subtoolbar .cockpit-tabs button[aria-pressed="true"]::after {

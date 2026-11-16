@@ -19,15 +19,17 @@ function raceWeekendResults(race,session){
     }
     const times=result.lapTimes||{};
     if(qualifying){
+      if(['DQ','DSQ'].includes(result.qualifyingStatus))return[{driver,result,phase:0,time:'DSQ',position:Infinity,value:'DSQ'}];
       let phase=0,time='—';for(let i=3;i>=1;i--)if(Number.isFinite(raceWeekendTime(times[prefix+i]))){phase=i;time=times[prefix+i];break;}
       if(!phase)return[];return[{driver,result,phase,time,position:Infinity,value:prefix+phase}];
     }
-    if(!Number.isFinite(raceWeekendTime(times[session])))return[];
-    return[{driver,result,time:times[session],phase:0,position:Infinity,value:''}];
-  }).sort((a,b)=>qualifying?b.phase-a.phase||raceWeekendTime(a.time)-raceWeekendTime(b.time):(session==='race'||session==='sprint')?a.position-b.position:raceWeekendTime(a.time)-raceWeekendTime(b.time));
+    if(!Number.isFinite(raceWeekendTime(times[session]))&&result[session+'Position']===undefined)return[];
+    return[{driver,result,time:times[session]||'No Time',phase:0,position:result[session+'Position']??Infinity,value:''}];
+  }).sort((a,b)=>qualifying?b.phase-a.phase||raceWeekendTime(a.time)-raceWeekendTime(b.time):(session==='race'||session==='sprint')?a.position-b.position:raceWeekendTime(a.time)-raceWeekendTime(b.time)||a.position-b.position);
 }
 function renderRaceWeekend(root,race,chart,note){
   root.podiumSizeObserver?.disconnect();
+  root.weekendScrollController?.destroy();
   root.pendingWeekendRace=null;
   const changedRace=root.weekendRaceId!==race.id;root.weekendRaceId=race.id;
   const create=raceWeekendNode;
@@ -48,23 +50,29 @@ function renderRaceWeekend(root,race,chart,note){
   tower.append(towerHeader,towerList);
   const main=create('div','race-weekend-main'),hero=create('header','race-weekend-heading');
   hero.append(create('h2','race-weekend-title',race.nameEnglish));
+  const chapters=create('nav','race-weekend-chapters');chapters.setAttribute('aria-label','Race result sections');
+  for(const [id,label,position]of [['sessions','Weekend',0],['laps','Lap chart',1],['classification','Classification',3]]){
+    const button=create('button','',label);button.type='button';button.dataset.raceChapter=id;
+    button.addEventListener('click',()=>{root.weekendScrollController?.go(position);});chapters.append(button);
+  }
+  hero.append(chapters);
   const content=create('div','race-weekend-content'),schedule=create('section','race-weekend-schedule');schedule.setAttribute('aria-labelledby','raceWeekendScheduleTitle');
-  const scheduleHeader=create('div','race-weekend-section-heading');scheduleHeader.append(create('h3','','WEEKEND SESSIONS'));scheduleHeader.firstElementChild.id='raceWeekendScheduleTitle';schedule.append(scheduleHeader);
+  const scheduleHeader=create('div','race-weekend-section-heading');scheduleHeader.append(create('h3','','WEEKEND SESSIONS'),create('span','race-section-guide','Select a session to view results'));scheduleHeader.firstElementChild.id='raceWeekendScheduleTitle';schedule.append(scheduleHeader);
   const sessions=race.sprint?[['P1','FP1','FREE PRACTICE 1'],['sprint-qualifying','SQ','SPRINT QUALIFYING'],['sprint','SPR','SPRINT'],['qualifying','Q','QUALIFYING'],['race','GP','RACE']]:[['P1','FP1','FREE PRACTICE 1'],['P2','FP2','FREE PRACTICE 2'],['P3','FP3','FREE PRACTICE 3'],['qualifying','Q','QUALIFYING'],['race','GP','RACE']];
   sessions.forEach(([session,code,label],index)=>{
     const rows=raceWeekendResults(race,session),details=create('details','race-session-card');details.dataset.session=session;
     const summary=create('summary','race-session-summary'),badge=create('span','race-session-code',code),identity=create('span','race-session-identity');
     identity.append(create('strong','',label));
     summary.append(badge,identity,create('span','race-session-expand','+'));details.append(summary);
-    const body=create('div','race-session-body');
+    const body=create('div','race-session-body');if(session==='race'&&race.classificationNote)body.append(create('p','race-weekend-subtitle',race.classificationNote));
     if(!rows.length)body.append(create('p','race-session-empty','Session results have not been entered for this Grand Prix.'));
     else{
       const table=create('table','race-session-table'),head=create('thead',''),tr=create('tr','');
       const raceSession=session==='race'||session==='sprint';for(const text of['POS','DRIVER',raceSession?'TOTAL TIME / STATUS':'LAP TIME',raceSession?'LAPS':'PHASE'])tr.append(create('th','',text));head.append(tr);table.append(head);
-      const tbody=create('tbody','');rows.forEach((entry,i)=>{const row=create('tr',''),position=raceSession?(Number.isFinite(entry.position)?entry.position:entry.value):i+1,driverCell=create('td','race-session-driver');driverCell.style.setProperty('--race-team-color',racePositionTeams[entry.driver.team]?.color||'#75dafa');driverCell.append(create('strong','',entry.driver.name),create('small','',entry.driver.team));row.append(create('td','',position),driverCell,create('td','',entry.time),create('td','',raceSession?(entry.laps??'—'):(entry.value||code)));tbody.append(row);});table.append(tbody);body.append(table);
+      const tbody=create('tbody','');rows.forEach((entry,i)=>{const row=create('tr',''),position=entry.value==='DSQ'?'DSQ':raceSession?(Number.isFinite(entry.position)?entry.position:entry.value):i+1,driverCell=create('td','race-session-driver');driverCell.style.setProperty('--race-team-color',racePositionTeams[entry.driver.team]?.color||'#75dafa');driverCell.append(create('strong','',entry.driver.name),create('small','',entry.driver.team));row.append(create('td','',position),driverCell,create('td','',entry.time),create('td','',raceSession?(entry.laps??'—'):(entry.value||code)));tbody.append(row);});table.append(tbody);body.append(table);
     }
     details.append(body);schedule.append(details);
-    details.addEventListener('toggle',()=>{if(!details.open||reducedMotionPreference.matches)return;body.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});});
+    details.addEventListener('toggle',()=>{if(!details.open)return;schedule.querySelectorAll('details[open]').forEach(other=>{if(other!==details)other.open=false;});if(reducedMotionPreference.matches)return;body.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});});
   });
   const podium=create('section','race-weekend-podium');podium.setAttribute('aria-label','Top three finishers');
   const podiumHeading=create('div','race-weekend-section-heading');podiumHeading.append(create('h3','','PODIUM'));podium.append(podiumHeading);
@@ -91,15 +99,19 @@ function renderRaceWeekend(root,race,chart,note){
   for(const session of race.sprint?['race','sprint']:['race']){const button=create('button','',session.toUpperCase());button.type='button';button.dataset.weekendChartSession=session;button.setAttribute('aria-pressed',String(selectedPositionSession===session));button.addEventListener('click',()=>{if(selectedPositionSession!==session)switchRacePositionChart(()=>{selectedPositionSession=session;},`[data-weekend-chart-session="${session}"]`);});chartTabs.append(button);}
   chartHeading.append(chartTitle,chartTabs);
   const board=chart.querySelector('.race-classification'),plot=chart.querySelector('.race-position-plot');
-  if(board){const compare=create('details','race-chart-comparison');compare.append(create('summary','','COMPARE DRIVERS / FINAL CLASSIFICATION'));compare.append(board);chart.replaceChildren(plot,compare);}
-  chartPanel.append(chartHeading,chart);main.append(hero,content,chartPanel);workspace.append(tower,main);root.replaceChildren(workspace);towerList.scrollTop=root.weekendTowerScrollTop||0;
+  if(board)chart.replaceChildren(plot);
+  const finalPanel=create('section','race-weekend-final');finalPanel.setAttribute('aria-label','Final classification');if(board)finalPanel.append(board);
+  chartPanel.append(chartHeading,chart);if(race.classificationNote)chartPanel.append(create('p','race-weekend-subtitle','Lap traces show live timing. Refer to the official final classification for post-race penalties.'));const pages=create('div','race-weekend-pages');pages.tabIndex=0;pages.setAttribute('role','region');pages.setAttribute('aria-label','Weekend sessions, lap-by-lap positions and final classification');
+  const lapStage=create('section','race-weekend-lap-stage');lapStage.append(chartPanel);pages.append(content,lapStage,finalPanel);
+  main.append(hero,pages);workspace.append(tower,main);root.replaceChildren(workspace);towerList.scrollTop=root.weekendTowerScrollTop||0;
+  root.weekendScrollController=bindRaceWeekendScroll(root,pages,chartPanel,changedRace);
   if(changedRace)root.closest('.panel-body').scrollTop=0;
   document.getElementById('raceSessionTabs').hidden=true;
   const fitNames=()=>{if(!workspace.isConnected)return;podiumGrid.querySelectorAll('.race-podium-name').forEach(node=>{const ink=node.firstElementChild,style=getComputedStyle(node),available=node.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)-2;ink.style.transform=`scaleX(${Math.min(1,available/Math.max(1,ink.scrollWidth))})`;});};
   root.podiumSizeObserver=new ResizeObserver(fitNames);root.podiumSizeObserver.observe(podiumGrid);fitNames();document.fonts.ready.then(fitNames);
   if(!reducedMotionPreference.matches){
     hero.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:420,easing:'ease-out'});
-    schedule.querySelectorAll('.race-session-card').forEach((node,index)=>node.animate([{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(0) scale(1.008)',offset:.7},{opacity:1,transform:'none'}],{duration:620,delay:40+index*45,easing:'cubic-bezier(.2,.75,.25,1)',fill:'backwards'}));
+    schedule.querySelectorAll('.race-session-card').forEach((node,index)=>node.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:420,delay:30+index*30,easing:'cubic-bezier(.2,.75,.25,1)',fill:'backwards'}));
     towerList.querySelector('[aria-pressed="true"] .race-tower-row')?.animate([{transform:'translateX(-5px)',opacity:.5},{transform:'none',opacity:1}],{duration:350,easing:'ease-out'});
   }
 }

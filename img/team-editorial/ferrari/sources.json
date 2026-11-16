@@ -1,0 +1,44 @@
+[
+  {
+    "file": "img/team-editorial/ferrari/gallery-track.webp",
+    "caption": "Charles Leclerc",
+    "image": "https://media.formula1.com/image/upload/t_16by9North/c_fit,w_1600,h_1800/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_Of_Japan___Practice/2268572376.webp",
+    "page": "https://www.formula1.com/en/teams/ferrari"
+  },
+  {
+    "file": "img/team-editorial/ferrari/team-profile.webp",
+    "caption": "Lewis Hamilton and Charles Leclerc",
+    "image": "https://media.formula1.com/image/upload/t_16by9North/c_fit,w_1600,h_1800/q_auto/v1740000001/fom-website/2026/China/GettyImages-2266398499.webp",
+    "page": "https://www.formula1.com/en/teams/ferrari"
+  },
+  {
+    "file": "img/team-editorial/ferrari/gallery-garage.webp",
+    "caption": "Charles Leclerc",
+    "image": "https://media.formula1.com/image/upload/t_16by9Centre/c_fit,w_1600,h_1800/q_auto/v1740000001/trackside-images/2026/Formula_1_Testing_in_Bahrain___Day_3/2262590967.webp",
+    "page": "https://www.formula1.com/en/teams/ferrari"
+  },
+  {
+    "file": "img/team-editorial/ferrari/gallery-helmet.webp",
+    "caption": "Lewis Hamilton",
+    "image": "https://media.formula1.com/image/upload/t_16by9Centre/c_fit,w_1600,h_1800/q_auto/v1740000001/trackside-images/2026/Formula_1_Testing_in_Bahrain___Day_3/2261401734.webp",
+    "page": "https://www.formula1.com/en/teams/ferrari"
+  },
+  {
+    "file": "img/team-editorial/ferrari/silverstone-2026-podium.webp",
+    "caption": "NORTHAMPTON, ENGLAND - JULY 05: Race winner Charles Leclerc of Monaco and Scuderia Ferrari Second",
+    "image": "https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_1920/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Great_Britain/2284756825.webp",
+    "page": "https://www.formula1.com/en/latest/article/leclerc-wins-dramatic-british-grand-prix.3bGl6laB38GIr1PfxJTNmY"
+  },
+  {
+    "file": "img/team-editorial/ferrari/driver-leclerc-report.webp",
+    "caption": "NORTHAMPTON, ENGLAND - JULY 05: Race winner Charles Leclerc of Monaco and Scuderia Ferrari lifts",
+    "image": "https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_1600/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Great_Britain/2284757004.webp",
+    "page": "https://www.formula1.com/en/latest/article/the-feeling-was-back-where-it-needs-to-be-ferraris-leclerc-reflects-on-impressive-british-grand-prix-victory.3pQljbWC50vuOsF6oob8rw"
+  },
+  {
+    "file": "img/team-editorial/ferrari/driver-hamilton-report.webp",
+    "caption": "MONZA, ITALY - SEPTEMBER 03: Lewis Hamilton of Great Britain and Scuderia Ferrari speaks in the",
+    "image": "https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_1600/q_auto/v1740000001/trackside-images/2026/F1_Grand_Prix_of_Italy___Previews/2293320069.webp",
+    "page": "https://www.formula1.com/en/latest/article/hamilton-strongly-believes-in-ferraris-victory-chances-as-he-shares-excitement-over-monza-engine-upgrade.1swQQhyVREIHPgy32y6JzP.1swQQhyVREIHPgy32y6JzP"
+  }
+]

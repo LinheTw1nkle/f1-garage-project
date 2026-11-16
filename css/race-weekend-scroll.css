@@ -1,0 +1,107 @@
+/* The rail and race title stay outside the three-page scroll area. */
+#panel.database-fullscreen.race-position-view>.panel-body{display:flex;flex-direction:column;overflow:hidden;padding-top:60px}
+#panel.race-position-view #racePositionChart{flex:1;min-height:0;height:100%;overflow:hidden}
+#panel.race-position-view .race-weekend-workspace{height:100%;min-height:0;align-items:stretch}
+#panel.race-position-view .race-timing-tower{position:relative;top:auto;height:100%;max-height:none;min-height:0;border-top-color:var(--database-red);background:#181818e8}
+#panel.race-position-view :is(.race-tower-heading,.race-tower-footer){background:#151515}
+#panel.race-position-view .race-tower-item[aria-pressed='true'] .race-tower-indicator{background:var(--database-red-ink)}
+#panel.race-position-view .race-weekend-main{display:flex;flex-direction:column;min-height:0;height:100%;padding:0}
+#panel.race-position-view .race-weekend-heading{flex:none;position:relative;padding:0 0 18px;margin:0;border-color:#ffffff18}
+#panel.race-position-view .race-weekend-title{font-size:clamp(22px,2.5vw,38px);padding-right:12px}
+.race-weekend-pages{position:relative;flex:1;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;overflow-anchor:none;scroll-behavior:auto;outline:none;scrollbar-width:none}
+#panel.race-position-view :is(.panel-body,.race-tower-list,.race-weekend-pages,.race-session-body,.race-classification-scroll,.race-position-plot){scrollbar-width:none}
+#panel.race-position-view ::-webkit-scrollbar{display:none;width:0;height:0}
+#panel.race-position-view .race-weekend-content{height:var(--race-page-height);min-height:0;box-sizing:border-box;padding:24px 0 20px;grid-template-columns:minmax(0,1fr) minmax(280px,40%);gap:24px;align-items:stretch}
+#panel.race-position-view .race-weekend-schedule{display:flex;flex-direction:column;gap:12px;height:100%;min-height:0}
+#panel.race-position-view .race-weekend-section-heading{flex:none;margin:0 0 10px;min-height:22px}
+#panel.race-position-view .race-weekend-section-heading h3{font-size:clamp(11px,1vw,14px);color:#ddd}
+#panel.race-position-view .race-session-card{flex:1;min-height:0;display:flex;flex-direction:column;border-color:#ffffff1c;box-shadow:none}
+#panel.race-position-view .race-session-summary{flex:none;min-height:0;height:100%;box-sizing:border-box;padding:12px 18px;gap:14px}
+#panel.race-position-view .race-weekend-schedule:has(.race-session-card[open]) .race-session-card:not([open]){flex:0 0 58px}
+#panel.race-position-view .race-session-card[open]{flex:1;min-height:130px}
+#panel.race-position-view .race-session-card[open] .race-session-summary{height:58px;min-height:58px}
+#panel.race-position-view .race-session-body{flex:1;min-height:0;max-height:none;overflow:auto;overscroll-behavior:contain}
+#panel.race-position-view .race-session-card[open]::details-content{display:contents}
+#panel.race-position-view .race-session-body{box-sizing:border-box}
+#panel.race-position-view .race-session-card[data-session='race'] .race-session-code{background:#96342e;color:#eee;border-color:#be353055}
+#panel.race-position-view .race-session-code{color:#baa4a2;border-color:#be353033;background:#be35300e}
+#panel.race-position-view .race-weekend-podium{display:flex;flex-direction:column;justify-content:center;min-height:0;margin:0}
+#panel.race-position-view .race-podium-grid{width:100%;max-width:100%;gap:14px}
+#panel.race-position-view .race-podium-photo{width:min(180px,100%);max-height:min(150px,18vh)}
+#panel.race-position-view .race-podium-lower{width:100%;max-width:260px}
+.race-weekend-lap-stage{position:relative;height:calc(var(--race-page-height) * 2)}
+#panel.race-position-view .race-weekend-chart{position:sticky;top:0;display:flex;flex-direction:column;box-sizing:border-box;height:var(--race-page-height);min-height:0;margin:0;padding:24px 0 20px;border:0}
+#panel.race-position-view .race-weekend-chart .race-results-layout{display:flex;flex:1;min-height:0;height:auto;gap:0}
+#panel.race-position-view .race-weekend-chart .race-position-plot{flex:1;min-height:0;max-height:none;height:auto;width:100%;overflow:hidden}
+#panel.race-position-view .race-weekend-chart .race-position-plot svg{display:block;width:100%;height:100%;min-width:0}
+#panel.race-position-view .race-chart-session-tabs button{background:#202020;border-color:#ffffff20;color:#aaa}
+#panel.race-position-view .race-chart-session-tabs button[aria-pressed='true']{background:#be353020;border-color:#be353060;color:#dbc0bd}
+#panel.race-position-view .race-weekend-chart .race-weekend-subtitle{flex:none;font-size:10px;margin:10px 0 0;color:#999}
+.race-weekend-final{height:var(--race-page-height);box-sizing:border-box;padding:24px 0 16px;min-height:0}
+#panel.race-position-view .race-weekend-final .race-classification{display:flex;flex-direction:column;width:100%;height:100%;max-height:none;min-height:0;box-sizing:border-box;background:transparent;border:0;border-radius:0;padding:0;overflow:hidden}
+#panel.race-position-view .race-classification-heading{flex:none;padding:0 0 12px;gap:8px}
+#panel.race-position-view .race-classification-heading strong{font:400 clamp(11px,1vw,14px)/1.5 'Garage Formula1 Regular',sans-serif;color:#ddd}
+#panel.race-position-view .race-classification-heading>span{color:#888}
+#panel.race-position-view .race-classification-hint{flex:none;padding:0 0 14px;font-size:11px;color:#999}
+#panel.race-position-view .race-classification-scroll{flex:1;min-height:0;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(46px,1fr);gap:4px 16px;overflow:auto;overscroll-behavior:contain}
+#panel.race-position-view .race-classification-row{min-width:0;min-height:46px;padding:7px 10px;background:#ffffff03}
+#panel.race-position-view .race-classification-row[aria-pressed='true']{background:color-mix(in srgb,var(--driver-color) 10%,#1c1c1c)}
+#panel.race-position-view .race-classification-name{font-size:clamp(11px,1vw,14px)}
+#panel.race-position-view .race-classification-identity small{font-size:10px;color:#999}
+@media(max-width:1000px){
+ #panel.race-position-view .race-weekend-workspace{grid-template-columns:132px minmax(0,1fr);gap:18px}
+ #panel.race-position-view .race-weekend-content{grid-template-columns:minmax(0,1fr) minmax(180px,35%);gap:16px}
+ #panel.race-position-view .race-session-summary{padding:10px 12px;gap:10px}
+ #panel.race-position-view .race-podium-grid{gap:10px}
+ #panel.race-position-view .race-podium-lower{grid-template-rows:34px 22px;min-height:56px;grid-template-columns:25px minmax(0,1fr);column-gap:12px}
+ #panel.race-position-view .race-podium-given,#panel.race-position-view .race-podium-surname{font-size:14px}
+ #panel.race-position-view .race-podium-team{font-size:10px}
+}
+@media(max-width:700px){
+ #panel.database-fullscreen.race-position-view>.panel-body{padding-top:54px}
+ #panel.race-position-view .race-weekend-workspace{grid-template-columns:76px minmax(0,1fr);gap:12px}
+ #panel.race-position-view .race-tower-heading{grid-template-columns:1fr;gap:6px;padding:10px 6px}
+ #panel.race-position-view .race-tower-mark{font-size:8px}
+ #panel.race-position-view .race-tower-season{font-size:9px}
+ #panel.race-position-view .race-tower-row{grid-template-columns:18px 1fr;gap:6px;padding:8px 5px}
+ #panel.race-position-view .race-tower-flag .country-flag{width:18px;min-width:18px;max-width:18px;height:12px;min-height:12px;max-height:12px}
+ #panel.race-position-view .race-tower-indicator{display:none}
+ #panel.race-position-view .race-tower-expanded{padding-inline:5px}
+ #panel.race-position-view .race-tower-fullname{font-size:8px}
+ #panel.race-position-view .race-weekend-title{font-size:clamp(16px,4.5vw,24px);line-height:1.45}
+ #panel.race-position-view .race-weekend-heading{padding-bottom:14px}
+ #panel.race-position-view .race-weekend-content{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;padding:16px 0 12px;gap:16px}
+ #panel.race-position-view .race-weekend-schedule{gap:7px}
+ #panel.race-position-view .race-session-summary{grid-template-columns:28px minmax(0,1fr) 12px;padding:6px 9px;gap:8px}
+ #panel.race-position-view .race-session-code{width:27px;height:27px;font-size:8px;border-radius:6px}
+ #panel.race-position-view .race-session-identity strong{font-size:10px;line-height:1.4}
+ #panel.race-position-view .race-session-card{border-radius:8px}
+ #panel.race-position-view .race-session-expand{font-size:16px}
+ #panel.race-position-view .race-weekend-schedule:has(.race-session-card[open]) .race-session-card:not([open]){flex-basis:38px}
+ #panel.race-position-view .race-session-card[open] .race-session-summary{height:38px;min-height:38px}
+ #panel.race-position-view .race-session-card[open]{min-height:90px}
+ #panel.race-position-view .race-weekend-podium .race-weekend-section-heading{margin-bottom:4px}
+ #panel.race-position-view .race-podium-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ #panel.race-position-view .race-podium-driver{grid-row:1;grid-column:auto}
+ #panel.race-position-view .race-podium-place-1{grid-column:2}
+ #panel.race-position-view .race-podium-place-2{grid-column:1}
+ #panel.race-position-view .race-podium-place-3{grid-column:3}
+ #panel.race-position-view .race-podium-photo{width:100%;max-height:70px;aspect-ratio:1.15}
+ #panel.race-position-view .race-podium-lower{grid-template-columns:15px minmax(0,1fr);grid-template-rows:24px 18px;column-gap:6px;min-height:42px}
+ #panel.race-position-view .race-podium-name{padding-right:3px}
+ #panel.race-position-view .race-podium-given,#panel.race-position-view .race-podium-surname{font-size:10px}
+ #panel.race-position-view .race-podium-team{font-size:8px}
+ #panel.race-position-view .race-podium-rank{font-size:14px}
+ #panel.race-position-view .race-weekend-chart{padding-top:16px}
+ #panel.race-position-view .race-chart-session-tabs button{font-size:8px;padding:5px 7px}
+ #panel.race-position-view .race-classification-scroll{grid-template-columns:1fr;grid-auto-rows:minmax(50px,auto)}
+ #panel.race-position-view .race-classification-name{font-size:11px}
+ #panel.race-position-view .race-classification-identity small{font-size:9px}
+}
+
+/* Lenis smooths native scroll positions; ScrollTrigger scrubs scene progress. */
+.garage-scroll-scene.lenis-smooth{scroll-behavior:auto}
+#driverDialog #driverDialogProfile.driver-editorial.driver-scroll-story{scroll-snap-type:none;scroll-behavior:auto;overflow-anchor:none}
+#driverDialog .driver-scroll-story .driver-editorial-screen{scroll-snap-align:none;scroll-snap-stop:normal}
+#driverDialog .driver-scroll-story :is(.driver-editorial-story,.driver-editorial-data,.driver-editorial-history){overflow:clip}
+@media(prefers-reduced-motion:reduce){#driverDialog .driver-scroll-story *{scroll-behavior:auto}}

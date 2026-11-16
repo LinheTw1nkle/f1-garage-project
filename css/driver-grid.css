@@ -39,9 +39,8 @@
 .driver-motion-card[data-layout='7'] .driver-motion-given{left:-14px;top:auto;bottom:-20px}
 .driver-motion-card[data-layout='7'] .driver-motion-surname{right:-22px;top:10%;bottom:auto}
 .driver-motion-card[data-layout='7'] .driver-motion-number{left:-12px;right:auto;top:-18px;bottom:auto}
-.driver-motion-caption{left:-10px;right:35%;bottom:-39px;display:flex;align-items:center;gap:9px;min-height:20px;font:400 10px/1.5 'Garage Formula1 Regular',sans-serif}
-.driver-motion-code{color:var(--driver-color);font-size:12px}.driver-motion-team{color:#aab8c9}.driver-motion-arrow{font:400 22px Arial;color:#f5f7fc;opacity:0;translate:-6px 0;transition:opacity .3s,translate .3s}
-.driver-motion-card:is(:hover,:focus-visible) .driver-motion-arrow{opacity:1;translate:0 0}
+.driver-motion-caption{left:-10px;right:0;bottom:-41px;display:flex;align-items:center;min-height:22px;font:400 clamp(12px,1vw,14px)/1.4 'Garage Formula1 Regular',sans-serif}
+.driver-motion-team{color:#aab8c9}
 .driver-motion-grid.is-transitioning{pointer-events:none}.driver-motion-grid.is-transitioning .driver-motion-surname-text::before{clip-path:inset(0 0 100% 0);transition:none}
 #panel.driver-overview-view .panel-body{display:block;overflow:auto;scroll-snap-type:y mandatory;scroll-padding-top:36px;scrollbar-width:thin;scrollbar-color:#7892ae40 transparent}
 #panel.driver-overview-view #title{font-size:clamp(28px,2.6vw,43px);letter-spacing:.035em;line-height:1.3;overflow-wrap:anywhere}
@@ -70,5 +69,5 @@
 #driverDialog.driver-motion-detail::backdrop{animation:none!important;background:#030812d9}
 @media(min-width:1800px){#panel .driver-motion-grid,#panel.driver-overview-view #archiveDirectory.driver-motion-grid{gap:100px 44px}}
 @media(max-width:1050px){#panel .driver-motion-grid,#panel.driver-overview-view #archiveDirectory.driver-motion-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:85px 35px;padding-inline:25px}.driver-motion-card:nth-child(n){margin-top:var(--card-offset,0px)}.driver-motion-surname{font-size:clamp(26px,3.8vw,40px)}.driver-motion-given{font-size:46px}}
-@media(max-width:600px){#panel .driver-motion-grid,#panel.driver-overview-view #archiveDirectory.driver-motion-grid,#teamProfileSection>.driver-motion-grid{grid-template-columns:minmax(0,1fr);gap:105px;padding:55px 25px 85px;max-width:420px}.driver-motion-card:nth-child(n){margin-top:0}.driver-motion-box{width:78%;max-height:380px}.driver-motion-surname{font-size:clamp(27px,8vw,40px);right:-30px}.driver-motion-given{font-size:46px}.driver-motion-number{height:44px;max-width:68px}.driver-motion-caption{font-size:9px}}
+@media(max-width:600px){#panel .driver-motion-grid,#panel.driver-overview-view #archiveDirectory.driver-motion-grid,#teamProfileSection>.driver-motion-grid{grid-template-columns:minmax(0,1fr);gap:105px;padding:55px 25px 85px;max-width:420px}.driver-motion-card:nth-child(n){margin-top:0}.driver-motion-box{width:78%;max-height:380px}.driver-motion-surname{font-size:clamp(27px,8vw,40px);right:-30px}.driver-motion-given{font-size:46px}.driver-motion-number{height:44px;max-width:68px}.driver-motion-caption{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.driver-motion-card *,.driver-motion-surname-text::before{transition:none!important;will-change:auto}}

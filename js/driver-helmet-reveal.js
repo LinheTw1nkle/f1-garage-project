@@ -13,6 +13,7 @@ const driverHelmetReveal=(()=>{
   const cache=new Map(),clamp=n=>Math.max(0,Math.min(1,n));
   const canvas=(w,h)=>Object.assign(document.createElement('canvas'),{width:w,height:h});
   const context=c=>c.getContext('2d');
+  const yieldPreparation=()=>globalThis.scheduler?.yield?globalThis.scheduler.yield():new Promise(resolve=>setTimeout(resolve,0));
   // File-origin images taint a canvas. Load the same WebP bytes as a data URI
   // only for local files; HTTP deployments keep their regular image requests.
   async function imageSource(id){
@@ -32,27 +33,29 @@ const driverHelmetReveal=(()=>{
       const image=new Image();image.src=await imageSource(id);await image.decode();
       const raw=canvas(image.naturalWidth,image.naturalHeight),r=context(raw);r.drawImage(image,0,0);
       const {data}=r.getImageData(0,0,raw.width,raw.height),rows=new Uint32Array(raw.height),cols=new Uint32Array(raw.width);
-      for(let y=0;y<raw.height;y++)for(let x=0;x<raw.width;x++)if(data[(y*raw.width+x)*4+3]>32){rows[y]++;cols[x]++;}
+      for(let y=0;y<raw.height;y++){for(let x=0;x<raw.width;x++)if(data[(y*raw.width+x)*4+3]>32){rows[y]++;cols[x]++;}if(y&&y%64===0)await yieldPreparation();}
       // Ignore detached matte specks when framing the product, without changing its artwork.
       const ys=[...rows.keys()].filter(y=>rows[y]>raw.width*.008),xs=[...cols.keys()].filter(x=>cols[x]>raw.height*.008);
       if(!xs.length||!ys.length)throw new Error('Empty helmet alpha');
       const left=Math.max(0,xs[0]-3),top=Math.max(0,ys[0]-3),width=Math.min(raw.width-left,xs.at(-1)-left+4),height=Math.min(raw.height-top,ys.at(-1)-top+4);
       const w=480,h=Math.round(w*height/width),color=canvas(w,h),c=context(color);c.drawImage(image,left,top,width,height,0,0,w,h);
       const pixels=c.getImageData(0,0,w,h),outline=canvas(w,h),o=context(outline),edge=o.createImageData(w,h);
-      for(let y=2;y<h-2;y++)for(let x=2;x<w-2;x++){
-        const i=(y*w+x)*4,a=pixels.data[i+3];
-        if(a<96)continue;
-        const silhouette=[i-8,i+8,i-w*8,i+w*8].some(j=>pixels.data[j+3]<64);
-        let gradient=0;
-        // RGB Sobel edges include visor seams, vents and paint boundaries.
-        for(let k=0;k<3;k++){
-          const v=(dx,dy)=>pixels.data[((y+dy)*w+x+dx)*4+k]/255;
-          const gx=-v(-1,-1)-2*v(-1,0)-v(-1,1)+v(1,-1)+2*v(1,0)+v(1,1);
-          const gy=-v(-1,-1)-2*v(0,-1)-v(1,-1)+v(-1,1)+2*v(0,1)+v(1,1);
-          gradient=Math.max(gradient,Math.hypot(gx,gy));
+      const rgba=pixels.data,lines=edge.data,stride=w*4;
+      for(let y=2;y<h-2;y++){
+        for(let x=2;x<w-2;x++){
+          const i=(y*w+x)*4;if(rgba[i+3]<96)continue;
+          const silhouette=rgba[i-5]<64||rgba[i+11]<64||rgba[i-stride*2+3]<64||rgba[i+stride*2+3]<64;
+          let gradientSquared=0;
+          for(let k=0;k<3;k++){
+            const t=i-stride+k,m=i+k,b=i+stride+k;
+            const gx=-rgba[t-4]-2*rgba[m-4]-rgba[b-4]+rgba[t+4]+2*rgba[m+4]+rgba[b+4];
+            const gy=-rgba[t-4]-2*rgba[t]-rgba[t+4]+rgba[b-4]+2*rgba[b]+rgba[b+4];
+            gradientSquared=Math.max(gradientSquared,gx*gx+gy*gy);
+          }
+          const strength=silhouette?.8:clamp((Math.sqrt(gradientSquared)/255-.28)/1.2)*.65;
+          lines[i]=205;lines[i+1]=205;lines[i+2]=205;lines[i+3]=Math.round(strength*255);
         }
-        const strength=silhouette?.8:clamp((gradient-.28)/1.2)*.65;
-        edge.data.set([205,205,205,Math.round(strength*255)],i);
+        if(y%24===0)await yieldPreparation();
       }
       o.putImageData(edge,0,0);
       return{color,outline,pixels,w,h,aspect:width/height};
@@ -64,7 +67,7 @@ const driverHelmetReveal=(()=>{
     entry.className='driver-composite-entry';motion.className='driver-composite-motion';plane.className='driver-composite-plane';
     portrait.classList.add('driver-composite-portrait');plane.append(portrait);motion.append(plane);entry.append(motion);visual.append(entry);
     visual.classList.add('driver-composite');visual.dataset.framing=front?'front':'legacy';
-    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,introDuration=1400;
     const image=portrait.querySelector('img');
     const surface=document.createElement('canvas');surface.className='driver-helmet-surface';surface.setAttribute('aria-hidden','true');
     plane.append(surface);
@@ -94,7 +97,7 @@ const driverHelmetReveal=(()=>{
     function paint(now){
       if(!tex)return;
       const c=context(surface),{w,h}=tex,mw=low.width,mh=low.height,scale=mw/w;
-      const intro=reduced?1:clamp((now-start)/500),cut=intro*(mh+20)-10;
+      const intro=reduced?1:clamp((now-start)/introDuration),cut=intro*(mh+20)-10;
       for(let yy=0;yy<mh;yy++)for(let xx=0;xx<mw;xx++){
         const edge=yy+Math.sin(xx*.16+yy*.12)*1.9+Math.sin(xx*.39-yy*.23)*.8-cut;
         maskPixels.data[(yy*mw+xx)*4+3]=intro<1?Math.round(smooth((edge+1.5)/3)*255):0;
@@ -117,7 +120,7 @@ const driverHelmetReveal=(()=>{
       lc.putImageData(maskPixels,0,0);mc.clearRect(0,0,w,h);mc.drawImage(low,0,0,w,h);
       c.clearRect(0,0,w,h);c.globalAlpha=.08;c.drawImage(tex.outline,0,0);c.globalAlpha=1;
       // A bright leading edge travels downward; its softer wake remains above it.
-      const cycle=(now-start-650)%4200;
+      const cycle=(now-start-introDuration-150)%4200;
       if(!reduced&&cycle>=0&&cycle<1800){
         const progress=cycle/1800,sy=progress*(h+100)-25;
         const band=sc.createLinearGradient(0,sy-68,0,sy+8);
@@ -138,11 +141,11 @@ const driverHelmetReveal=(()=>{
       frame=0;if(stopped||!entry.isConnected||!dialog?.open)return;
       x+=(tx-x)*.1;y+=(ty-y)*.1;
       motion.style.transform=`translate3d(${(x*8).toFixed(2)}px,${(y*5).toFixed(2)}px,0)`;
-      const scanPhase=(now-start-650)%4200;
-      const interval=dabs.length||now-start<520||(!reduced&&scanPhase>=0&&scanPhase<1800)?16:33;
-      if(now-lastPaint>=interval||(now-start>=500&&visual.dataset.helmetState==='dissolving')){paint(now);lastPaint=now;}
+      const scanPhase=(now-start-introDuration-150)%4200;
+      const interval=dabs.length||now-start<introDuration+20||(!reduced&&scanPhase>=0&&scanPhase<1800)?16:33;
+      if(now-lastPaint>=interval||(now-start>=introDuration&&visual.dataset.helmetState==='dissolving')){paint(now);lastPaint=now;}
       const moving=Math.abs(tx-x)+Math.abs(ty-y)>.002;
-      if(!document.hidden&&(now-start<520||dabs.length||moving||(!reduced&&tex)))wake();
+      if(!document.hidden&&(now-start<introDuration+20||dabs.length||moving||(!reduced&&tex)))wake();
     }
     function pointer(event){
       if(event.pointerType==='touch'&&event.type==='pointermove')return;

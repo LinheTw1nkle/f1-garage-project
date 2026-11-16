@@ -20,7 +20,7 @@ function renderDriverEditorial(container,driver,profile,season,media,parts){
   copy.append(identity,identityList);
   const right=el('aside','driver-editorial-right');right.setAttribute('aria-label','Season and career statistics');
   const metricValues=[];
-  const metric=(label,value)=>{const item=el('div','driver-editorial-metric'),caption=el('span','',label),amount=el('strong','',value===undefined||value===null?'—':String(value));if(Number.isFinite(Number(value))&&value!==null&&value!==undefined)metricValues.push({node:amount,value:Number(value)});item.append(caption,amount);return item;};
+  const metric=(label,value)=>{const item=el('div','driver-editorial-metric'),caption=el('span','',label),amount=el('strong','',value===undefined||value===null?'—':String(value));if(value===undefined||value===null){amount.classList.add('is-unavailable');amount.setAttribute('aria-label','No recorded data');}if(Number.isFinite(Number(value))&&value!==null&&value!==undefined)metricValues.push({node:amount,value:Number(value)});item.append(caption,amount);return item;};
   const races=seasonData[season]?.races||[],entries=races.filter(race=>race.results?.[driver.id]?.race),podiums=entries.filter(race=>/^P?[123]$/.test(String(race.results[driver.id].race))).length;
   const seasonBlock=el('section','driver-editorial-fact-block driver-editorial-season'),seasonMetrics=el('div','driver-editorial-metrics');seasonMetrics.append(metric('RACES',entries.length||undefined),metric('PODIUMS',entries.length?podiums:undefined),metric('POINTS',driver.points));seasonBlock.append(el('h3','',`${season} SEASON`),seasonMetrics);
   const careerBlock=el('section','driver-editorial-fact-block driver-editorial-career'),careerMetrics=el('div','driver-editorial-metrics');careerMetrics.append(metric('WINS',profile.career?.wins),metric('PODIUMS',profile.career?.podiums),metric('TITLES',profile.career?.titles));careerBlock.append(el('h3','','CAREER'),careerMetrics);
@@ -50,12 +50,13 @@ function renderDriverEditorial(container,driver,profile,season,media,parts){
   biography.append(biographyText);achievements.append(honorsTitle,honors);data.append(achievements,biography);screens.push(data);
   const history=el('section','driver-editorial-screen driver-editorial-history');history.setAttribute('aria-label','Career timeline');
   history.append(timelineTitle,timeline);screens.push(history);
-  container.replaceChildren(...screens);container.scrollTop=0;
+  container.replaceChildren(...screens);container.scrollTop=0;if(dialog){const header=dialog.querySelector('.panel-header');let context=header.querySelector('.driver-detail-context');if(!context){context=el('span','driver-detail-context');header.prepend(context);}context.textContent='DRIVERS / '+driver.name.toUpperCase();}if(screens.length>1){const cue=el('button','driver-scroll-cue');cue.type='button';cue.innerHTML='<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';cue.setAttribute('aria-label','Scroll to driver story and career');cue.addEventListener('click',()=>{const top=screens[1].getBoundingClientRect().top-container.getBoundingClientRect().top+container.scrollTop;if(container.driverScrollMotion)container.driverScrollMotion.scrollTo(top);else container.scrollTo({top,behavior:'auto'});});hero.append(cue);}
   const reveal=driverHelmetReveal.mount(visual,hero,portrait,driver.id,{front});container.helmetReveal=reveal;
+  const scrollMotion=bindDriverScrollMotion(container,dialog);container.driverScrollMotion=scrollMotion;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let countFrame=0;
   const startCount=()=>{if(reduced)return;const start=performance.now();const count=now=>{if(!hero.isConnected||!dialog?.open)return;const t=Math.min(1,(now-start)/1100),progress=1-Math.pow(1-t,3);metricValues.forEach(({node,value})=>node.textContent=(Math.round(value*progress*(Number.isInteger(value)?1:10))/(Number.isInteger(value)?1:10)).toLocaleString('en-US'));if(t<1)countFrame=requestAnimationFrame(count);};countFrame=requestAnimationFrame(count);};
   const visible=()=>startCount();dialog?.addEventListener('driver-profile-visible',visible,{once:true});
   if(!dialog?.dataset.editorialEntering)requestAnimationFrame(startCount);
-  const cleanup=()=>{cancelAnimationFrame(countFrame);reveal.destroy();dialog?.removeEventListener('driver-profile-visible',visible);dialog?.removeEventListener('close',cleanup);};
+  const cleanup=()=>{cancelAnimationFrame(countFrame);scrollMotion.destroy();if(container.driverScrollMotion===scrollMotion)container.driverScrollMotion=null;reveal.destroy();dialog?.removeEventListener('driver-profile-visible',visible);dialog?.removeEventListener('close',cleanup);};
   dialog?.addEventListener('close',cleanup,{once:true});container.editorialCleanup=cleanup;
 }

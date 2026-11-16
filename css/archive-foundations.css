@@ -1,0 +1,161 @@
+/* Shared editorial rules for the database, independent of the 3D garage. */
+#panel.database-fullscreen,#driverDialog{
+  --archive-body:'Garage Red Hat Display',Arial,sans-serif;
+  --archive-heading:'Garage Formula1 Black',Arial,sans-serif;
+  --archive-ink:#e5eaf0;--archive-muted:#a0adbd;--archive-rule:#a1b4c51f;
+  --font-main:var(--archive-body);--font-body:var(--archive-body);
+  font-family:var(--archive-body);color:var(--archive-ink);font-size:14px;line-height:1.55;
+  -webkit-text-size-adjust:100%;text-size-adjust:100%;
+}
+#panel.database-fullscreen{background:#09121e;background-image:linear-gradient(165deg,#101d2b 0%,#09121e 48%,#080f19 100%);box-shadow:none}
+#panel.database-fullscreen.tire-view{background:#09121e;background-image:linear-gradient(165deg,color-mix(in srgb,var(--tire-theme) 4%,#101d2b),#09121e 55%)}
+#panel.database-fullscreen :is(.panel-description,.cockpit-note){font:400 14px/1.65 var(--archive-body);color:var(--archive-muted);max-width:62ch}
+#panel.database-fullscreen :is(.title,.race-weekend-title){font-family:var(--archive-heading);line-height:1.25;letter-spacing:-.025em}
+#panel.database-fullscreen:not(.team-selection-view):not(.driver-overview-view):not(.globe-view) .title{font-size:clamp(24px,2.2vw,34px)}
+#panel.database-fullscreen :is(.panel-module-nav,.cockpit-tabs,.overview-filters,.archive-controls){font-family:var(--archive-body)}
+#panel.database-fullscreen :is(.panel-module-nav,.cockpit-tabs) button{font-family:var(--archive-body);font-weight:600;letter-spacing:.01em;text-shadow:none}
+#panel.database-fullscreen :is(.panel-module-nav,.cockpit-tabs) button::after{box-shadow:none}
+#panel.database-fullscreen :is(.panel-toolbar,.cockpit-top){border-color:var(--archive-rule)}
+#panel.database-fullscreen .overview-filters{gap:12px 16px;align-items:center;margin:20px 0 0}
+#panel.database-fullscreen .overview-filters>label{font-size:12px;color:var(--archive-muted)}
+#panel.database-fullscreen .overview-filters select{font-family:var(--archive-body);font-size:13px;min-height:40px;padding:8px 12px;border-radius:4px}
+#panel.database-fullscreen :is(.season-session-toggle,.season-metric-toggle){border-radius:4px;background:#101e2c;box-shadow:none}
+#panel.database-fullscreen :is(.season-session-toggle button,.season-metric-toggle span){font:600 11px/1.4 var(--archive-body);letter-spacing:.035em}
+#panel.database-fullscreen :is(.season-session-toggle button,.season-metric-toggle){min-height:36px}
+#panel.database-fullscreen :is(.next-race-card,.race-session-card,.race-timing-tower,.race-podium-lower){box-shadow:none}
+#panel.database-fullscreen .next-race-card{border:1px solid var(--archive-rule);border-left:2px solid #75dafa;background:#101e2b;border-radius:6px;gap:8px;padding:18px 20px}
+#panel.database-fullscreen .next-race-card::after{display:none}
+#panel.database-fullscreen .next-race-card strong{font:600 20px/1.4 var(--archive-body)}
+#panel.database-fullscreen .next-race-kicker{font:600 10px/1.4 var(--archive-body);letter-spacing:.1em}
+#panel.database-fullscreen :is(.next-race-circuit,.next-race-footer){font:400 12px/1.5 var(--archive-body);color:var(--archive-muted)}
+#panel.database-fullscreen .race-session-card{border-color:var(--archive-rule);border-radius:10px;background:#11202e}
+#panel.database-fullscreen .race-session-card[open]{background:#152635}
+#panel.database-fullscreen .race-session-card:hover{box-shadow:none;border-color:#a2c1d44a}
+#panel.database-fullscreen .race-session-identity strong{font:600 15px/1.4 var(--archive-body);letter-spacing:0}
+#panel.database-fullscreen .race-session-identity small{font:400 12px/1.5 var(--archive-body);color:var(--archive-muted)}
+#panel.database-fullscreen .race-tower-item{background:#101c29;box-shadow:none}
+#panel.database-fullscreen .race-tower-item:nth-child(even){background:#132130}
+#panel.database-fullscreen .race-tower-item[aria-pressed='true']{background:#1c3444}
+#panel.database-fullscreen .race-tower-fullname{font-size:12px;line-height:1.5}
+#panel.database-fullscreen .race-tower-grandprix{font-size:11px;color:var(--archive-muted)}
+#panel.database-fullscreen .race-podium-lower{background:#0c1723e8}
+#panel.database-fullscreen :is(.comparison-summary,.sector-description,.team-profile-header p,.driver-timeline li){font-family:var(--archive-body);line-height:1.7}
+#driverDialog .driver-editorial :is(.driver-editorial-intro,.driver-editorial-biography-text p){font-family:var(--archive-body);color:#c8d0da;line-height:1.75}
+#driverDialog .driver-editorial :is(.driver-editorial-heading,.driver-section-title,.driver-editorial-fact-block h3){font:600 12px/1.5 var(--archive-body);letter-spacing:.07em;color:#afbdcc}
+#driverDialog .driver-editorial :is(.driver-editorial-metric>span,.driver-honors .stat-card>span){font-family:var(--archive-body);font-size:12px;letter-spacing:0}
+#driverDialog .driver-editorial-career-card{background:#101d2b;border-color:var(--archive-rule);box-shadow:none;border-radius:14px}
+#driverDialog .driver-editorial-hero::before{animation:none;opacity:.12;will-change:auto}
+#driverDialog.driver-dialog::before{animation:none;opacity:.06;transform:none;will-change:auto}
+#panel.database-fullscreen .tire-compound-description{font:400 13px/1.65 var(--archive-body);color:#b7c2cf}
+#panel.database-fullscreen .tire-compound-facts span{font:400 11px/1.5 var(--archive-body);color:var(--archive-muted)}
+
+/* A readable data table: one grid, restrained podium cues, stable numerals. */
+#panel.table-view.cockpit-view .results-caption-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding:12px 0;background:none;border:0}
+#panel.table-view .results-help{font:400 12px/1.5 var(--archive-body);color:var(--archive-muted);max-width:none}
+#panel.table-view.cockpit-view .results-frame{background:#0d1926;border:1px solid #a1b4c52b;border-radius:6px;box-shadow:none}
+#panel.table-view.cockpit-view .results-header-viewport{background:#172737;border-bottom:1px solid #a1b4c529}
+#panel.table-view.cockpit-view .results-table{font:400 13px/1.45 var(--archive-body);font-variant-numeric:tabular-nums lining-nums}
+#panel.table-view.cockpit-view .results-table th{background:#172737;color:#aebfd0;font:600 12px/1.4 var(--archive-body);letter-spacing:0;padding:14px 10px}
+#panel.table-view.cockpit-view .results-table td{height:48px;padding:12px 10px;background:#0d1926;color:#cbd5df;border-bottom:1px solid #a1b4c514;font-size:13px;box-shadow:none}
+#panel.table-view.cockpit-view .results-table tbody tr:nth-child(even) td{background:#101e2c}
+#panel.cockpit-view #resultsBody tr{animation:none;opacity:1}
+#panel.table-view.cockpit-view .results-table tbody tr:hover td,#panel.table-view.cockpit-view .results-table tbody tr:focus-within td{background:#1b3042}
+#panel.table-view.cockpit-view .results-table .driver-name-button{font:600 13px/1.45 var(--archive-body);color:#edf1f6;padding:6px 0}
+#panel.table-view.cockpit-view .results-table :is(.results-team-label,.results-team-label>span){font:400 12px/1.45 var(--archive-body);color:#aebccb}
+#panel.table-view.cockpit-view .results-table .points-cell{font-size:14px;font-weight:700;color:#dcebf2}
+#panel.table-view.cockpit-view #resultsBody :is(.position-podium-1,.position-podium-2,.position-podium-3){background:#142332;box-shadow:none;font-weight:700}
+#panel.table-view.cockpit-view #resultsBody .position-podium-1{color:#dfc378}
+#panel.table-view.cockpit-view #resultsBody .position-podium-2{color:#d3dde6}
+#panel.table-view.cockpit-view #resultsBody .position-podium-3{color:#cca185}
+#panel.table-view.cockpit-view .results-scroll{scrollbar-width:thin;scrollbar-color:#53697a #0d1926;scrollbar-gutter:stable}
+#panel.table-view .results-scroll::-webkit-scrollbar{display:block;width:5px;height:5px}
+#panel.table-view .results-scroll::-webkit-scrollbar-thumb{background:#53697a;border-radius:4px}
+#panel.table-view .results-scroll::-webkit-scrollbar-track,#panel.table-view .results-scroll::-webkit-scrollbar-corner{background:#0d1926}
+#panel.table-view .results-scroll:focus-visible{outline:2px solid #75dafa;outline-offset:-2px}
+#panel.database-fullscreen :is(button,select,summary):focus-visible{outline:2px solid #91cde2;outline-offset:3px}
+
+@media(max-width:700px){
+  #panel.database-fullscreen .panel-body{padding-top:20px}
+  #panel.database-fullscreen :is(.panel-description,.cockpit-note){font-size:13px;line-height:1.65;margin-top:12px}
+  #panel.database-fullscreen:not(.team-selection-view):not(.driver-overview-view):not(.globe-view) .title{font-size:clamp(22px,5.8vw,28px)}
+  #panel.database-fullscreen .overview-filters{gap:10px 12px;margin-top:16px}
+  #panel.database-fullscreen .season-session-toggle button{padding:10px 12px}
+  #panel.table-view .results-caption-row{gap:10px;padding:12px 0}
+  #panel.table-view .results-help{flex:1 0 100%;margin:0;text-align:left;font-size:11px}
+  #panel.table-view.cockpit-view .next-race-card{min-height:68px;padding:12px 14px;border-radius:6px}
+  #panel.table-view.cockpit-view .next-race-card strong{font-size:15px;line-height:1.4}
+  #panel.table-view.cockpit-view .results-frame{height:clamp(320px,57dvh,560px);border-radius:6px}
+  #panel.table-view.cockpit-view .results-table :is(th,td){padding:12px 7px;font-size:12px}
+  #panel.table-view.cockpit-view .results-table .driver-name-button{font-size:12px}
+  #panel.table-view.cockpit-view .results-table td:first-child{font-size:12px;color:#b8c6d3}
+  #panel .results-mobile-identities{background:#122334;border-right-color:#849bac45}
+  #panel .results-mobile-identity{font:600 11px/1.4 var(--archive-body);background:#122334;color:#e8eff5}
+  #panel.table-view .results-frame::after{content:'DRIVER';position:absolute;z-index:10;left:0;top:0;width:82px;height:var(--identity-header-height,60px);display:grid;place-items:center;background:#172737;border-bottom:1px solid #a1b4c529;border-right:1px solid #849bac45;color:#afc0d2;font:600 10px/1.4 var(--archive-body);letter-spacing:.045em;pointer-events:none;opacity:0;transform:translateX(-100%);transition:opacity .2s,transform .2s}
+  #panel.table-view .results-frame.has-compact-identities::after{opacity:1;transform:none}
+  #panel .mobile-next-race-content{font:400 13px/1.65 var(--archive-body);padding:4px 2px 16px}
+  #panel .mobile-next-race-stats dt{font-size:11px}
+  #panel .mobile-next-race-stats dd{font-size:13px}
+  #panel .mobile-next-race-map{border-radius:6px}
+  #panel .next-race-expand{width:34px;height:34px;font-size:22px;border-color:#93aebe50}
+  #driverDialog #driverDialogProfile .driver-editorial-metric>span{font-size:10px;line-height:1.4}
+  #driverDialog .driver-editorial .driver-editorial-fact-block h3{font-size:11px;margin-bottom:12px}
+  #driverDialog .driver-editorial-data .driver-editorial-career-card{padding:20px;border-radius:14px}
+}
+@media(max-width:360px){
+  #driverDialog .driver-editorial-right{grid-template-columns:minmax(0,1fr);gap:12px}
+  #driverDialog .driver-editorial-season{padding-bottom:14px;border-bottom:1px solid var(--archive-rule)}
+  #driverDialog .driver-editorial-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  #driverDialog #driverDialogProfile .driver-editorial-metric>span{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){#panel.table-view .results-frame::after{transition:none}}
+
+/* Layout pass: compact identity columns, aligned cards and explicit page context. */
+#panel.table-view.cockpit-view .results-table{table-layout:fixed}
+#panel.table-view.cockpit-view .results-table td:nth-child(2),
+#panel.table-view.cockpit-view .results-table td:nth-child(5){width:0;min-width:0;padding:0;border:0;overflow:hidden;font-size:0}
+#panel.table-view.cockpit-view .results-table td:nth-child(2)>*,
+#panel.table-view.cockpit-view .results-table td:nth-child(5)>*{visibility:hidden}
+#panel.table-view.cockpit-view .results-table td:nth-child(4){padding-inline:2px}
+#panel.table-view.cockpit-view .results-table td:nth-child(4) .race-team-logo{width:24px;height:18px;min-width:0;max-width:24px;display:block;flex:0 0 24px;margin:0 auto}
+#panel.table-view.cockpit-view #resultsHeaders>th:nth-child(3){font-size:9px;padding:10px 2px}
+#panel.database-fullscreen .panel-description:empty{display:none}
+#panel.database-fullscreen .panel-toolbar{min-height:52px;align-items:center}
+#panel.database-fullscreen :is(.database-return,.panel-close){width:36px;height:36px;min-width:36px;display:grid;place-items:center;border-radius:50%;padding:0}
+#panel.database-fullscreen :is(.driver-overview-nav,.cockpit-tabs,.panel-module-nav) button{font-family:var(--archive-body);font-weight:600;min-height:44px}
+#panel.database-fullscreen :is(button,summary,select){transition:background-color .18s,border-color .18s,color .18s}
+#panel.database-fullscreen :is(button,summary):active{filter:brightness(.92)}
+#panel.team-selection-view .team-landing{position:relative}
+#panel.team-selection-view .team-selection-summary{position:absolute;top:4%;right:3%;width:min(480px,65%);display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;pointer-events:none}
+.team-selection-summary>div{min-width:0;border-top:1px solid var(--archive-rule);padding-top:12px}
+.team-selection-summary>div:last-child{grid-column:1/-1}
+.team-selection-summary span{display:block;color:var(--archive-muted);font:600 10px/1.5 var(--archive-body);letter-spacing:.08em;margin-bottom:6px}
+.team-selection-summary strong{display:block;color:#e5eaf0;font:600 22px/1.4 var(--archive-body)}
+.team-selection-summary>div:last-child strong{font-size:15px}
+#panel.driver-overview-view #archiveDirectory.driver-motion-grid{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:76px 32px;padding:48px 20px 72px}
+#panel .driver-motion-card{margin-top:0;--name-angle:0deg;--number-angle:0deg}
+#panel .driver-motion-box{width:88%;margin-inline:auto;aspect-ratio:4/5}
+#panel .driver-motion-frame{inset:-6px -6px 6px 6px;opacity:.6}
+#panel .driver-motion-shadow{inset:-10px 10px 10px -10px;opacity:.25}
+#panel .driver-motion-card .driver-motion-given{top:-20px;bottom:auto;left:0;right:auto;max-width:calc(100% - 50px);rotate:0deg;font-size:clamp(28px,2.4vw,38px);padding:4px 10px 7px;border-color:#a6bdd24a}
+#panel .driver-motion-card .driver-motion-number{top:-10px;bottom:auto;right:0;left:auto;width:42px;height:32px;rotate:0deg}
+#panel .driver-motion-card .driver-motion-surname{writing-mode:horizontal-tb;left:10px;right:10px;bottom:14px;top:auto;font-size:clamp(14px,1.35vw,21px);line-height:1.2;letter-spacing:0;overflow-wrap:anywhere}
+#panel .driver-motion-card:nth-child(even) .driver-motion-given{left:auto;right:0}
+#panel .driver-motion-card:nth-child(even) .driver-motion-number{left:0;right:auto}
+#panel .driver-motion-card .driver-motion-caption{left:0;right:0;bottom:-34px;min-height:24px;gap:8px;font:400 16px/1.5 var(--archive-body)}
+#panel .driver-motion-team{min-width:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+#driverDialog.driver-dialog>.panel-header{justify-content:space-between;gap:16px}
+#driverDialog .driver-detail-context{font:600 11px/1.5 var(--archive-body);letter-spacing:.04em;color:var(--archive-muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#driverDialog .driver-scroll-cue{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);padding:10px 14px;border:0;border-top:1px solid #a1b4c533;background:transparent;color:#aebdcd;font:500 11px/1.4 var(--archive-body);letter-spacing:.1em;z-index:4}
+#driverDialog .driver-scroll-cue:hover{color:#fff;border-color:#75dafa}
+@media(max-width:1050px){#panel.driver-overview-view #archiveDirectory.driver-motion-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:64px 28px}#panel .driver-motion-card .driver-motion-surname{font-size:clamp(16px,2.2vw,22px)}}
+@media(max-width:700px){
+ #panel.team-selection-view .team-selection-summary{top:3%;left:6px;right:6px;width:auto;gap:10px 20px}
+ #panel.team-selection-view .team-selection-summary strong{font-size:19px}
+ #panel.team-selection-view .team-selection-summary>div:last-child strong{font-size:13px}
+ #panel .driver-motion-card .driver-motion-given{font-size:36px}
+ #panel .driver-motion-card .driver-motion-surname{font-size:22px}
+ #driverDialog .driver-detail-context{font-size:10px}
+ #driverDialog .driver-scroll-cue{bottom:4px;left:auto;right:0;transform:none;padding:6px 10px;font-size:10px}
+ #driverDialog .driver-editorial-right{padding-bottom:24px}
+}
+@media(max-width:520px){#panel.driver-overview-view #archiveDirectory.driver-motion-grid{grid-template-columns:minmax(0,1fr);gap:62px;padding:40px 24px 64px}#panel .driver-motion-box{max-width:300px}}
