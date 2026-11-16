@@ -44,6 +44,7 @@
 <link rel="stylesheet" href="css/database-editorial.css?v=diverse-portal-local-307">
 <link rel="stylesheet" href="css/team-driver-lineup.css?v=team-lineup-local-312">
 <link rel="stylesheet" href="css/team-selection-garage.css?v=team-garage-local-313">
+<link rel="stylesheet" href="css/season-editorial.css?v=season-year-spacing-local-316">
 </head>
 
 <body>
@@ -139,13 +140,14 @@
       <select id="cockpitSelect"></select>
     </div>
     <p id="cockpitNote" class="cockpit-note" hidden></p>
+      <div class="season-year-control"><label for="seasonSelect">Season</label><select id="seasonSelect"></select></div>
       <div id="overviewFilters" class="overview-filters cockpit-controls" hidden>
-        <label for="seasonSelect">Season</label><select id="seasonSelect"></select>
         <div id="seasonSessionToggle" class="season-session-toggle" role="group" aria-label="Select results type">
           <button type="button" data-season-session="race" aria-pressed="true">RACE</button>
           <button type="button" data-season-session="sprint" aria-pressed="false">SPRINT</button>
           <button type="button" data-season-session="weekend" aria-pressed="false">WEEKEND</button>
         </div>
+        <button id="seasonMetricToggle" class="season-metric-toggle" type="button" aria-label="Show race positions" aria-pressed="false"><span data-season-metric="positions">POSITIONS</span><span data-season-metric="points" class="is-active">POINTS</span></button>
         <span id="raceFilter" class="race-filter" hidden><span>Round</span><select id="raceSelect" hidden></select><details id="racePicker" class="race-picker"><summary aria-label="Select Round"><span id="racePickerLabel"></span></summary><span id="racePickerOptions" class="race-picker-options"></span></details></span>
       </div>
       </div>
@@ -153,13 +155,13 @@
         <span class="next-race-kicker">NEXT GRAND PRIX</span>
         <strong id="nextRaceName"></strong>
         <span id="nextRaceCircuit" class="next-race-circuit"></span>
-        <span class="next-race-footer"><span id="nextRaceDates"></span><span>View race details</span></span>
+        <span class="next-race-footer"><span id="nextRaceDates"></span></span>
       </button>
       </div>
     <section id="tyreGuide" class="panel-section tyre-guide" hidden aria-label="Tyre compound guide"></section>
     <section id="tireLab" class="panel-section tire-lab" hidden aria-label="Tyre strategy laboratory"></section>
     <section id="seasonOverview" class="panel-section" hidden>
-      <div class="results-grid-heading results-caption-row"><span id="resultsCaption" hidden></span><button id="seasonMetricToggle" class="season-metric-toggle" type="button" aria-label="Show race positions" aria-pressed="false"><span data-season-metric="positions">POSITIONS</span><span data-season-metric="points" class="is-active">POINTS</span></button></div>
+      <div class="results-grid-heading results-caption-row"><span id="resultsCaption" hidden></span></div>
       <div class="results-frame">
       <div id="resultsHeaderViewport" class="results-header-viewport">
         <table id="resultsHeaderTable" class="results-table" aria-label="Season results column headings">
@@ -302,13 +304,14 @@
 <script src="js/team-profile-data.js?v=team-details-local-292"></script>
 <script src="js/team-story-details.js?v=team-lineup-local-312"></script>
 <script src="js/team-editorial.js?v=quiet-guidance-local-306"></script>
-<script src="js/app.js?v=smooth-immersive-return-local-311"></script>
+<script src="js/app.js?v=season-editorial-local-315"></script>
 
 <script src="js/team-logo-alignment.js?v=size-opt-125"></script>
 <script src="js/team-landing.js?v=neutral-rebuild-local-314"></script>
 <script src="js/team-particle-car.js?v=neutral-rebuild-local-314"></script>
 <script src="js/particle-earth.js?v=cosmic-circuits-187"></script>
-<script src="js/mobile-database.js?v=no-source-captions-local-309"></script>
+<script src="js/mobile-database.js?v=season-editorial-local-315"></script>
+<script src="js/season-editorial.js?v=season-editorial-local-315"></script>
 </body>
 </html>
 

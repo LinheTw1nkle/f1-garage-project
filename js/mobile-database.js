@@ -77,7 +77,7 @@
   const stats=add('dl','');stats.className='mobile-next-race-stats';
   for(const[label,value]of[['Circuit Length',nextRaceData.length],['Race Laps / Distance',`${nextRaceData.laps} / ${nextRaceData.distance}`],['Lap Record',`${nextRaceData.lapRecord} · ${nextRaceData.recordDriver} · ${nextRaceData.recordTeam} · ${nextRaceData.recordYear}`],['Previous Winner',`${nextRaceData.previousWinner} · ${nextRaceData.previousTeam} · ${nextRaceData.previousRace}`]]){const row=add('div','',stats);add('dt',label,row);add('dd',value,row);}
   function collapse(){details.classList.remove('is-expanded');details.inert=true;details.setAttribute('aria-hidden','true');card.setAttribute('aria-expanded','false');}
-  window.toggleMobileNextRace=()=>{const expanded=!details.classList.contains('is-expanded');details.classList.toggle('is-expanded',expanded);details.inert=!expanded;details.setAttribute('aria-hidden',String(!expanded));card.setAttribute('aria-expanded',String(expanded));};
-  function sync(){collapse();card.inert=false;if(mobile.matches){card.setAttribute('aria-controls',details.id);card.removeAttribute('aria-haspopup');}else{card.setAttribute('aria-controls','raceDialog');card.setAttribute('aria-haspopup','dialog');card.removeAttribute('aria-expanded');}}
-  mobile.addEventListener('change',sync);new MutationObserver(()=>{if(card.hidden)collapse();}).observe(card,{attributes:true,attributeFilter:['hidden']});sync();
+  window.toggleNextRaceOverview=()=>{const expanded=!details.classList.contains('is-expanded');details.classList.toggle('is-expanded',expanded);details.inert=!expanded;details.setAttribute('aria-hidden',String(!expanded));card.setAttribute('aria-expanded',String(expanded));};
+  function sync(){card.inert=false;card.setAttribute('aria-controls',details.id);card.removeAttribute('aria-haspopup');if(!card.hasAttribute('aria-expanded'))card.setAttribute('aria-expanded','false');}
+  collapse();mobile.addEventListener('change',sync);new MutationObserver(()=>{if(card.hidden)collapse();}).observe(card,{attributes:true,attributeFilter:['hidden']});sync();
 })();

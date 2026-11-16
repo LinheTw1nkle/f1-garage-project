@@ -1,0 +1,137 @@
+/* Season archive: compact controls and a quiet, readable results matrix. */
+.season-year-control{display:none}
+#panel.table-view.cockpit-view{--text-secondary:var(--db-secondary)}
+#panel.table-view.cockpit-view .panel-body{gap:16px;padding-top:36px}
+#panel.table-view.cockpit-view #cockpitTop,
+#panel.table-view.cockpit-view #cockpitTop.has-next-race{display:contents}
+#panel.table-view.cockpit-view .cockpit-top-main{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px 28px;
+ min-height:0;flex:none;width:100%;padding-bottom:0;
+}
+#panel.table-view.cockpit-view .panel-content-heading{min-height:0;grid-column:1;grid-row:1;padding:0}
+#panel.table-view.cockpit-view #title{font-size:clamp(26px,2.7vw,42px);line-height:1.3;letter-spacing:0;padding:0;margin:0}
+#panel.table-view.cockpit-view .season-year-control{display:flex;align-items:center;grid-column:2;grid-row:1;margin-inline-end:76px}
+.season-year-control label{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+#panel.table-view.cockpit-view .season-year-control select{
+ min-height:40px;min-width:98px;border:0;border-bottom:1px solid var(--db-line);border-radius:0;
+ background:#151515;color:var(--db-ink);padding:6px 12px;
+ font:400 16px/1.5 'Garage Formula1 Regular',sans-serif;
+}
+#panel.table-view.cockpit-view #overviewFilters{
+ grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;width:100%;margin:0;padding:0 0 14px;
+ border-bottom:1px solid var(--db-line);
+}
+#panel.table-view.cockpit-view :is(.season-session-toggle,.season-metric-toggle){
+ display:inline-flex;gap:4px;min-height:36px;padding:0;border:0;border-radius:0;background:none;box-shadow:none;
+ color:var(--db-muted);font:500 12px/1.5 'Garage Red Hat Display',Arial,sans-serif;letter-spacing:.025em;
+}
+#panel.table-view.cockpit-view .season-metric-toggle{margin-left:auto}
+#panel.table-view.cockpit-view .season-session-toggle button,
+#panel.table-view.cockpit-view .season-metric-toggle span{
+ display:flex;align-items:center;min-height:36px;padding:6px 12px;border:0;border-radius:0;
+ color:var(--db-muted);background:none;box-shadow:none;font:inherit;letter-spacing:inherit;
+}
+#panel.table-view.cockpit-view .season-session-toggle button[aria-pressed='true'],
+#panel.table-view.cockpit-view .season-metric-toggle .is-active{
+ color:var(--db-ink);background:#ffffff06;box-shadow:inset 0 -2px var(--database-red);
+}
+#panel.table-view.cockpit-view .season-session-toggle button:hover{color:var(--db-ink);background:#ffffff07}
+#panel.table-view.cockpit-view .season-metric-toggle:disabled{opacity:.55;cursor:default}
+#panel.table-view.cockpit-view .next-race-card{
+ display:grid;grid-template-columns:auto minmax(0,1fr) auto 28px;align-items:center;gap:20px;
+ width:100%;min-height:62px;max-height:none;opacity:1;flex:none;padding:12px 16px;
+ border:1px solid var(--db-line);border-left:2px solid var(--database-red);border-radius:0;
+ background:#171616;box-shadow:none;text-align:left;
+}
+#panel.table-view.cockpit-view .next-race-card::after{display:none}
+#panel.table-view.cockpit-view .next-race-card:hover{background:#1e1b1a}
+#panel.table-view.cockpit-view .next-race-kicker{font:500 10px/1.5 var(--archive-body);letter-spacing:.08em;color:var(--db-muted)}
+#panel.table-view.cockpit-view .next-race-card strong{display:flex;align-items:center;gap:10px;font:600 clamp(14px,1.3vw,18px)/1.5 var(--archive-body);color:var(--db-ink)}
+#panel.table-view.cockpit-view .next-race-circuit{display:none}
+#panel.table-view.cockpit-view .next-race-footer{display:block;margin:0;padding:0;border:0;font:400 12px/1.5 var(--archive-body);color:var(--db-secondary)}
+#panel.table-view.cockpit-view .next-race-expand{display:grid;place-items:center;grid-column:auto;grid-row:auto;width:28px;height:28px;border:0;border-radius:0;color:var(--database-red-ink);font:400 25px/1 Arial;transition:transform .25s}
+#panel.table-view.cockpit-view [aria-expanded='true'] .next-race-expand{transform:rotate(45deg)}
+#panel.table-view.cockpit-view .mobile-next-race{display:grid;grid-template-rows:0fr;flex:none;margin-top:-16px;transition:grid-template-rows .3s ease}
+#panel.table-view.cockpit-view .mobile-next-race.is-expanded{grid-template-rows:1fr}
+#panel.table-view.cockpit-view .mobile-next-race-inner{min-height:0;overflow:hidden}
+#panel.table-view.cockpit-view .mobile-next-race-content{
+ display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);align-items:start;gap:12px 32px;
+ padding:20px 0 12px;color:var(--db-secondary);font:400 13px/1.7 var(--archive-body);
+}
+#panel.table-view.cockpit-view .mobile-next-race-content>p{grid-column:2;margin:0}
+#panel.table-view.cockpit-view .mobile-next-race-map{grid-column:1;grid-row:1/5;width:100%;max-height:280px;object-fit:contain;background:#151515;border-radius:0}
+#panel.table-view.cockpit-view .mobile-next-race-stats{grid-column:2;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin:0}
+#panel.table-view.cockpit-view .mobile-next-race-stats>div{padding:8px 0;border-bottom:1px solid var(--db-line)}
+#panel.table-view.cockpit-view .mobile-next-race-stats dt{color:var(--db-muted);font-size:10px}
+#panel.table-view.cockpit-view .mobile-next-race-stats dd{margin:5px 0 0;color:var(--db-ink);overflow-wrap:anywhere}
+#panel.table-view.cockpit-view #seasonOverview{flex:1;min-height:220px;margin:0}
+#panel.table-view.cockpit-view .results-caption-row:has(#resultsCaption[hidden]){display:none}
+#panel.table-view.cockpit-view .results-frame{border:0;border-radius:0;background:#141414;flex:1;min-height:220px;box-shadow:none}
+#panel.table-view.cockpit-view .results-header-viewport{flex:none;background:#1c1b1a;border-bottom:1px solid var(--db-line)}
+#panel.table-view.cockpit-view :is(.results-table th,.results-frozen-header){background:#1c1b1a;color:var(--db-secondary);border-color:var(--db-line)}
+#panel.table-view.cockpit-view .results-frozen-header>span{border-color:var(--db-line);font-size:10px;letter-spacing:.04em}
+#panel.table-view.cockpit-view .results-frozen-header{display:flex}
+#panel.table-view.cockpit-view .results-table th.results-fixed-cell{color:transparent}
+#panel.table-view.cockpit-view .results-scroll{background:#141414;min-height:0}
+#panel.table-view.cockpit-view .results-table tbody tr{--season-cell-bg:#141414}
+#panel.table-view.cockpit-view .results-table tbody tr:nth-child(even){--season-cell-bg:#171717}
+#panel.table-view.cockpit-view .results-table tbody tr:is(:hover,:focus-within){--season-cell-bg:#242120}
+#panel.table-view.cockpit-view #resultsBody td{
+ background:var(--season-cell-bg);border-bottom:1px solid #ffffff0a;color:#b8b4af;
+ padding:15px 10px;box-shadow:none;font:400 12px/1.5 'Garage Red Hat Display',Arial,sans-serif;
+}
+#panel.table-view.cockpit-view .results-table .driver-name-button{font-size:14px;font-weight:600;color:var(--db-ink);white-space:nowrap}
+#panel.table-view.cockpit-view #resultsBody td:is(:nth-child(2),:nth-child(5)){padding:0;border:0;font-size:0}
+#panel.table-view.cockpit-view #resultsBody td.points-cell{font:400 16px/1.5 'Garage Formula1 Regular',sans-serif;color:var(--db-ink)}
+#panel.table-view.cockpit-view #resultsBody td:first-child{font:400 14px/1.5 'Garage Formula1 Regular',sans-serif;color:var(--db-secondary)}
+#panel.table-view.cockpit-view #resultsBody td:is(.position-podium-1,.position-podium-2,.position-podium-3){background:var(--season-cell-bg);box-shadow:none}
+#panel.table-view.cockpit-view #resultsBody td.position-podium-1{color:#d5b96f}
+#panel.table-view.cockpit-view #resultsBody td.position-podium-2{color:#bdc3c9}
+#panel.table-view.cockpit-view #resultsBody td.position-podium-3{color:#c29678}
+#panel.table-view.cockpit-view .results-table td[class*='position-podium-']::before{content:'';display:inline-block;width:3px;height:3px;margin-right:6px;vertical-align:middle;border-radius:50%;background:currentColor}
+#panel.table-view.cockpit-view #resultsBody td[data-podium='1']{color:#d5b96f}
+#panel.table-view.cockpit-view #resultsBody td[data-podium='2']{color:#bdc3c9}
+#panel.table-view.cockpit-view #resultsBody td[data-podium='3']{color:#c29678}
+#panel.table-view.cockpit-view #resultsBody td.fastest-time{color:#c7a1df}
+#panel.table-view.cockpit-view :is(td,th).is-column-active,
+#panel.table-view.cockpit-view #resultsBody td.is-column-active{background:#262321}
+#panel.table-view.cockpit-view #resultsBody tr:hover td.is-column-active{background:#332722;color:var(--db-ink)}
+@media(max-width:700px){
+ #panel.table-view.cockpit-view .panel-body{gap:12px;padding-top:56px;overflow-y:auto}
+ #panel.table-view.cockpit-view .cockpit-top-main{position:sticky;top:0;z-index:12;gap:12px 10px;padding:10px 0 0;background:#101010}
+ #panel.table-view.cockpit-view #title{font-size:clamp(20px,5.2vw,28px)}
+ #panel.table-view.cockpit-view .season-year-control select{min-width:78px;min-height:36px;padding:4px 7px;font-size:13px}
+ #panel.table-view.cockpit-view .season-year-control{margin-inline-end:0}
+ #panel.table-view.cockpit-view #overviewFilters{gap:8px 12px;padding-bottom:10px}
+ #panel.table-view.cockpit-view :is(.season-session-toggle,.season-metric-toggle){gap:0;font-size:10px;min-height:32px}
+ #panel.table-view.cockpit-view .season-session-toggle button,
+ #panel.table-view.cockpit-view .season-metric-toggle span{padding:5px 8px;min-height:32px}
+ #panel.table-view.cockpit-view .season-metric-toggle{margin-left:auto}
+ #panel.table-view.cockpit-view .next-race-card{grid-template-columns:minmax(0,1fr) 28px;gap:5px 10px;min-height:76px;padding:11px 12px}
+ #panel.table-view.cockpit-view .next-race-kicker{grid-column:1;font-size:9px}
+ #panel.table-view.cockpit-view .next-race-card strong{grid-column:1;gap:8px;font-size:14px}
+ #panel.table-view.cockpit-view .next-race-footer{display:block;grid-column:1;font-size:10px}
+ #panel.table-view.cockpit-view .next-race-expand{grid-column:2;grid-row:1/4}
+ #panel.table-view.cockpit-view .mobile-next-race{margin-top:-12px}
+ #panel.table-view.cockpit-view .mobile-next-race-content{grid-template-columns:minmax(0,1fr);padding-top:16px;gap:12px}
+ #panel.table-view.cockpit-view .mobile-next-race-content>p,
+ #panel.table-view.cockpit-view .mobile-next-race-stats{grid-column:1}
+ #panel.table-view.cockpit-view .mobile-next-race-map{grid-column:1;grid-row:auto;max-height:200px}
+ #panel.table-view.cockpit-view #seasonOverview{flex:none;min-height:0;margin:0 0 12px}
+ #panel.table-view.cockpit-view .results-frame{height:clamp(340px,calc(100dvh - 250px),660px);flex:none;min-height:0;touch-action:none}
+ #panel.table-view.cockpit-view #resultsBody td{padding:13px 7px;font-size:11px}
+ #panel.table-view.cockpit-view #resultsBody td:is(:nth-child(2),:nth-child(5)){padding:0;font-size:0}
+ #panel.table-view.cockpit-view .results-table .driver-name-button{font-size:12px}
+ #panel.table-view.cockpit-view #resultsBody td.points-cell{font-size:13px}
+ #panel.table-view.cockpit-view .results-mobile-identities,
+ #panel.table-view.cockpit-view .results-mobile-identity{background:#191817;border-color:var(--db-line);color:var(--db-ink)}
+ #panel.table-view.cockpit-view .results-frame::after{background:#1c1b1a;border-color:var(--db-line);color:var(--db-secondary)}
+}
+@media(max-width:360px){
+ #panel.table-view.cockpit-view #title{font-size:18px}
+ #panel.table-view.cockpit-view #overviewFilters{gap:4px}
+ #panel.table-view.cockpit-view :is(.season-session-toggle,.season-metric-toggle){font-size:9px}
+ #panel.table-view.cockpit-view .season-session-toggle button,
+ #panel.table-view.cockpit-view .season-metric-toggle span{padding-inline:6px}
+}
+@media(prefers-reduced-motion:reduce){#panel.table-view.cockpit-view :is(.mobile-next-race,.next-race-expand){transition:none}}
