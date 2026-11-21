@@ -1,0 +1,66 @@
+/* The header and stage stay fixed. Wheel/touch input advances only the animation. */
+#panel.tire-view:has(#tyreGuide:not([hidden])) .panel-body{display:flex;flex-direction:column;overflow:hidden;touch-action:pan-x pinch-zoom}
+#panel.tire-view:has(#tyreGuide:not([hidden])) #cockpitTop{flex:none}
+#panel.tire-view #tyreGuide:not([hidden]){flex:1;min-height:0;overflow:hidden;margin:0}
+#panel.tire-view .tyre-guide-layout{height:100%;min-height:0}
+#panel.tire-view #tyreGuide:not(:has(.tyre-scroll-stage)){overflow-y:auto}
+#panel.tire-view #tyreGuide:not(:has(.tyre-scroll-stage)) .tyre-guide-layout{height:auto}
+#panel.tire-view .tyre-scroll-stage{display:block;position:relative;width:100%;height:100%;min-height:0;padding:0;overflow:hidden;isolation:isolate;outline-offset:-2px;background:#101010;container-type:size}
+#panel.tire-view .tyre-scroll-stage .tyre-guide-visual{position:absolute;left:0;right:0;top:0;bottom:0;display:grid;place-items:center;margin:0;z-index:3;transform-origin:50% 48%;pointer-events:none}
+#panel.tire-view .tyre-scroll-stage .tyre-guide-wheel.tyre-material-stage{width:min(54cqw,78cqh,650px);max-width:none;touch-action:none}
+#panel.tire-view .tyre-story-marquee{position:absolute;left:0;top:0;width:200%;height:100%;display:flex;align-items:center;z-index:0;pointer-events:none}
+#panel.tire-view .tyre-story-marquee h2{display:flex;flex:none;white-space:nowrap;margin:0;padding:0 2cqw;font:900 clamp(55px,12cqw,180px)/1.3 'Garage Formula1 Black',sans-serif;letter-spacing:-.02em;color:#dedbd6}
+#panel.tire-view .tyre-story-char{display:inline-block;overflow:hidden;padding:.08em 0 .14em}
+#panel.tire-view .tyre-story-char>span{display:inline-block}
+#panel.tire-view .tyre-story-mask{position:absolute;inset:0;background:#1c1b19;z-index:1;pointer-events:none}
+#panel.tire-view .tyre-story-statement{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:.03em;z-index:2;padding:0 2cqw;pointer-events:none;font:900 clamp(34px,8cqw,120px)/1.24 'Garage Formula1 Black',sans-serif;letter-spacing:0;color:#f0eeeb}
+#panel.tire-view .tyre-story-line{display:block;overflow:hidden;padding:.08em 0 .16em}
+#panel.tire-view .tyre-story-line>span{display:block}
+#panel.tire-view .tyre-story-word{display:block;will-change:opacity,transform}
+#panel.tire-view .tyre-scroll-stage .tyre-catalogue-copy{position:absolute;left:2%;top:18%;width:25%;max-width:300px;padding:0;z-index:4}
+#panel.tire-view .tyre-scroll-stage .tyre-catalogue-name{font-size:clamp(25px,3.6cqw,52px);margin:16px 0 20px;line-height:1.28}
+#panel.tire-view .tyre-scroll-stage .tyre-guide-description{font-size:clamp(13px,1.3cqw,17px);line-height:1.7;max-width:25ch}
+#panel.tire-view .tyre-story-features{position:absolute;right:2%;top:44%;width:22%;max-width:280px;z-index:4}
+#panel.tire-view .tyre-story-features .tyre-catalogue-facts{display:block;margin:0}
+#panel.tire-view .tyre-story-features .tyre-catalogue-facts>div{position:relative;border:0;padding:13px 0;overflow:hidden}
+#panel.tire-view .tyre-story-divider{display:block;position:absolute;inset:0 0 auto;height:1px;background:#ffffff26;transform-origin:left center}
+#panel.tire-view .tyre-scroll-stage>.tyre-model-controls{position:absolute;left:50%;bottom:88px;width:min(30%,360px);margin:0;padding:0;translate:-50% 0;z-index:5}
+#panel.tire-view .tyre-scroll-stage .tyre-guide-choices{position:absolute;left:50%;bottom:18px;translate:-50% 0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:22px;width:max-content;max-width:96%;padding:0;margin:0;border:0;z-index:8}
+#panel.tire-view .tyre-scroll-stage .tyre-guide-choice{width:auto;gap:10px;padding:6px 0 6px 12px;min-height:40px;height:40px}
+#panel.tire-view .tyre-scroll-stage .tyre-guide-choice::before{left:0;right:auto;top:13px;bottom:13px;width:2px;height:auto}
+#panel.tire-view .tyre-scroll-stage .tyre-choice-name{font-size:9px}
+@media(max-width:1050px) and (min-width:701px){
+ #panel.tire-view .tyre-scroll-stage .tyre-catalogue-copy{width:25%;top:14%}
+ #panel.tire-view .tyre-story-features{width:23%;right:1%;top:43%}
+ #panel.tire-view .tyre-scroll-stage>.tyre-model-controls{width:32%}
+ #panel.tire-view .tyre-scroll-stage .tyre-guide-choices{gap:14px}
+}
+@media(max-width:700px){
+ #panel.tire-view .tyre-scroll-stage .tyre-guide-wheel.tyre-material-stage{width:min(96cqw,60cqh)}
+ #panel.tire-view .tyre-story-marquee h2{font-size:22cqw}
+ #panel.tire-view .tyre-story-statement{font-size:10cqw;justify-content:flex-start;padding-top:16cqh}
+ #panel.tire-view .tyre-scroll-stage .tyre-catalogue-copy{left:4%;top:5%;width:52%;max-width:none}
+ #panel.tire-view .tyre-scroll-stage .tyre-catalogue-name{font-size:clamp(22px,7cqw,32px);margin:10px 0 12px}
+ #panel.tire-view #tyreGuide[data-compound='I'] .tyre-scroll-stage .tyre-catalogue-name{font-size:clamp(14px,4.1cqw,20px)}
+ #panel.tire-view .tyre-scroll-stage .tyre-catalogue-surface{font-size:8px;letter-spacing:.045em}
+ #panel.tire-view .tyre-scroll-stage .tyre-guide-description{font-size:12px;line-height:1.6}
+ #panel.tire-view .tyre-story-features{left:4%;right:auto;top:42%;width:49%;max-width:none}
+ #panel.tire-view .tyre-story-features .tyre-catalogue-facts>div{padding:9px 0}
+ #panel.tire-view .tyre-story-features dt{font-size:8px}
+ #panel.tire-view .tyre-story-features dd{font-size:11px;margin-top:4px}
+ #panel.tire-view .tyre-scroll-stage>.tyre-model-controls{width:86%;bottom:82px}
+ #panel.tire-view .tyre-scroll-stage .tyre-wear-control{gap:8px}
+ #panel.tire-view .tyre-scroll-stage .tyre-distance-value{font-size:24px}
+ #panel.tire-view .tyre-scroll-stage .tyre-wear-status{margin-top:6px}
+ #panel.tire-view .tyre-scroll-stage .tyre-guide-choices{width:92%;bottom:12px;gap:10px;justify-content:space-between}
+ #panel.tire-view .tyre-scroll-stage .tyre-guide-choice{flex:none;min-width:34px;justify-content:center;padding-left:8px}
+ #panel.tire-view .tyre-scroll-stage .tyre-choice-name{display:none}
+}
+@media(max-width:700px) and (max-height:720px){
+ #panel.tire-view .tyre-scroll-stage .tyre-catalogue-copy{top:3%}
+ #panel.tire-view .tyre-scroll-stage .tyre-guide-description{font-size:11px;line-height:1.5}
+ #panel.tire-view .tyre-story-features{top:32%}
+ #panel.tire-view .tyre-story-features .tyre-catalogue-facts>div{padding:6px 0}
+ #panel.tire-view .tyre-story-features dd{font-size:10px;line-height:1.4}
+ #panel.tire-view .tyre-scroll-stage>.tyre-model-controls{bottom:72px}
+}

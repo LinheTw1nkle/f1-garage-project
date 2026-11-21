@@ -143,3 +143,11 @@ https://github.com/desandro/draggabilly/tree/v2.2.0
 Source: https://github.com/codrops/ButtonHoverStyles
 
 The Garage return/close controls adapt the Skoll circular-cover slide and two-stage icon animation. Colors, dimensions and icon contents are adapted to this project. MIT license; Copyright (c) 2009 - 2021 Codrops. The MIT permission and disclaimer reproduced above also apply to this adaptation.
+
+
+## Tyre scroll presentation reference
+
+Motion and scene sequencing reference: Dieg0arc/3D-scrolling-practice
+https://github.com/Dieg0arc/3D-scrolling-practice
+
+The marquee, circular reveal, scroll-driven full rotation and feature-reveal sequence were studied from script.js, style.css and index.html. Garage implements that choreography with its existing GSAP distribution and WebGL tyre renderer, scoped to a stationary presentation stage with its own wheel, touch and keyboard animation controls. No model, font, image or source file from that repository is redistributed.

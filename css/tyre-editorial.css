@@ -1,0 +1,76 @@
+/* Base typography and controls for the product-led tyre presentation. */
+#panel.tire-view:has(#tyreGuide:not([hidden])) .panel-body{display:block;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+#panel.tire-view:has(#tyreGuide:not([hidden]))::before{opacity:.12}
+#panel.tire-view #tyreGuide:not([hidden]){display:block;min-height:0;overflow:visible;width:100%}
+#panel.tire-view .tyre-guide-layout{display:block;overflow:visible;min-height:0}
+#panel.tire-view .tyre-catalogue{
+ display:grid;grid-template-columns:148px minmax(0,1fr) minmax(240px,300px);align-items:center;gap:clamp(20px,2.8vw,48px);
+ min-height:clamp(520px,70vh,720px);padding:12px 0 42px;
+}
+#panel.tire-view .tyre-guide-choices{
+ display:flex;flex-direction:column;align-items:stretch;gap:12px;margin:0;padding:0;
+ border:0;border-radius:0;background:none;box-shadow:none;align-self:center;
+}
+#panel.tire-view .tyre-guide-choice{
+ position:relative;display:flex;align-items:center;justify-content:flex-start;gap:14px;
+ width:100%;min-width:0;height:46px;min-height:46px;padding:4px 0 4px 16px;
+ border:0;border-radius:0;outline:0;outline-offset:0;background:none;box-shadow:none;color:var(--db-muted);
+ font:400 11px/1.4 'Garage Red Hat Display',Arial,sans-serif;text-align:left;transform:none;
+}
+#panel.tire-view .tyre-guide-choice::before{content:'';position:absolute;left:0;top:13px;bottom:13px;width:2px;background:var(--choice-color);opacity:.45;transition:opacity .2s}
+#panel.tire-view .tyre-choice-code{flex:none;width:20px;font:400 20px/1.4 'Garage Formula1 Regular',sans-serif;color:var(--choice-color);opacity:.55}
+#panel.tire-view .tyre-choice-name{font-size:10px;letter-spacing:.025em;overflow-wrap:normal}
+#panel.tire-view .tyre-guide-choice[aria-pressed='true']{outline:0;background:none;box-shadow:none;color:var(--db-ink);transform:none}
+#panel.tire-view .tyre-guide-choice[aria-pressed='true'] :is(.tyre-choice-code),
+#panel.tire-view .tyre-guide-choice[aria-pressed='true']::before{opacity:1}
+#panel.tire-view .tyre-guide-choice:hover{background:none;color:var(--db-ink)}
+#panel.tire-view .tyre-guide-choice:focus-visible{outline:1px solid var(--choice-color);outline-offset:4px}
+#panel.tire-view .tyre-guide-visual{
+ position:relative;display:flex;flex-direction:column;align-items:center;align-self:center;min-width:0;min-height:0;
+ padding:0;border:0;border-radius:0;background:none;box-shadow:none;
+}
+#panel.tire-view .tyre-guide-wheel.tyre-material-stage{width:min(100%,520px);height:auto;aspect-ratio:1;margin:0;border:0;border-radius:0;background:none;box-shadow:none;flex:none}
+#panel.tire-view .tyre-model-controls{width:min(100%,390px);margin:6px auto 0;padding:0 8px}
+#panel.tire-view .tyre-wear-control{display:flex;flex-direction:column;gap:14px;font:500 10px/1.5 var(--archive-body);letter-spacing:.06em;color:var(--db-muted)}
+#panel.tire-view .tyre-distance-heading{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+#panel.tire-view .tyre-distance-value{font:400 30px/1.3 'Garage Formula1 Regular',sans-serif;color:var(--db-ink);letter-spacing:0;font-variant-numeric:tabular-nums}
+#panel.tire-view .tyre-wear-control input{display:block;width:100%;height:20px;margin:0;accent-color:var(--tire-theme);cursor:pointer}
+#panel.tire-view .tyre-distance-endpoints{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.07em}
+#panel.tire-view .tyre-wear-status{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font:400 12px/1.5 var(--archive-body);color:var(--db-secondary)}
+#panel.tire-view .tyre-wear-status button{min-height:32px;padding:0;border:0;border-radius:0;background:none;color:var(--db-ink);font:500 10px/1.5 var(--archive-body);letter-spacing:.05em}
+#panel.tire-view .tyre-wear-status button:disabled{color:var(--db-muted);opacity:.4;cursor:default}
+#panel.tire-view .tyre-catalogue-copy{min-width:0;padding:12px 0 0}
+#panel.tire-view .tyre-catalogue-surface{font:400 10px/1.6 var(--archive-body);letter-spacing:.1em;color:var(--db-muted)}
+#panel.tire-view .tyre-catalogue-name{margin:20px 0 24px;padding:0;font:900 clamp(36px,4.7vw,70px)/1.22 'Garage Formula1 Black',sans-serif;letter-spacing:0;color:var(--db-ink);overflow-wrap:normal}
+#panel.tire-view #tyreGuide[data-compound='I'] .tyre-catalogue-name{font-size:clamp(20px,2vw,30px)}
+#panel.tire-view .tyre-guide-description{width:auto;max-width:29ch;min-height:0;margin:0;font:400 17px/1.75 'Garage Red Hat Display',Arial,sans-serif;color:var(--db-secondary);text-align:left}
+#panel.tire-view .tyre-catalogue-facts{margin:32px 0 0}
+#panel.tire-view .tyre-catalogue-facts>div{padding:13px 0;border-top:1px solid var(--db-line)}
+#panel.tire-view .tyre-catalogue-facts dt{font:500 9px/1.5 var(--archive-body);letter-spacing:.075em;color:var(--db-muted)}
+#panel.tire-view .tyre-catalogue-facts dd{margin:6px 0 0;font:400 13px/1.6 var(--archive-body);color:var(--db-ink)}
+@media(max-width:1050px) and (min-width:701px){
+ #panel.tire-view .tyre-catalogue{grid-template-columns:110px minmax(0,1fr) minmax(210px,250px);gap:20px;min-height:530px}
+ #panel.tire-view .tyre-guide-choice{gap:9px;padding-left:12px}
+ #panel.tire-view .tyre-choice-name{font-size:9px}
+ #panel.tire-view .tyre-catalogue-name{font-size:36px}
+ #panel.tire-view .tyre-guide-description{font-size:15px}
+}
+@media(max-width:700px){
+ #panel.tire-view .tyre-catalogue{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;min-height:0;padding:14px 0 32px}
+ #panel.tire-view .tyre-guide-choices{flex-direction:row;justify-content:space-between;gap:8px;grid-row:1;border-bottom:1px solid var(--db-line);padding-bottom:12px}
+ #panel.tire-view .tyre-guide-choice{flex:1;justify-content:center;width:auto;height:42px;min-height:42px;padding:0;gap:0}
+ #panel.tire-view .tyre-guide-choice::before{left:25%;right:25%;top:auto;bottom:0;width:auto;height:2px}
+ #panel.tire-view .tyre-choice-code{width:auto;font-size:20px}
+ #panel.tire-view .tyre-choice-name{display:none}
+ #panel.tire-view .tyre-catalogue-copy{grid-row:2;padding:0}
+ #panel.tire-view .tyre-catalogue-name{margin:12px 0 14px;font-size:clamp(36px,10vw,56px)}
+ #panel.tire-view #tyreGuide[data-compound='I'] .tyre-catalogue-name{font-size:clamp(24px,6.5vw,34px)}
+ #panel.tire-view .tyre-guide-description{max-width:36ch;font-size:16px}
+ #panel.tire-view .tyre-catalogue-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px}
+ #panel.tire-view .tyre-catalogue-facts dd{font-size:11px;line-height:1.6}
+ #panel.tire-view .tyre-catalogue-facts dt{font-size:8px}
+ #panel.tire-view .tyre-guide-visual{grid-row:3}
+ #panel.tire-view .tyre-guide-wheel.tyre-material-stage{width:min(100%,400px)}
+ #panel.tire-view .tyre-model-controls{width:100%;margin-top:8px;padding:0}
+}
+@media(prefers-reduced-motion:reduce){#panel.tire-view .tyre-guide-choice::before{transition:none}}
